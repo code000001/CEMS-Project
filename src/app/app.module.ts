@@ -6,11 +6,15 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TestdataComponent } from './testdata/testdata.component';
+import { MainscreenComponent } from './mainscreen/mainscreen.component';
+import { LoginscreenComponent } from './loginscreen/loginscreen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestdataComponent
+    TestdataComponent,
+    MainscreenComponent,
+    LoginscreenComponent
   ],
   imports: [
     NgbModule,

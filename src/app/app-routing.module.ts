@@ -1,9 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TestdataComponent } from './testdata/testdata.component';
+import { MainscreenComponent } from './mainscreen/mainscreen.component';
+import { LoginscreenComponent } from './loginscreen/loginscreen.component';
+
 
 const routes: Routes = [
-  { path : 'data', component: TestdataComponent}
+  { path : 'index', component: MainscreenComponent},
+  { path : 'login', component: LoginscreenComponent},
+  { path: '',
+    redirectTo: '/index',
+    pathMatch: 'full'
+  },
+  { path: '**',
+    component: MainscreenComponent}
 ];
 
 @NgModule({
