@@ -9,23 +9,33 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class LoginscreenComponent implements OnInit {
   loginData: any = [];
+  acc_login = '';
+  acc_pass = '';
   constructor(public loginService: ApiRestLoginService) { }
 
   ngOnInit() {
   }
 
-  onLoginBtn(acc_login, acc_pass){
-    const httpBody = 'acc_login='+acc_login;
-    const httpHeaders = new HttpHeaders();
-    httpHeaders.append('Authorization','Basic ' + btoa(acc_login)+btoa(acc_pass))
-    httpHeaders.append('Content-Type',  'application/json')
+  updateAccLoginValue(event: KeyboardEvent) {
+    this.acc_login = (<HTMLInputElement>event.target).value;
+  }
+  updateAccPassValue(event: KeyboardEvent) {
+    this.acc_pass = (<HTMLInputElement>event.target).value;
+  }
 
-    console.log(acc_login+'  '+acc_pass);
-  this.getLoginData(httpHeaders, httpBody);
+  onLoginBtn() {
+    const httpBody = 'acc_login=' + this.acc_login;
+    const httpHeaders = new HttpHeaders({
+      'Authorization': 'Basic ' + btoa(this.acc_login + ':' + this.acc_pass),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+
+    console.log(httpHeaders);
+    this.getLoginData(httpHeaders, httpBody);
   }
   getLoginData(httpHeaders, httpBody) {
     this.loginData = [];
-    this.loginService.getLoginData(httpHeaders,httpBody).subscribe((data: {}) => {
+    this.loginService.getLoginData(httpHeaders, httpBody).subscribe((data: {}) => {
       console.log(data);
       this.loginData = data;
     });
