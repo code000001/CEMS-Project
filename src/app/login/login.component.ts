@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiRestLoginService } from '../api-rest-login.service';
+import { ApiRestLoginService } from '../services/api-rest-login.service';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
-  selector: 'app-loginscreen',
-  templateUrl: './loginscreen.component.html',
-  styleUrls: ['./loginscreen.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html'
 })
-export class LoginscreenComponent implements OnInit {
+export class LoginComponent implements OnInit {
   loginData: any = [];
   acc_login = '';
   acc_pass = '';

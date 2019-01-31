@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ApiRestTestService } from '../api-rest-test.service';
 
 @Component({
-  selector: 'app-mainscreen',
-  templateUrl: './mainscreen.component.html'
+  selector: 'app-announcement',
+  templateUrl: './announcement.component.html',
+  styleUrls: ['./announcement.component.css']
 })
-export class MainscreenComponent implements OnInit {
+export class AnnouncementComponent implements OnInit {
   data: any = [];
 
   constructor(public rest: ApiRestTestService) { }
@@ -21,4 +22,5 @@ export class MainscreenComponent implements OnInit {
       this.data = data;
     });
   }
+
 }

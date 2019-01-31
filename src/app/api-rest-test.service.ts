@@ -4,10 +4,9 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 
-const endpoint = 'http://localhost:8081/cems/student_qc';
+const endpoint = 'http://localhost:8081/cems/all';
 const httpOptions = {
   headers: new HttpHeaders({
-    Authorization: 'Basic ' + btoa('admin:admin'),
     'Content-Type':  'application/json'
   })
 };
@@ -23,7 +22,7 @@ export class ApiRestTestService {
     return body || { };
   }
   getTestData(): Observable<any> {
-    return this.http.get(endpoint, httpOptions).pipe(
+    return this.http.get(endpoint).pipe(
       map(this.extractData));
   }
 }
