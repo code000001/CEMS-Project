@@ -3,20 +3,23 @@ import { Routes, RouterModule } from '@angular/router';
 import { AnnouncementComponent } from './announcement/announcement.component';
 import { MainscreenComponent } from './mainscreen/mainscreen.component';
 import { LoginComponent } from './login/login.component';
+import {ShowAnnouncementComponent} from './announcement/show/show_announcement.component';
+
 
 const routes: Routes = [
   { path : 'data', component: AnnouncementComponent},
   { path : 'login', component: LoginComponent},
-  { path: '',
-    redirectTo: '/index',
-    pathMatch: 'full'
-  },
-  { path: '**',
-    component: MainscreenComponent}
+  {path: 'announcement', component: ShowAnnouncementComponent},
+  { path: '**',redirectTo: 'index',pathMatch: 'full'},
+  { path: 'index', component: MainscreenComponent}
 ];
 
 @NgModule({
+  declarations: [
+    ShowAnnouncementComponent,
+],
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  bootstrap: [AnnouncementComponent]
 })
 export class AppRoutingModule { }

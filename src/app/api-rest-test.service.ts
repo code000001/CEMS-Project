@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 
-const endpoint = 'http://localhost:8081/cems/all';
+const endpoint = 'http://localhost:8081/cems/announcement';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
