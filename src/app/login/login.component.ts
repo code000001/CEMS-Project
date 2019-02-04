@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiRestLoginService } from '../services/api-rest-login.service';
 import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ export class LoginComponent implements OnInit {
   loginData: any = [];
   acc_login = '';
   acc_pass = '';
-  constructor(public loginService: ApiRestLoginService) { }
+  constructor(public loginService: ApiRestLoginService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,8 +25,9 @@ export class LoginComponent implements OnInit {
 
   onLoginBtn() {
     const httpBody = 'acc_login=' + this.acc_login;
+    localStorage.setItem('token', btoa(this.acc_login + ':' + this.acc_pass));
     const httpHeaders = new HttpHeaders({
-      'Authorization': 'Basic ' + btoa(this.acc_login + ':' + this.acc_pass),
+      'Authorization': 'Basic ' + localStorage.getItem('token'),
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
@@ -34,9 +36,10 @@ export class LoginComponent implements OnInit {
   }
   getLoginData(httpHeaders, httpBody) {
     this.loginData = [];
-    this.loginService.getLoginData(httpHeaders, httpBody).subscribe((data: {}) => {
-      console.log(data);
-      this.loginData = data;
-    });
+    this.loginService.getLoginData(httpHeaders, httpBody).subscribe(data => {
+        console.log(data);
+        this.loginData = data;
+        this.router.navigate(['/data']);
+      });
   }
 }

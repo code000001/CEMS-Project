@@ -16,9 +16,9 @@ export class MainscreenComponent implements OnInit {
 
   getTestData() {
     this.data = [];
-    this.rest.getTestData().subscribe((data: {}) => {
-      console.log(data);
-      this.data = data;
-    });
+    // this.rest.getTestData().subscribe((data: {}) => {
+    //   console.log(data);
+    //   this.data = data;
+    // });
   }
 }
