@@ -21,8 +21,8 @@ export class ApiRestTestService {
     const body = res;
     return body || { };
   }
-  getTestData(): Observable<any> {
-    return this.http.get(endpoint).pipe(
+  getTestData(header): Observable<any> {
+    return this.http.get(endpoint, ({headers: header})).pipe(
       map(this.extractData));
   }
 }
