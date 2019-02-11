@@ -1,77 +1,37 @@
-<nav class="navbar navbar-dark bg-info">
-    <img src="https://i.imgur.com/oD0DYqk.jpg" style="width:100px;height:70px;">
-    <form class="form-inline my-2 my-lg-0">
-       
-        <label for="exampleFormControlFile1">ภคนันท์ ทองมี รหัสนิสิต:58160XXX ตำแหน่ง:นิสิต</label>&nbsp;&nbsp;
-        
-        <button class="btn btn-light my-2 my-sm-0" type="button" (click)="onLogoutBtn()">Logout</button>
-      </form>
-</nav>
-<br>
-<div style="padding:50px;">
-  <div class="row">
-    <div class="col-sm-2 order-sm-2 mb-4">
-      <ul class="list-group mb-4">
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">สมัครคัดเลือก</h6>
-            <small class="text-muted"></small>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between bg-light">
-          <div>
-            <h6 class="my-0">ประกาศ</h6>
-            <small class="text-muted"></small>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">จัดการข้อมูลส่วนตัว</h6>
-            <small class="text-muted"></small>
-          </div>
-          <span class="text-muted"></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div class="text-muted">
-            <h6 class="my-0">ดูผลการคัดเลือก
-            </h6>
-            <small></small>
-          </div>
-          <span class="text-success"></span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div class="text-muted">
-            <h6 class="my-0">แนะนำการใช้งาน
-            </h6>
-            <small></small>
-          </div>
-          <span class="text-success"></span>
-        </li>
-      </ul>
-    </div>
+<div class="card">
+  <div class="card-body">
+    <h4>ประกาศการรับสมัครนิสิตสหกิจศึกษา</h4>
+    <form class="needs-validation" novalidate="" style="padding:20px;">
+   
+    </form>
+          <ngx-datatable 
+          class="material expandable" 
+          [rows]="rows" 
+          [loadingIndicator]="loadingIndicator" 
+          [columns]="columns"
+          [columnMode]="'force'" 
+          [headerHeight]="50" 
+          [footerHeight]="50" 
+          [rowHeight]="'auto'" 
+          [reorderable]="reorderable">
+            <ngx-datatable-column name="Name" [width]="1">
+                <ng-template ngx-datatable-header-template>
+                    <h5>รายชื่อบริษัท</h5>
+                  </ng-template>
+              <ng-template ngx-datatable-cell-template let-value="value">
+                {{value}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Name" [width]="1">
+                <ng-template ngx-datatable-header-template>
+                    <h5>ดูรายละเอียด</h5>
+                  </ng-template>
+              <ng-template ngx-datatable-cell-template let-value="value">
+                คลิก
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
 
-    <div class="col-md-8 order-md-4">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="mb-3">ประกาศ</h4>
-          <form class="needs-validation" novalidate="" style="padding:20px;">
-            <div class="row">
-                <div class="form-group">
-                  <img src="Untitled.jpg" style="width:250px;height:250px;">
-                </div>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <div class="form-group mb-2">
-                    <p class="card-text">บริษัท MFEC Public Company Limited</p>
-                    <p class="card-text">ที่ตั้ง : 699 อาคารโมเดอร์นฟอร์มทาวเวอร์ ชั้น 27 ถนนศรีนครินทร์</p>
-                    <p class="card-text">แขวงพัฒนาการ เขตสวนหลวง กรุงเทพมหานคร 10250</p>
-                    <p class="card-text">โทร : +66 (0) 2821-7999</p>
-                    <p class="card-text">ลงสัมครตำแหน่ง : Developer</p>
-                    <button type="submit" class="btn btn-secondary mb-2" data-dismiss="alert" style="float:right">สมัคร</button>
-                </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+     
   </div>
 </div>
