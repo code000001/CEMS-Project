@@ -1,0 +1,76 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/">CEMS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <!-- <li class="nav-item ">
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">หน้าแรก<span class="sr-only">(current)</span></a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/announcement" routerLinkActive="active">ประกาศ</a>
+      </li>
+      <li class="nav-item " *ngIf="isSignin && isUser">
+        <a class="nav-link" routerLink="/app-form" routerLinkActive="active">สมัครคัดเลือก</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/qualifying" routerLinkActive="active">ดูผลการคัดเลือก</a>
+      </li>
+      <li class="nav-item" *ngIf="isSignin && !isUser">
+        <a class="nav-link" routerLink="/qualification" routerLinkActive="active">คัดเลือก</a>
+      </li>
+      <li class="nav-item" *ngIf="isStaff || isAdmin">
+          <!-- <a *ngIf="isUser" class="nav-link" routerLink="/profile-management/stu" routerLinkActive="active">จัดการข้อมูลส่วนตัว</a>
+          <a *ngIf="isStaff,isAdmin" class="nav-link" routerLink="/profile-management/staff" routerLinkActive="active">จัดการข้อมูลส่วนตัว</a> -->
+          <a class="nav-link" routerLink="/profile-management/staff" routerLinkActive="active">จัดการข้อมูลส่วนตัว</a>
+      </li>
+
+      <li class="nav-item dropdown" *ngIf="isUser">
+        <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          จัดการข้อมูลส่วนตัว
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/profile-management/stu"><fa name="address-card"></fa> INS001</a>
+        </div>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/UserManual" routerLinkActive="active">แนะนำการใช้งาน</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav">
+      <ng-container *ngIf="!isSignin; else elseTemplate">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/sign-up" routerLinkActive="active"><fa name="sign-in" ></fa> สร้างบัญชี</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active"><fa name="user" ></fa> เข้าสู่ระบบ</a>
+        </li>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <li class="nav-item dropdown" *ngIf="userFromApi">
+          <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <fa name="user" ></fa> {{userFromApi.firstName}} {{userFromApi.lastName}}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/new-account" *ngIf="isStaff || isAdmin">เพิ่มบัญชี</a>
+            <a class="dropdown-item" href="#"><fa name="cogs"></fa> ตั้งค่าบัญชี</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()"><fa name="sign-out"></fa> ออกจากระบบ</a>
+          </div>
+        </li>
+
+        <!-- <li class="nav-item" *ngIf="userFromApi">
+            <a class="nav-link" routerLinkActive="active"><fa name="user" ></fa> {{userFromApi.firstName}} {{userFromApi.lastName}}</a>
+          </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()" routerLinkActive="active"><fa name="sign-out" ></fa> ออกจากระบบ</a>
+        </li> -->
+      </ng-template>
+    </ul>
+
+  </div>
+</nav>

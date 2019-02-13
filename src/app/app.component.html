@@ -1,53 +1,6 @@
-<nav class="navbar navbar-light" style="background-color: #18083E;">
-    <img src="https://i.imgur.com/pqbkLIj.png" style="width:90px;height:50px;">
-    <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-light my-2 my-sm-0" type="button" (click)="onLogoutBtn()">Logout</button>
-    </form>
-</nav>
-<br>
-<div style="padding:50px;">
-    <div class="row">
-        <div class="col-sm-2 order-sm-2 mb-8">
-            <ul class="list-group mb-4">
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">สมัครคัดเลือก</h6>
-                        <small class="text-muted"></small>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">ประกาศ</h6>
-                        <small class="text-muted"></small>
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">จัดการข้อมูลส่วนตัว</h6>
-                        <small class="text-muted"></small>
-                    </div>
-            
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">ดูผลการคัดเลือก
-                        </h6>
-                        <small class="text-muted"></small>
-                    </div>
-            
-                </li>
-                <li class="list-group-item d-flex justify-content-between lh-condensed">
-                    <div>
-                        <h6 class="my-0">แนะนำการใช้งาน
-                        </h6>
-                        <small class="text-muted"></small>
-                    </div>
-            
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-9 order-md-4">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</div>
+<app-header></app-header>
+<ng-progress #progressBar (started)="onStarted()" (completed)="onCompleted()"></ng-progress>
+    <!-- <div class="container"> -->
+        <router-outlet></router-outlet>
+    <!-- </div> -->
+<app-footer></app-footer>

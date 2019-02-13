@@ -12,15 +12,15 @@ export class TestdataComponent implements OnInit {
   constructor(public rest: ApiRestTestService) { }
 
   ngOnInit() {
-    // this.getTestData();
+    this.getTestData();
   }
 
-  // getTestData() {
-  //   this.data = [];
-  //   this.rest.getTestData().subscribe((data: {}) => {
-  //     console.log(data);
-  //     this.data = data;
-  //   });
-  // }
+  getTestData() {
+    this.data = [];
+    this.rest.getTestData().subscribe((data: {}) => {
+      console.log(data);
+      this.data = data;
+    });
+  }
 
 }
