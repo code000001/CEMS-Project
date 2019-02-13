@@ -23,16 +23,14 @@ import { LoginscreenComponent } from './loginscreen/loginscreen.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { LogInComponent } from './log-in/log-in.component';
-import { StudentOrgAppFormComponent } from './student-org-app-form/student-org-app-form.component';
+import { StudentOrgAppFormComponent } from './App-Form/student-org-app-form/student-org-app-form.component';
 import { EduProfileManagementComponent } from './Profile-Management/edu-profile-management/edu-profile-management.component';
-import { JodDetailAnnouncementComponent } from './jod-detail-announcement/jod-detail-announcement.component';
-import { StuQualificationcementComponent } from './stu-qualificationcement/stu-qualificationcement.component';
-import { StuQualifyingStatusComponent } from './stu-qualifying-status/stu-qualifying-status.component';
-import { UserManualComponent } from './user-manual/user-manual.component';
+import { JodDetailAnnouncementComponent } from './Announcement/jod-detail-announcement/jod-detail-announcement.component';
+import { StuQualificationcementComponent } from './Qualificationcement/stu-qualificationcement/stu-qualificationcement.component';
+import { StuQualifyingStatusComponent } from './Qualifying/stu-qualifying-status/stu-qualifying-status.component';
 import { StaffProfileManagementComponent } from './Profile-Management/staff-profile-management/staff-profile-management.component';
-import { NewAccountComponent } from './new-account/new-account.component';
+import { NewAccountComponent } from './Admin/new-account/new-account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SkillTestManagementComponent } from './Profile-Management/skill-test-management/skill-test-management.component';
 
@@ -45,14 +43,12 @@ import { SkillTestManagementComponent } from './Profile-Management/skill-test-ma
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    SignUpComponent,
     LogInComponent,
     StudentOrgAppFormComponent,
     EduProfileManagementComponent,
     JodDetailAnnouncementComponent,
     StuQualificationcementComponent,
     StuQualifyingStatusComponent,
-    UserManualComponent,
     StaffProfileManagementComponent,
     NewAccountComponent,
     NotFoundComponent,
