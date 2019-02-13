@@ -61,7 +61,7 @@ const routes: Routes = [
     component: SkillTestManagementComponent,
     canActivate: [AuthGuard],
     data: {
-      title: 'ทักษะ',
+      title: 'ผลการสอบทักษะ',
       roles: [Role.User]
     }
   },

@@ -1,0 +1,52 @@
+/*//////////////////////////////////////////////////////////////////
+[ Contact ]*/
+
+.container-contact100 {
+  width: 100%;  
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: #e6e6e6;
+  
+}
+
+.wrap-contact100 {
+  width: 920px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 62px 55px 90px 55px;
+}
+
+
+/*------------------------------------------------------------------
+[  ]*/
+
+.contact100-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.contact100-form-title {
+  display: block;
+  width: 100%;
+  font-size: 39px;
+  color: #333333;
+  line-height: 1.2;
+  text-align: center;
+  padding-bottom: 59px;
+}
+
