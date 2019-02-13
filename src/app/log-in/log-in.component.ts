@@ -56,8 +56,8 @@ export class LogInComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                  // window.location.reload();
-                     this.router.navigate([this.returnUrl]);
+                  window.location.reload();
+                    //  this.router.navigate([this.returnUrl]);
                 },
                 error => {
                     this.error = error;

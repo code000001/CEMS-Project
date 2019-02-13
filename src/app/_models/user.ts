@@ -4,6 +4,6 @@ export class User {
     accPassword: string;
     accFirstNameEn: string;
     accLastNameEn: string;
-    accTypeId: string;
+    accTypeId: number;
     token?: string;
 }
