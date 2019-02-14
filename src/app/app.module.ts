@@ -23,21 +23,20 @@ import { LoginscreenComponent } from './loginscreen/loginscreen.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
 import { LogInComponent } from './log-in/log-in.component';
-import { StudentOrgAppFormComponent } from './student-org-app-form/student-org-app-form.component';
-import { EduProfileManagementComponent } from './edu-profile-management/edu-profile-management.component';
-import { JodDetailAnnouncementComponent } from './jod-detail-announcement/jod-detail-announcement.component';
-import { StuQualificationcementComponent } from './stu-qualificationcement/stu-qualificationcement.component';
-import { StuQualifyingStatusComponent } from './stu-qualifying-status/stu-qualifying-status.component';
-import { UserManualComponent } from './user-manual/user-manual.component';
-import { StaffProfileManagementComponent } from './staff-profile-management/staff-profile-management.component';
-import { NewAccountComponent } from './new-account/new-account.component';
+import { StudentOrgAppFormComponent } from './App-Form/student-org-app-form/student-org-app-form.component';
+import { EduProfileManagementComponent } from './Profile-Management/edu-profile-management/edu-profile-management.component';
+import { JodDetailAnnouncementComponent } from './Announcement/jod-detail-announcement/jod-detail-announcement.component';
+import { StuQualificationcementComponent } from './Qualificationcement/stu-qualificationcement/stu-qualificationcement.component';
+import { StuQualifyingStatusComponent } from './Qualifying/stu-qualifying-status/stu-qualifying-status.component';
+import { StaffProfileManagementComponent } from './Profile-Management/staff-profile-management/staff-profile-management.component';
+import { NewAccountComponent } from './Admin/new-account/new-account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {NgxDatatableModule } from '@swimlane/ngx-datatable'
 import {AddJodDetailAnnouncementComponent} from './jod-detail-announcement/add-job-detail-component/add-announcement.component'
 import {ViewJodDetailAnnouncementComponent} from './jod-detail-announcement/view-job-detail-component/view-announcement.component'
 import {UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/update-job-detail-component/update-announcement.component'
+import { SkillTestManagementComponent } from './Profile-Management/skill-test-management/skill-test-management.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +47,6 @@ import {UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/up
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    SignUpComponent,
     LogInComponent,
     StudentOrgAppFormComponent,
     EduProfileManagementComponent,
@@ -58,10 +56,10 @@ import {UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/up
     AddJodDetailAnnouncementComponent,
     StuQualificationcementComponent,
     StuQualifyingStatusComponent,
-    UserManualComponent,
     StaffProfileManagementComponent,
     NewAccountComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SkillTestManagementComponent
   ],
   imports: [
     NgbModule,
@@ -85,10 +83,7 @@ import {UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/up
   providers: [
     Title,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-    // provider used to create fake backend
-    // fakeBackendProvider
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
   exports: [BsDropdownModule, TooltipModule, ModalModule]

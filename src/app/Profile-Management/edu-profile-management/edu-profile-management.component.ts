@@ -10,6 +10,9 @@ export class EduProfileManagementComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
+
+  
 
 }

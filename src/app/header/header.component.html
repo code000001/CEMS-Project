@@ -32,13 +32,14 @@
           จัดการข้อมูลส่วนตัว
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/profile-management/stu"><fa name="address-card"></fa> INS001</a>
+          <a class="dropdown-item" routerLink="/profile-management/stu"><fa name="address-card"></fa> ใบสมัครเป็นนิสิตสหกิจศึกษา</a>
+          <a class="dropdown-item" routerLink="profile-management/skill-test"><fa name="code"></fa> ผลการสอบทักษะ</a>
         </div>
       </li>
       
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" routerLink="/UserManual" routerLinkActive="active">แนะนำการใช้งาน</a>
-      </li>
+      </li> -->
     </ul>
 
     <ul class="navbar-nav">
@@ -53,7 +54,7 @@
       <ng-template #elseTemplate>
         <li class="nav-item dropdown" *ngIf="userFromApi">
           <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <fa name="user" ></fa> {{userFromApi.firstName}} {{userFromApi.lastName}}
+            <fa name="user" ></fa> {{userFromApi.accFirstNameEn}} {{userFromApi.accLastNameEn}}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/new-account" *ngIf="isStaff || isAdmin">เพิ่มบัญชี</a>
