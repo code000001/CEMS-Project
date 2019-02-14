@@ -5,7 +5,6 @@ import { Role } from './_models';
 
 import { HomeComponent } from './home/home.component';
 import { MainscreenComponent } from './mainscreen/mainscreen.component';
-import { LoginscreenComponent } from './loginscreen/loginscreen.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { StudentOrgAppFormComponent } from './student-org-app-form/student-org-app-form.component';
@@ -17,6 +16,9 @@ import { StuQualifyingStatusComponent } from './stu-qualifying-status/stu-qualif
 import { UserManualComponent } from './user-manual/user-manual.component';
 import { NewAccountComponent } from './new-account/new-account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {AddJodDetailAnnouncementComponent} from './jod-detail-announcement/add-job-detail-component/add-announcement.component'
+import {ViewJodDetailAnnouncementComponent} from './jod-detail-announcement/view-job-detail-component/view-announcement.component'
+import {UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/update-job-detail-component/update-announcement.component'
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -68,6 +70,21 @@ const routes: Routes = [
     path: 'announcement',
     component: JodDetailAnnouncementComponent,
     data: { title: 'ประกาศ' }
+  },
+  {
+    path : 'add_announcement',
+    component:AddJodDetailAnnouncementComponent,
+    data :{ title: 'ประกาศบริษัท'}
+  },
+  {
+    path: 'view_announcement',
+    component: ViewJodDetailAnnouncementComponent,
+    data:{title:'รายละเอียดของบริษัท'}
+  },
+  {
+    path:'update_announcement',
+    component:UpdateJodDetailAnnouncementComponent,
+    data:{title:'แก้ไขรายละเอียดของบริษัท'}
   },
   {
     path: 'qualification',

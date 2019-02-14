@@ -34,6 +34,10 @@ import { UserManualComponent } from './user-manual/user-manual.component';
 import { StaffProfileManagementComponent } from './staff-profile-management/staff-profile-management.component';
 import { NewAccountComponent } from './new-account/new-account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import {NgxDatatableModule } from '@swimlane/ngx-datatable'
+import {AddJodDetailAnnouncementComponent} from './jod-detail-announcement/add-job-detail-component/add-announcement.component'
+import {ViewJodDetailAnnouncementComponent} from './jod-detail-announcement/view-job-detail-component/view-announcement.component'
+import {UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/update-job-detail-component/update-announcement.component'
 
 @NgModule({
   declarations: [
@@ -49,6 +53,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     StudentOrgAppFormComponent,
     EduProfileManagementComponent,
     JodDetailAnnouncementComponent,
+    ViewJodDetailAnnouncementComponent,
+    UpdateJodDetailAnnouncementComponent,
+    AddJodDetailAnnouncementComponent,
     StuQualificationcementComponent,
     StuQualifyingStatusComponent,
     UserManualComponent,
@@ -61,6 +68,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    NgxDatatableModule,
     AngularFontAwesomeModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),

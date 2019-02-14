@@ -1,5 +1,20 @@
-<div class="container">
-  <p>
-    jod-detail-announcement works!
-  </p>
+<div class="container" style="padding: 100px;">
+  <ngx-datatable class="material" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50"
+    [rowHeight]="'auto'" [rows]="rows">
+    <ngx-datatable-column name="Company">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>รายชื่อบริษัท</span>
+      </ng-template>
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.company}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="ดูลายละเอียด">
+      <ng-template ngx-datatable-cell-template let-value="value">
+        <a routerLink="/view_announcement"><fa name="search"></fa></a>&nbsp;
+        <a routerLink="/add_announcement"><fa name="plus"></fa></a>&nbsp;
+        <a routerLink="/update_announcement"><fa name="pencil"></fa></a>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
 </div>
