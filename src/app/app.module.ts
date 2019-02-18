@@ -37,6 +37,7 @@ import {AddJodDetailAnnouncementComponent} from './jod-detail-announcement/add-j
 import {ViewJodDetailAnnouncementComponent} from './jod-detail-announcement/view-job-detail-component/view-announcement.component'
 import {UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/update-job-detail-component/update-announcement.component'
 import { SkillTestManagementComponent } from './Profile-Management/skill-test-management/skill-test-management.component';
+import { InsManagementComponent } from './Profile-Management/ins-management/ins-management.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { SkillTestManagementComponent } from './Profile-Management/skill-test-ma
     StaffProfileManagementComponent,
     NewAccountComponent,
     NotFoundComponent,
-    SkillTestManagementComponent
+    SkillTestManagementComponent,
+    InsManagementComponent
   ],
   imports: [
     NgbModule,

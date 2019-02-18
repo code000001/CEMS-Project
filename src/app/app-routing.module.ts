@@ -19,6 +19,7 @@ import {AddJodDetailAnnouncementComponent} from './jod-detail-announcement/add-j
 import {ViewJodDetailAnnouncementComponent} from './jod-detail-announcement/view-job-detail-component/view-announcement.component'
 import {UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/update-job-detail-component/update-announcement.component'
 import { SkillTestManagementComponent } from './Profile-Management/skill-test-management/skill-test-management.component';
+import { InsManagementComponent } from './Profile-Management/ins-management/ins-management.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -49,6 +50,15 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'จัดการข้อมูลส่วนตัว',
+      roles: [Role.User]
+    }
+  },
+  {
+    path: 'profile-management/ins',
+    component: InsManagementComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'สมัครเป็นนิสิตสหกิจศึกษา',
       roles: [Role.User]
     }
   },
