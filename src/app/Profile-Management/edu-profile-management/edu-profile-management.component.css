@@ -50,3 +50,52 @@
   padding-bottom: 59px;
 }
 
+.hizli-menu {
+    padding-bottom: 50px;
+}
+.hizli-menu .hizli-menu-ic .btn-group {
+    background: #4682B4;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 75px;
+    padding: 26px 36px 26px 26px;
+    margin: 0;
+    position: relative;
+    border-radius: 5px;
+}
+
+.hizli-menu .hizli-menu-ic .btn-group:hover {
+    background: #333333;
+}
+
+.hizli-menu .hizli-menu-ic .btn-group:After {
+    position: absolute;
+    display: block;
+    content: "";
+    width: 76px;
+    height: 8px;
+    background: #333;
+    bottom: -8px;
+    left: 10px;
+    margin: auto;
+    transition: cubic-bezier(0, 0.71, 0, 1.07) .7s;
+}
+
+.hizli-menu .hizli-menu-ic .btn-group:hover:After {
+    background: #4682B4;
+    transform: translate(0,0px);
+    height: 91px;
+    border-radius: 8px;
+}
+.hizli-menu .hizli-menu-ic .btn-group img {margin-right:12px;height: 38px;position: absolute;z-index: 777;}
+.hizli-menu .hizli-menu-ic .btn-group span {
+    margin: 5px;
+    display: block;
+    font-weight: 800;
+    padding-left: 15px;
+}
+.mbottom {margin-bottom:30px;}
+
