@@ -20,6 +20,9 @@ import {ViewJodDetailAnnouncementComponent} from './jod-detail-announcement/view
 import {UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/update-job-detail-component/update-announcement.component'
 import { SkillTestManagementComponent } from './Profile-Management/skill-test-management/skill-test-management.component';
 import { InsManagementComponent } from './Profile-Management/ins-management/ins-management.component';
+import { DownloadInsComponent } from './Profile-Management/download-ins/download-ins.component';
+import { UploadTranscriptComponent } from './Profile-Management/upload-transcript/upload-transcript.component';
+import { UploadResumeComponent } from './Profile-Management/upload-resume/upload-resume.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -68,6 +71,33 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'ผลการสอบทักษะ',
+      roles: [Role.User]
+    }
+  },
+  {
+    path: 'profile-management/download',
+    component: DownloadInsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'ดาวน์โหลดเอกสารใบสมัครเป็นนิสิตสหกิจศึกษา',
+      roles: [Role.User]
+    }
+  },
+  {
+    path: 'profile-management/uptranscript',
+    component: UploadTranscriptComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'อัปโหลดเอกสารผลการศึกษา',
+      roles: [Role.User]
+    }
+  },
+  {
+    path: 'profile-management/upresume',
+    component: UploadResumeComponent,
+    canActivate: [AuthGuard],
+    data: {
+      title: 'อัปโหลดเอกสารเรซูเม',
       roles: [Role.User]
     }
   },

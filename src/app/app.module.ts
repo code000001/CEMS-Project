@@ -38,6 +38,9 @@ import {ViewJodDetailAnnouncementComponent} from './jod-detail-announcement/view
 import {UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/update-job-detail-component/update-announcement.component'
 import { SkillTestManagementComponent } from './Profile-Management/skill-test-management/skill-test-management.component';
 import { InsManagementComponent } from './Profile-Management/ins-management/ins-management.component';
+import { DownloadInsComponent } from './Profile-Management/download-ins/download-ins.component';
+import { UploadTranscriptComponent } from './Profile-Management/upload-transcript/upload-transcript.component';
+import { UploadResumeComponent } from './Profile-Management/upload-resume/upload-resume.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,10 @@ import { InsManagementComponent } from './Profile-Management/ins-management/ins-
     NewAccountComponent,
     NotFoundComponent,
     SkillTestManagementComponent,
-    InsManagementComponent
+    InsManagementComponent,
+    DownloadInsComponent,
+    UploadTranscriptComponent,
+    UploadResumeComponent
   ],
   imports: [
     NgbModule,
