@@ -27,8 +27,8 @@
           <a class="nav-link" routerLink="/profile-management/staff" routerLinkActive="active">จัดการข้อมูลส่วนตัว</a>
       </li>
 
-      <li class="nav-item dropdown" *ngIf="isUser">
-        <a class="nav-link" routerLink="profile-management/stu" routerLinkActive="active">จัดการข้อมูลส่วนตัว</a>
+      <li class="nav-item" *ngIf="isUser">
+        <a class="nav-link" routerLink="/profile-management" routerLinkActive="active">จัดการข้อมูลส่วนตัว</a>
         <!-- <a class="nav-link dropdown-toggle" routerLinkActive="active" routerLink="profile-management/stu" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           จัดการข้อมูลส่วนตัว
         </a> -->
@@ -45,9 +45,6 @@
 
     <ul class="navbar-nav">
       <ng-container *ngIf="!isSignin; else elseTemplate">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/sign-up" routerLinkActive="active"><fa name="sign-in" ></fa> สร้างบัญชี</a>
-        </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="/login" routerLinkActive="active"><fa name="user" ></fa> เข้าสู่ระบบ</a>
         </li>
