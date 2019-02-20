@@ -43,13 +43,15 @@ const routes: Routes = [
       // === Role.Agent เจ้าหน้าที่ของบริษัท
       { path: 'app-form', component: StudentOrgAppFormComponent, canActivate: [AuthGuard], data: { title: 'สมัครคัดเลือก', roles: [Role.User] } },
       { path: 'profile-management', component: EduProfileManagementComponent, canActivate: [AuthGuard], data: { title: 'จัดการข้อมูลส่วนตัว', roles: [Role.User] } },
+      { path: 'profile-management/ins', component: InsManagementComponent, canActivate: [AuthGuard], data: { title: 'ใบสมัครเป็นนิสิตสหกิจศึกษา', roles: [Role.User] } },
       { path: 'profile-management/skill-test', component: SkillTestManagementComponent, canActivate: [AuthGuard], data: { title: 'ผลการสอบทักษะ', roles: [Role.User] } },
+      { path: 'profile-management/upload-transcript', component: UploadTranscriptComponent, canActivate: [AuthGuard], data: { title: 'อัปโหลดผลการศึกษา', roles: [Role.User] } },
+      { path: 'profile-management/upload-resume', component: UploadResumeComponent, canActivate: [AuthGuard], data: { title: 'อัปโหลดเรซูเม', roles: [Role.User] } },
       { path: 'profile-management/staff', component: StaffProfileManagementComponent, canActivate: [AuthGuard], data: { title: 'จัดการข้อมูลส่วนตัว', roles: [Role.Staff, Role.Admin] } },
       { path: 'add_announcement', component: AddJodDetailAnnouncementComponent, data : { title: 'ประกาศบริษัท'} },
       { path: 'view_announcement', component: ViewJodDetailAnnouncementComponent, data: { title:'รายละเอียดของบริษัท'} },
       { path: 'update_announcement', component: UpdateJodDetailAnnouncementComponent, data: { title:'แก้ไขรายละเอียดของบริษัท'} },
       { path: 'qualification', component: StuQualificationcementComponent, canActivate: [AuthGuard], data: { title: 'คัดเลือก', roles: [Role.Admin, Role.Staff, Role.Agent] } },
-      
       // -------------------- ADMIN
       { path: 'new-account', component: NewAccountComponent, canActivate: [AuthGuard], data: { title: 'เพิ่มผู้ใช้', roles: [Role.Admin] } },
     ]
@@ -57,6 +59,7 @@ const routes: Routes = [
   
   // Layout without header and footer  -------------------- หน้าที่ไม่ต้องมีส่วนหัว-ท้าย
   { path: 'notfound', component: NotFoundComponent, data: { title: 'Error 404' } },
+  { path: 'profile-management/downloadins', component: DownloadInsComponent, data: { title: 'ดาวน์โหลดใบสมัครเป็นนิสิตสหกิจศึกษา'} },
 
   // Other and ERROR
   { path: '**', redirectTo: 'notfound', pathMatch: 'full' }

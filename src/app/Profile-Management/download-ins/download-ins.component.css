@@ -1,5 +1,3 @@
-.table-bg{
-    background: white;
-    width: 21cm;
-    height: 29.7cm;
+table, tr, td{
+    border: 1px solid black;
 }
