@@ -1,6 +1,12 @@
-<div class="container" style="padding: 100px;">
-  <ngx-datatable class="material" [headerHeight]="50" [limit]="5" [columnMode]="'force'" [footerHeight]="50"
-    [rowHeight]="'auto'" [rows]="rows">
+<div class="container" style="padding: 50px;">
+  <ngx-datatable #mydatatable
+  class="material"
+  [headerHeight]="50"
+  [limit]="10"
+  [columnMode]="'force'"
+  [footerHeight]="50"
+  [rowHeight]="'auto'"
+  [rows]="rows">
     <ngx-datatable-column name="Company">
       <ng-template let-column="column" ngx-datatable-header-template>
         <span>รายชื่อบริษัท</span>
@@ -12,8 +18,8 @@
     <ngx-datatable-column name="ดูลายละเอียด">
       <ng-template ngx-datatable-cell-template let-value="value">
         <a routerLink="/view_announcement"><fa name="search"></fa></a>&nbsp;
-        <a routerLink="/add_announcement"><fa name="plus"></fa></a>&nbsp;
-        <a routerLink="/update_announcement"><fa name="pencil"></fa></a>
+        <a *ngIf="isStaff || isAdmin" routerLink="/add_announcement"><fa name="plus"></fa></a>&nbsp;
+        <a *ngIf="isStaff || isAdmin" routerLink="/update_announcement"><fa name="pencil"></fa></a>
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>

@@ -1,15 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthGuard } from '../../_guards';
-import { User, Role } from '../../_models';
-import { UserService, AuthenticationService } from '../../_services';
-
+import { AuthGuard } from '../_guards';
+import { User, Role } from '../_models';
+import { UserService, AuthenticationService } from '../_services';
 @Component({
-  selector: 'app-add-jod-detail-announcement',
-  templateUrl: './add-announcement.component.html',
-  styleUrls: ['./add-announcement.component.css']
+  selector: 'app-jod-detail-announcement',
+  templateUrl: './jod-detail-announcement.component.html',
+  styleUrls: ['./jod-detail-announcement.component.css']
 })
-export class AddJodDetailAnnouncementComponent implements OnInit {
+export class JodDetailAnnouncementComponent implements OnInit {
+
+  rows = [
+    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
+    { name: 'Dany', gender: 'Male', company: 'KFC' },
+    { name: 'Molly', gender: 'Female', company: 'Burger King' },
+  ];
+  columns = [
+    { prop: 'name' },
+    { name: 'Gender' },
+    { name: 'Company' }
+  ];
   currentUser: User;
   userFromApi: User;
   constructor(  private router: Router,
@@ -42,5 +52,4 @@ export class AddJodDetailAnnouncementComponent implements OnInit {
   get isAdmin() {
     return this.currentUser && this.currentUser.accTypeId === Role.Admin;
   }
-
 }

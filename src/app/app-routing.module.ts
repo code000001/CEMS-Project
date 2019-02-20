@@ -10,7 +10,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { StudentOrgAppFormComponent } from './App-Form/student-org-app-form/student-org-app-form.component';
 import { EduProfileManagementComponent } from './Profile-Management/edu-profile-management/edu-profile-management.component';
 import { StaffProfileManagementComponent } from './Profile-Management/staff-profile-management/staff-profile-management.component';
-import { JodDetailAnnouncementComponent } from './Announcement/jod-detail-announcement/jod-detail-announcement.component';
+import { JodDetailAnnouncementComponent } from './jod-detail-announcement/jod-detail-announcement.component';
 import { StuQualificationcementComponent } from './Qualificationcement/stu-qualificationcement/stu-qualificationcement.component';
 import { StuQualifyingStatusComponent } from './Qualifying/stu-qualifying-status/stu-qualifying-status.component';
 import { NewAccountComponent } from './Admin/new-account/new-account.component';
