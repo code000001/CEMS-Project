@@ -6,3 +6,18 @@
 *{
     font-family: 'Prompt', sans-serif;
 }
+
+.btn-primary{
+    background-color: #244f99 !important;
+    border-color: #4f72ac !important;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #4f72ac;
+    border-color: #6080b3;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(36, 79, 153, 0.5) !important;
+}
