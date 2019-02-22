@@ -21,3 +21,8 @@
 .btn-primary:focus, .btn-primary.focus {
     box-shadow: 0 0 0 0.2rem rgba(36, 79, 153, 0.5) !important;
 }
+
+textarea{
+    min-height: calc(1.5em + .75rem + 2px);
+    max-height: 200px;
+}

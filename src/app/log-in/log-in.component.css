@@ -88,6 +88,10 @@
     min-height: 550px;
     height: 100%;
     background-color: #244f99;
+    /* background-image: url('../../assets/img/cems-login.png'); */
+    /* background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; */
     background-image: linear-gradient(to bottom right, #244f99 , #4f72ac );
   }
 

@@ -33,10 +33,10 @@ const routes: Routes = [
     children : [
       // -------------------- Public สามารถเข้าถึงได้โดยไม่ต้องเข้าสู่ระบบ
       { path: '',             component: HomeComponent },
-      { path: 'index',        component: MainscreenComponent,            data: { title: 'หน้าแรก' } },
-      { path: 'login',        component: LogInComponent,                 data: { title: 'เข้าสู่ระบบ' } },
-      { path: 'announcement', component: JodDetailAnnouncementComponent, data: { title: 'ประกาศ' } },
-      { path: 'qualifying',   component: StuQualifyingStatusComponent,   data: { title: 'ดูผลการคัดเลือก' } },
+      { path: 'index',        component: MainscreenComponent,            data: { title: 'หน้าแรก' }},
+      { path: 'login',        component: LogInComponent,                 data: { title: 'เข้าสู่ระบบ' }},
+      { path: 'announcement', component: JodDetailAnnouncementComponent, data: { title: 'ประกาศ' }},
+      { path: 'qualifying',   component: StuQualifyingStatusComponent,   data: { title: 'ดูผลการคัดเลือก' }},
 
       // -------------------- After login สามารถเข้าถึงได้โดยเข้าสู่ระบบแล้ว
       // - roles: สิทธิในการเข้าถึงหน้านั้น ๆ
@@ -57,15 +57,15 @@ const routes: Routes = [
       { path: 'update_announcement', component: UpdateJodDetailAnnouncementComponent, data: { title:'แก้ไขรายละเอียดของบริษัท'} },
       { path: 'qualification', component: StuQualificationcementComponent, canActivate: [AuthGuard], data: { title: 'คัดเลือก', roles: [Role.Admin, Role.Staff, Role.Agent] } },
       // -------------------- ADMIN
-      { path: 'new-account', component: NewAccountComponent, canActivate: [AuthGuard], data: { title: 'เพิ่มผู้ใช้', roles: [Role.Admin] } },
+      { path: 'new-account', component: NewAccountComponent, canActivate: [AuthGuard], data: { title: 'เพิ่มผู้ใช้', roles: [Role.Admin] }},
     ]
   },
   
   // Layout without header and footer  -------------------- หน้าที่ไม่ต้องมีส่วนหัว-ท้าย
-  { path: 'notfound', component: NotFoundComponent, data: { title: 'Error 404' } },
   { path: 'profile-management/downloadins', component: DownloadInsComponent, data: { title: 'ดาวน์โหลดใบสมัครเป็นนิสิตสหกิจศึกษา'} },
 
   // Other and ERROR
+  { path: 'notfound', component: NotFoundComponent, data: { title: 'Error 404' } },
   { path: '**', redirectTo: 'notfound', pathMatch: 'full' }
 ];
 
