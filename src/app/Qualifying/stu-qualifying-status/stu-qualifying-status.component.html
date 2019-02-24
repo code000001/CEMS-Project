@@ -1,3 +1,76 @@
-<p>
-  stu-qualifying-status works!
-</p>
+<div class="container">
+      <div class="accordion mt-5" id="accordionExample">
+          <div class="card">
+              <div class="card-header">
+                <h5 class="mb-0">
+                  <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+                    สถานะการสอบวัดผลทักษะก่อนเข้าร่วมโครงการเป็นนิสิตสหกิจศึกษา
+                  </div>
+                </h5>
+              </div>
+              <div class="collapse show" data-parent="#accordionExample">
+                <div class="card-body">
+                  <div class="row">
+                      <label for="staticEmail" class="col-sm-2 col-form-label">สถานะการสอบทักษะ :</label>
+                     
+                        <div class="custom-control custom-radio col-sm-1 col-form-label" *ngFor="let TestQualifyingStatus of testQualifyingStatus">
+                          <input class="custom-control-input" type="radio" name="TestQualifyingStatus" [id]="TestQualifyingStatus.id"
+                            [value]="TestQualifyingStatus.id" [checked]="TestQualifyingStatus.checked">
+                          <label class="custom-control-label" [for]="TestQualifyingStatus.id">
+                            {{TestQualifyingStatus.name}}
+                          </label>
+                        </div>
+                     
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                  <h5 class="mb-0">
+                    <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+                      สถานะการมีส่วนร่วมเข้าฟังอบรมเตรียมความพร้อมในการเป็นนิสิตสหกิจศึกษา
+                    </div>
+                  </h5>
+                </div>
+                <div class="collapse show" data-parent="#accordionExample">
+                  <div class="card-body">
+                      <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                                <th scope="col">ชื่อการอบรม</th>
+                                <th *ngFor="let conFerHead of conferHead;" scope="col">{{conFerHead.th}} ({{conFerHead.en}})</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                           <tr *ngFor="let conFerDes of conferDes">
+                              <td scope="row">{{conFerDes.name}}</td>
+                              <td scope="row">{{conFerDes.detail}}</td>
+                              <td scope="row">{{conFerDes.hour}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                  <div class="card-header">
+                    <h5 class="mb-0">
+                      <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+                        สถานะการสมัครคัดเลือกเข้าเป็นนิสิตสหกิจศึกษา
+                      </div>
+                    </h5>
+                  </div>
+                  <div class="collapse show" data-parent="#accordionExample">
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1">โปรดอธิบายให้ผู้อื่นรู้จักตัวท่านดีขึ้น</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                          placeholder="คำอธิบาย..."></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+        </div>
+  </div>
