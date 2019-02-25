@@ -42,6 +42,8 @@ import { InsManagementComponent } from './Profile-Management/ins-management/ins-
 import { DownloadInsComponent } from './Profile-Management/download-ins/download-ins.component';
 import { UploadTranscriptComponent } from './Profile-Management/upload-transcript/upload-transcript.component';
 import { UploadResumeComponent } from './Profile-Management/upload-resume/upload-resume.component';
+import { StaffTrainingManagementComponent } from './Profile-Management/staff-training-management/staff-training-management.component';
+import { StaffCoopComponent } from './Profile-Management/staff-coop/staff-coop.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { UploadResumeComponent } from './Profile-Management/upload-resume/upload
     InsManagementComponent,
     DownloadInsComponent,
     UploadTranscriptComponent,
-    UploadResumeComponent
+    UploadResumeComponent,
+    StaffTrainingManagementComponent,
+    StaffCoopComponent
   ],
   imports: [
     NgbModule,

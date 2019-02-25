@@ -1,14 +1,396 @@
 <div class="container">
-  
-    <div class="row">
+  <form>
+    <div class="accordion mt-5" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <!--data-target="#collapseOne"-->
+            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+              สถานประกอบการที่ต้องการสมัคร รอบที่ 1
+            </div>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label">สถานประกอบการ :</label>
+              <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail"
+                  value="เอ็ม เอฟ อี ซี จำกัด (มหาชน)">
+              </div>
+              <label for="staticEmail" class="col-sm-2 col-form-label">สมัครงานในตำแหน่ง :</label>
+              <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="โปรแกรมเมอร์">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+              ข้อมูลส่วนตัวนิสิต (APPLICANT 'S INFORMATION)
+            </div>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label">ภาษาไทย ชื่อ :</label>
+              <div class="col-sm-3">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="บิดา นามสมมติ">
+              </div>
+
+              <label for="staticEmail" class="col-sm-2 col-form-label">นามสกุล :</label>
+              <div class="col-sm-4">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="อาชีพสมมติ">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label">ภาษาอังกฤษ ชื่อ :</label>
+              <div class="col-sm-3">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="บิดา นามสมมติ">
+              </div>
+
+              <label for="staticEmail" class="col-sm-2 col-form-label">นามสกุล :</label>
+              <div class="col-sm-4">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="อาชีพสมมติ">
+              </div>
+            </div>
+            <hr>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-1 col-form-label">คณะ :</label>
+              <div class="col-sm-3">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="บิดา นามสมมติ">
+              </div>
+
+              <label for="staticEmail" class="col-sm-1 col-form-label">สาขา :</label>
+              <div class="col-sm-3">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="อาชีพสมมติ">
+              </div>
+
+              <label for="staticEmail" class="col-sm-2 col-form-label">รหัสนิสิต :</label>
+              <div class="col-sm-2">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="อาชีพสมมติ">
+              </div>
+
+              <label for="staticEmail" class="col-sm-1 col-form-label">ชั้นปี :</label>
+              <div class="col-sm-1">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="3">
+              </div>
+              
+              <label for="staticEmail" class="col-sm-3 col-form-label">เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา :</label>
+              <div class="col-sm-3">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="4.00">
+              </div>
+
+              <label for="staticEmail" class="col-sm-2 col-form-label">เกรดเฉลี่ยสะสม :</label>
+              <div class="col-sm-2">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="4.00">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+              ข้อมูลครอบครัว (FAMILY DETAILS)
+            </div>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label">บิดา ชื่อ-นามสกุล :</label>
+              <div class="col-sm-3">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="บิดา นามสมมติ">
+              </div>
+
+              <label for="staticEmail" class="col-sm-1 col-form-label">อาชีพ :</label>
+              <div class="col-sm-2">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="อาชีพสมมติ">
+              </div>
+
+              <label for="staticEmail" class="col-sm-2 col-form-label">โทรศัพท์ :</label>
+              <div class="col-sm-2">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="098-7654-321">
+              </div>
+            </div>
+
+            <hr>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label">มารดา ชื่อ-นามสกุล :</label>
+              <div class="col-sm-3">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="มารดา นามสมมติ">
+              </div>
+
+              <label for="staticEmail" class="col-sm-1 col-form-label">อาชีพ :</label>
+              <div class="col-sm-2">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="อาชีพสมมติ">
+              </div>
+
+              <label for="staticEmail" class="col-sm-2 col-form-label">โทรศัพท์ :</label>
+              <div class="col-sm-2">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="098-7654-321">
+              </div>
+            </div>
+
+            <hr>
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-1 col-form-label">ที่อยู่ :</label>
+              <div class="col">
+                <div class="custom-control custom-radio" *ngFor="let fdAddress of FDAddress">
+                  <input class="custom-control-input" type="radio" name="FDAddress" [id]="fdAddress.id"
+                    [value]="fdAddress.id" (change)="enableAddressOther(fdAddress.id)">
+                  <label class="custom-control-label" [for]="fdAddress.id">
+                    {{fdAddress.name}}
+                  </label>
+                </div>
+                <div class="col" *ngIf="getFDAddressOther">
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    placeholder="ที่อยู่ อื่น ๆ"></textarea>
+                </div>
+                <!-- <div class="form-check">
+                  <input class="form-check-input" type="radio" name="FDAddress" id="FDAddress2" value="option2">
+                  <label class="form-check-label" for="exampleRadios2">
+                    ที่อยู่ที่ติดต่อได้
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="FDAddress" id="FDAddress3" value="option3" (click)="enableAddressOther('other')">
+                  <label class="form-check-label" for="exampleRadios3">
+                    อื่นๆ
+                  </label>
+                </div> -->
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+              ประวัติการศึกษา (EDUCATIONAL HISTORY)
+            </div>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th rowspan="2">ระดับ</th>
+                  <th rowspan="2">สถานศึกษา</th>
+                  <th colspan="2">ระยะเวลา</th>
+                  <th rowspan="2">ผลการศึกษา</th>
+                </tr>
+                <tr>
+                  <th>ตั้งแต่</th>
+                  <th>จนถึง</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="text" class="form-control" id="edu" placeholder="มัธยมศึกษาตอนปลาย">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" id="edu" placeholder="โรงเรียน">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" id="edu" placeholder="พ.ศ.">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" id="edu" placeholder="พ.ศ.">
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" id="edu" placeholder="gpax">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+              ประวัติการอบรม และกิจกรรมนอกหลักสูตร
+            </div>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th rowspan="2">หัวข้อฝึกอบรม/ฝึกงาน</th>
+                  <th rowspan="2">หน่วยงานที่ให้การฝึกอบรม/ฝึกงาน</th>
+                  <th colspan="2">ระยะเวลา</th>
+                </tr>
+                <tr>
+                  <th>ตั้งแต่</th>
+                  <th>จนถึง</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="4">
+                    <ng-select [items]="LANGUAGElevel" bindLabel="name" bindValue="name" appendTo="body"
+                      placeholder="เลือกหัวข้อฝึกอบรม/ฝึกงาน">
+                      <ng-template ng-label-tmp let-item="item">
+                        {{item.name}}
+                      </ng-template>
+                    </ng-select>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+              จุดหมายงานอาชีพ (CAREER VISIONS)
+            </div>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ ( List your career goals,
+                fields of interest and job preferences.)</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                placeholder="คำอธิบาย..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+              ความสามารถทางภาษา (LANGUAGE PROFICIENCY)
+            </div>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">ภาษา/ทักษะ</th>
+                  <th *ngFor="let skill of LANGUAGEskill;" scope="col">{{skill.th}} ({{skill.en}})</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let lg of LANGUAGE">
+                  <td scope="row">{{lg.th}} ({{lg.en}})</td>
+                  <!-- <ng-container *ngFor="let skills of LANGUAGEskill">
+                        <td *ngFor="let item of LANGUAGElevel;"><input type="radio" name="{{skills.en}}" value="{{item.id}}"></td>
+                    </ng-container> -->
+                  <td *ngFor="let skills of LANGUAGEskill">
+                    <ng-select [items]="LANGUAGElevel" bindLabel="name" bindValue="name" appendTo="body"
+                      placeholder="เลือกระดับ">
+                      <ng-template ng-label-tmp let-item="item">
+                        {{item.name}}
+                      </ng-template>
+                    </ng-select>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- <div class="mt-5"></div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+              ความสามารถพิเศษทางคอมพิวเตอร์
+            </div>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">โปรดอธิบายให้ผู้อื่นรู้จักตัวท่านดีขึ้น</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                placeholder="คำอธิบาย..."></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row mt-5">
+    <div class="col-3 d-sm-none d-md-block d-none d-sm-block">
+      <div class="position-fixed">
+        <nav id="navbar-example3" class="navbar navbar-light bg-light ">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <nav class="nav nav-pills flex-column">
+              <a class="nav-link" href="#item-1">Item 1</a>
+              <nav class="nav nav-pills flex-column">
+                <a class="nav-link ml-3 my-1" href="#item-1-1">Item 1-1</a>
+                <a class="nav-link ml-3 my-1" href="#item-1-2">Item 1-2</a>
+              </nav>
+              <a class="nav-link" href="#item-2">Item 2</a>
+              <a class="nav-link" href="#item-3">Item 3</a>
+              <nav class="nav nav-pills flex-column">
+                <a class="nav-link ml-3 my-1" href="#item-3-1">Item 3-1</a>
+                <a class="nav-link ml-3 my-1" href="#item-3-2">Item 3-2</a>
+              </nav>
+            </nav>
+          </nav>
+        </div>
+      </div>
+    <div class="col-9">
+      <div data-spy="scroll" data-target="#navbar-example3" data-offset="0">
+        <h4 id="item-1">Item 1</h4>
+        <p>Ex consequat commodo adipisicing exercitation aute excepteur occaecat ullamco duis aliqua id magna ullamco eu. Do aute ipsum ipsum ullamco cillum consectetur ut et aute consectetur labore. Fugiat laborum incididunt tempor eu consequat enim dolore proident. Qui laborum do non excepteur nulla magna eiusmod consectetur in. Aliqua et aliqua officia quis et incididunt voluptate non anim reprehenderit adipisicing dolore ut consequat deserunt mollit dolore. Aliquip nulla enim veniam non fugiat id cupidatat nulla elit cupidatat commodo velit ut eiusmod cupidatat elit dolore.</p>
+        <h5 id="item-1-1">Item 1-1</h5>
+        <p>Amet tempor mollit aliquip pariatur excepteur commodo do ea cillum commodo Lorem et occaecat elit qui et. Aliquip labore ex ex esse voluptate occaecat Lorem ullamco deserunt. Aliqua cillum excepteur irure consequat id quis ea. Sit proident ullamco aute magna pariatur nostrud labore. Reprehenderit aliqua commodo eiusmod aliquip est do duis amet proident magna consectetur consequat eu commodo fugiat non quis. Enim aliquip exercitation ullamco adipisicing voluptate excepteur minim exercitation minim minim commodo adipisicing exercitation officia nisi adipisicing. Anim id duis qui consequat labore adipisicing sint dolor elit cillum anim et fugiat.</p>
+        <h5 id="item-1-2">Item 1-2</h5>
+        <p>Cillum nisi deserunt magna eiusmod qui eiusmod velit voluptate pariatur laborum sunt enim. Irure laboris mollit consequat incididunt sint et culpa culpa incididunt adipisicing magna magna occaecat. Nulla ipsum cillum eiusmod sint elit excepteur ea labore enim consectetur in labore anim. Proident ullamco ipsum esse elit ut Lorem eiusmod dolor et eiusmod. Anim occaecat nulla in non consequat eiusmod velit incididunt.</p>
+        <h4 id="item-2">Item 2</h4>
+        <p>Quis magna Lorem anim amet ipsum do mollit sit cillum voluptate ex nulla tempor. Laborum consequat non elit enim exercitation cillum aliqua consequat id aliqua. Esse ex consectetur mollit voluptate est in duis laboris ad sit ipsum anim Lorem. Incididunt veniam velit elit elit veniam Lorem aliqua quis ullamco deserunt sit enim elit aliqua esse irure. Laborum nisi sit est tempor laborum mollit labore officia laborum excepteur commodo non commodo dolor excepteur commodo. Ipsum fugiat ex est consectetur ipsum commodo tempor sunt in proident.</p>
+        <h4 id="item-3">Item 3</h4>
+        <p>Quis anim sit do amet fugiat dolor velit sit ea ea do reprehenderit culpa duis. Nostrud aliqua ipsum fugiat minim proident occaecat excepteur aliquip culpa aute tempor reprehenderit. Deserunt tempor mollit elit ex pariatur dolore velit fugiat mollit culpa irure ullamco est ex ullamco excepteur.</p>
+        <h5 id="item-3-1">Item 3-1</h5>
+        <p>Deserunt quis elit Lorem eiusmod amet enim enim amet minim Lorem proident nostrud. Ea id dolore anim exercitation aute fugiat labore voluptate cillum do laboris labore. Ex velit exercitation nisi enim labore reprehenderit labore nostrud ut ut. Esse officia sunt duis aliquip ullamco tempor eiusmod deserunt irure nostrud irure. Ullamco proident veniam laboris ea consectetur magna sunt ex exercitation aliquip minim enim culpa occaecat exercitation. Est tempor excepteur aliquip laborum consequat do deserunt laborum esse eiusmod irure proident ipsum esse qui.</p>
+        <h5 id="item-3-2">Item 3-2</h5>
+        <p>Labore sit culpa commodo elit adipisicing sit aliquip elit proident voluptate minim mollit nostrud aute reprehenderit do. Mollit excepteur eu Lorem ipsum anim commodo sint labore Lorem in exercitation velit incididunt. Occaecat consectetur nisi in occaecat proident minim enim sunt reprehenderit exercitation cupidatat et do officia. Aliquip consequat ad labore labore mollit ut amet. Sit pariatur tempor proident in veniam culpa aliqua excepteur elit magna fugiat eiusmod amet officia.</p>
+      </div>
+    </div> -->
+
+    <!-- <div class="row">
       <div class="col-12">
         <ng-select [items]="items" [(ngModel)]="selectedSimpleItem"></ng-select>
       </div>
-    </div>
+    </div> -->
     <!-- <div class="row">
       <div class="col-12">
         <img width="100%" src="/assets/img/map_Prism.jpg" alt="map Prism">
       </div>
-    </div> -->
-    
+    </div> 
+  </div>-->
+  </form>
 </div>

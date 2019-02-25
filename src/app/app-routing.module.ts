@@ -24,6 +24,8 @@ import { InsManagementComponent } from './Profile-Management/ins-management/ins-
 import { DownloadInsComponent } from './Profile-Management/download-ins/download-ins.component';
 import { UploadTranscriptComponent } from './Profile-Management/upload-transcript/upload-transcript.component';
 import { UploadResumeComponent } from './Profile-Management/upload-resume/upload-resume.component';
+import { StaffTrainingManagementComponent } from './Profile-Management/staff-training-management/staff-training-management.component';
+import { StaffCoopComponent } from './Profile-Management/staff-coop/staff-coop.component';
 
 const routes: Routes = [
   // Layout with header and footer ---------- ต้องมีส่วนหัว-ท้าย
@@ -31,10 +33,10 @@ const routes: Routes = [
     children : [
       // -------------------- Public สามารถเข้าถึงได้โดยไม่ต้องเข้าสู่ระบบ
       { path: '',             component: HomeComponent },
-      { path: 'index',        component: MainscreenComponent,            data: { title: 'หน้าแรก' } },
-      { path: 'login',        component: LogInComponent,                 data: { title: 'เข้าสู่ระบบ' } },
-      { path: 'announcement', component: JodDetailAnnouncementComponent, data: { title: 'ประกาศ' } },
-      { path: 'qualifying',   component: StuQualifyingStatusComponent,   data: { title: 'ดูผลการคัดเลือก' } },
+      { path: 'index',        component: MainscreenComponent,            data: { title: 'หน้าแรก' }},
+      { path: 'login',        component: LogInComponent,                 data: { title: 'เข้าสู่ระบบ' }},
+      { path: 'announcement', component: JodDetailAnnouncementComponent, data: { title: 'ประกาศ' }},
+      { path: 'qualifying',   component: StuQualifyingStatusComponent,   data: { title: 'ดูผลการคัดเลือก' }},
 
       // -------------------- After login สามารถเข้าถึงได้โดยเข้าสู่ระบบแล้ว
       // - roles: สิทธิในการเข้าถึงหน้านั้น ๆ
@@ -43,22 +45,27 @@ const routes: Routes = [
       // === Role.Agent เจ้าหน้าที่ของบริษัท
       { path: 'app-form', component: StudentOrgAppFormComponent, canActivate: [AuthGuard], data: { title: 'สมัครคัดเลือก', roles: [Role.User] } },
       { path: 'profile-management', component: EduProfileManagementComponent, canActivate: [AuthGuard], data: { title: 'จัดการข้อมูลส่วนตัว', roles: [Role.User] } },
+      { path: 'profile-management/ins', component: InsManagementComponent, canActivate: [AuthGuard], data: { title: 'ใบสมัครเป็นนิสิตสหกิจศึกษา', roles: [Role.User] } },
       { path: 'profile-management/skill-test', component: SkillTestManagementComponent, canActivate: [AuthGuard], data: { title: 'ผลการสอบทักษะ', roles: [Role.User] } },
+      { path: 'profile-management/upload-transcript', component: UploadTranscriptComponent, canActivate: [AuthGuard], data: { title: 'อัปโหลดผลการศึกษา', roles: [Role.User] } },
+      { path: 'profile-management/upload-resume', component: UploadResumeComponent, canActivate: [AuthGuard], data: { title: 'อัปโหลดเรซูเม', roles: [Role.User] } },
       { path: 'profile-management/staff', component: StaffProfileManagementComponent, canActivate: [AuthGuard], data: { title: 'จัดการข้อมูลส่วนตัว', roles: [Role.Staff, Role.Admin] } },
+      { path: 'profile-management/staff-training', component: StaffTrainingManagementComponent, canActivate: [AuthGuard], data: { title: 'จัดการชั่วโมงอบรมวิชาการ', roles: [Role.Staff, Role.Admin] } },
+      { path: 'profile-management/staff-coop', component: StaffCoopComponent, canActivate: [AuthGuard], data: { title: 'จัดการชั่วโมงอบรมเตรียมความพร้อมสหกิจศึกษา', roles: [Role.Staff, Role.Admin] } },
       { path: 'add_announcement', component: AddJodDetailAnnouncementComponent, data : { title: 'ประกาศบริษัท'} },
       { path: 'view_announcement', component: ViewJodDetailAnnouncementComponent, data: { title:'รายละเอียดของบริษัท'} },
       { path: 'update_announcement', component: UpdateJodDetailAnnouncementComponent, data: { title:'แก้ไขรายละเอียดของบริษัท'} },
       { path: 'qualification', component: StuQualificationcementComponent, canActivate: [AuthGuard], data: { title: 'คัดเลือก', roles: [Role.Admin, Role.Staff, Role.Agent] } },
-      
       // -------------------- ADMIN
-      { path: 'new-account', component: NewAccountComponent, canActivate: [AuthGuard], data: { title: 'เพิ่มผู้ใช้', roles: [Role.Admin] } },
+      { path: 'new-account', component: NewAccountComponent, canActivate: [AuthGuard], data: { title: 'เพิ่มผู้ใช้', roles: [Role.Admin] }},
     ]
   },
   
   // Layout without header and footer  -------------------- หน้าที่ไม่ต้องมีส่วนหัว-ท้าย
-  { path: 'notfound', component: NotFoundComponent, data: { title: 'Error 404' } },
+  { path: 'profile-management/downloadins', component: DownloadInsComponent, data: { title: 'ดาวน์โหลดใบสมัครเป็นนิสิตสหกิจศึกษา'} },
 
   // Other and ERROR
+  { path: 'notfound', component: NotFoundComponent, data: { title: 'Error 404' } },
   { path: '**', redirectTo: 'notfound', pathMatch: 'full' }
 ];
 
