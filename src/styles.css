@@ -4,7 +4,7 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
 *{
-    font-family: 'Prompt', sans-serif;
+    font-family: 'Sarabun', sans-serif;
 }
 
 .btn-primary{
@@ -26,3 +26,7 @@ textarea{
     min-height: calc(1.5em + .75rem + 2px);
     max-height: 200px;
 }
+
+/* :root{
+    --primary : #4f72ac !important;
+} */
