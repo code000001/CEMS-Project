@@ -18,7 +18,8 @@
       <li class="nav-item" *ngIf="isSignin && isUser">
         <a class="nav-link" routerLink="/qualifying" routerLinkActive="active">ตรวจสอบสถานะ</a>
       </li>
-      <li class="nav-item" *ngIf="isStaff || isAdmin">
+      <!-- <li class="nav-item" *ngIf="isStaff || isAdmin"> -->
+      <li class="nav-item" *ngIf="isSignin && isUser">
         <a class="nav-link" routerLink="/qualification" routerLinkActive="active">คัดเลือก</a>
       </li>
       <li class="nav-item" *ngIf="isStaff || isAdmin">
