@@ -17,6 +17,7 @@ import { Userappform } from '../../_models/userappform';
   styleUrls: ['./student-org-app-form.component.css']
 })
 export class StudentOrgAppFormComponent implements OnInit {
+  // rows = [];
   userData: Userappform;
   FDAddress = [{id : 1,name:'ที่อยู่ตามทะเบียนบ้าน'}, {id : 2,name:'ที่อยู่ที่ติดต่อได้'}, {id : 0,name:'อื่น ๆ'}];
   FDAddressOther : boolean = false;

@@ -11,6 +11,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable'
 
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 // import { fakeBackendProvider } from './_helpers';
@@ -32,7 +33,6 @@ import { StuQualifyingStatusComponent } from './Qualifying/stu-qualifying-status
 import { StaffProfileManagementComponent } from './Profile-Management/staff-profile-management/staff-profile-management.component';
 import { NewAccountComponent } from './Admin/new-account/new-account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable'
 import { AddJodDetailAnnouncementComponent} from './jod-detail-announcement/add-job-detail-component/add-announcement.component'
 import { ViewJodDetailAnnouncementComponent} from './jod-detail-announcement/view-job-detail-component/view-announcement.component'
 import { UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/update-job-detail-component/update-announcement.component'
