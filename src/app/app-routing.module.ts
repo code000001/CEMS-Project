@@ -55,7 +55,7 @@ const routes: Routes = [
       { path: 'add_announcement', component: AddJodDetailAnnouncementComponent, data : { title: 'ประกาศบริษัท'} },
       { path: 'view_announcement', component: ViewJodDetailAnnouncementComponent, data: { title:'รายละเอียดของบริษัท'} },
       { path: 'update_announcement', component: UpdateJodDetailAnnouncementComponent, data: { title:'แก้ไขรายละเอียดของบริษัท'} },
-      { path: 'qualification', component: StuQualificationcementComponent, canActivate: [AuthGuard], data: { title: 'คัดเลือก', roles: [Role.Admin, Role.Staff, Role.Agent] } },
+      { path: 'qualification', component: StuQualificationcementComponent, canActivate: [AuthGuard], data: { title: 'คัดเลือก', roles: [Role.Admin, Role.Staff, Role.Agent, Role.User] } },
       // -------------------- ADMIN
       { path: 'new-account', component: NewAccountComponent, canActivate: [AuthGuard], data: { title: 'เพิ่มผู้ใช้', roles: [Role.Admin] }},
     ]
