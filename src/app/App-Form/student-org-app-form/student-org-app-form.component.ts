@@ -3,6 +3,7 @@
 // modify by : Waranya boontanom
 
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -17,8 +18,9 @@ import { Userappform } from '../../_models/userappform';
   styleUrls: ['./student-org-app-form.component.css']
 })
 export class StudentOrgAppFormComponent implements OnInit {
+  
   // rows = [];
-  userData: Userappform;
+  userData: any ;
   FDAddress = [{id : 1,name:'ที่อยู่ตามทะเบียนบ้าน'}, {id : 2,name:'ที่อยู่ที่ติดต่อได้'}, {id : 0,name:'อื่น ๆ'}];
   FDAddressOther : boolean = false;
   selectedSimpleItem = 'Two';
@@ -51,17 +53,19 @@ export class StudentOrgAppFormComponent implements OnInit {
   }
 
   loadingData() {
-    this.appFormService.getINS02().subscribe({
-      next(response) { console.log('response -> ', this.userData = response); },
-      error(err) { console.log(err); }
+    this.appFormService.getINS02().subscribe((data: {}) => {
+      // console.log(data);
+      this.userData = data;
     });
   }
 
-  enableAddressOther(event : number){
+  enableAddressOther(event){
+    console.log(event);
     this.FDAddressOther = false;
     if(event === 0){
       this.FDAddressOther = true;
     }
+    
   }
 
   public get getFDAddressOther(){

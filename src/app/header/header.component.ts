@@ -14,19 +14,17 @@ export class HeaderComponent implements OnInit {
 
   currentUser: User;
   userFromApi: User;
-  // isHidden: boolean = false;
-  // isAuth: boolean = false;
 
   constructor(
     private router: Router,
     private userService: UserService,
     private authenticationService: AuthenticationService,
-    private authGuardService: AuthGuard) {
+    private authGuardService: AuthGuard
+  ) {
     this.userFromApi = this.currentUser = this.authenticationService.currentUserValue;
   }
 
   ngOnInit() {
-
   }
 
   // check user

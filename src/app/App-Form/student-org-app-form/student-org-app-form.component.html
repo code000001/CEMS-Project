@@ -1,5 +1,5 @@
-<div class="container">
-  <form>
+<div class="container" *ngIf="userData">
+  <form >
     <div class="accordion mt-5" id="accordionExample">
       <div class="card">
         <div class="card-header" id="headingOne">
@@ -38,25 +38,25 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
           <div class="card-body">
             <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label text-lg-right"> ชื่อ (ภาษาไทย) :</label>
+              <label for="stdFirstNameTh" class="col-sm-2 col-form-label text-lg-right"> ชื่อ (ภาษาไทย) :</label>
               <div class="col-sm-3">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="บิดา นามสมมติ">
+                <input type="text" readonly class="form-control-plaintext" id="stdFirstNameTh" [value]="userData.stdFirstNameTh">
               </div>
 
-              <label for="staticEmail" class="col-sm-3 col-form-label text-lg-right">นามสกุล (ภาษาไทย) :</label>
+              <label for="stdLastNameTh" class="col-sm-3 col-form-label text-lg-right">นามสกุล (ภาษาไทย) :</label>
               <div class="col-sm-4">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="อาชีพสมมติ">
+                <input type="text" readonly class="form-control-plaintext" id="stdLastNameTh" [value]="userData.stdLastNameTh">
               </div>
             </div>
             <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label text-lg-right">ชื่อ (ภาษาอังกฤษ) :</label>
+              <label for="stdFirstNameEn" class="col-sm-2 col-form-label text-lg-right">ชื่อ (ภาษาอังกฤษ) :</label>
               <div class="col-sm-3">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="father">
+                <input type="text" readonly class="form-control-plaintext" id="stdFirstNameEn" [value]="userData.stdFirstNameEn">
               </div>
 
-              <label for="staticEmail" class="col-sm-3 col-form-label text-lg-right">นามสกุล (ภาษาอังกฤษ) :</label>
+              <label for="stdLastNameEn" class="col-sm-3 col-form-label text-lg-right">นามสกุล (ภาษาอังกฤษ) :</label>
               <div class="col-sm-4">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="อาชีพสมมติ">
+                <input type="text" readonly class="form-control-plaintext" id="stdLastNameEn" [value]="userData.stdLastNameEn">
               </div>
             </div>
             <hr>
@@ -71,25 +71,25 @@
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="วิศวกรรมซอฟต์แวร์">
               </div>
 
-              <label for="staticEmail" class="col-sm-2 col-form-label text-lg-right">รหัสนิสิต :</label>
+              <label for="stdId" class="col-sm-2 col-form-label text-lg-right">รหัสนิสิต :</label>
               <div class="col-sm-2">
-                <input type="text" readonly class="form-control-plaintext" id="stdid" value="58160673">
+                <input type="text" readonly class="form-control-plaintext" id="stdid" [value]="userData.stdId">
               </div>
 
-              <label for="staticEmail" class="col-sm-1 col-form-label text-lg-right">ชั้นปี :</label>
+              <label for="stdYear" class="col-sm-1 col-form-label text-lg-right">ชั้นปี :</label>
               <div class="col-sm-1">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="3">
+                <input type="text" readonly class="form-control-plaintext" id="stdYear" [value]="userData.stdYear">
               </div>
 
-              <label for="staticEmail" class="col-sm-3 col-form-label text-lg-right">เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา
+              <label for="std_LastGpa" class="col-sm-3 col-form-label text-lg-right">เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา
                 :</label>
               <div class="col-sm-3">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="4.00">
+                <input type="text" readonly class="form-control-plaintext" id="std_LastGpa" [value]="userData.std_LastGpa">
               </div>
 
-              <label for="staticEmail" class="col-sm-2 col-form-label text-lg-right">เกรดเฉลี่ยสะสม :</label>
+              <label for="stdHsGpa" class="col-sm-2 col-form-label text-lg-right">เกรดเฉลี่ยสะสม :</label>
               <div class="col-sm-2">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="4.00">
+                <input type="text" readonly class="form-control-plaintext" id="stdHsGpa" [value]="userData.stdHsGpa">
               </div>
             </div>
           </div>
@@ -107,37 +107,37 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
           <div class="card-body">
             <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label text-lg-right">บิดา ชื่อ-นามสกุล :</label>
+              <label for="stdFatherNameTh" class="col-sm-2 col-form-label text-lg-right">บิดา ชื่อ-นามสกุล :</label>
               <div class="col-sm-3">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="บิดา นามสมมติ">
+                <input type="text" readonly class="form-control-plaintext" id="stdFatherNameTh" [value]="userData.stdFatherNameTh">
               </div>
 
-              <label for="staticEmail" class="col-sm-1 col-form-label text-lg-right">อาชีพ :</label>
+              <label for="stdFatherJob" class="col-sm-1 col-form-label text-lg-right">อาชีพ :</label>
               <div class="col-sm-2">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="อาชีพสมมติ">
+                <input type="text" readonly class="form-control-plaintext" id="stdFatherJob" [value]="userData.stdFatherJob">
               </div>
 
-              <label for="staticEmail" class="col-sm-2 col-form-label text-lg-right">โทรศัพท์ :</label>
+              <label for="stdFatherMobileTel" class="col-sm-2 col-form-label text-lg-right">โทรศัพท์ :</label>
               <div class="col-sm-2">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="098-7654-321">
+                <input type="text" readonly class="form-control-plaintext" id="stdFatherMobileTel" [value]="userData.stdFatherMobileTel">
               </div>
             </div>
 
             <hr>
             <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label text-lg-right">มารดา ชื่อ-นามสกุล :</label>
+              <label for="stdMotherNameTh" class="col-sm-2 col-form-label text-lg-right">มารดา ชื่อ-นามสกุล :</label>
               <div class="col-sm-3">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="มารดา นามสมมติ">
+                <input type="text" readonly class="form-control-plaintext" id="stdMotherNameTh" [value]="userData.stdMotherNameTh">
               </div>
 
-              <label for="staticEmail" class="col-sm-1 col-form-label text-lg-right">อาชีพ :</label>
+              <label for="stdMotherJob" class="col-sm-1 col-form-label text-lg-right">อาชีพ :</label>
               <div class="col-sm-2">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="อาชีพสมมติ">
+                <input type="text" readonly class="form-control-plaintext" id="stdMotherJob" [value]="userData.stdMotherJob">
               </div>
 
-              <label for="staticEmail" class="col-sm-2 col-form-label text-lg-right">โทรศัพท์ :</label>
+              <label for="stdMotherMobileTel" class="col-sm-2 col-form-label text-lg-right">โทรศัพท์ :</label>
               <div class="col-sm-2">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="098-7654-321">
+                <input type="text" readonly class="form-control-plaintext" id="stdMotherMobileTel" [value]="userData.stdMotherMobileTel">
               </div>
             </div>
 
@@ -148,13 +148,12 @@
                 <div class="custom-control custom-radio" *ngFor="let fdAddress of FDAddress" aria-controls="multiCollapseExample1" data-toggle="collapse" href="#multiCollapseExample1">
                   <input class="custom-control-input" type="radio" name="FDAddress" [id]="fdAddress.id"
                     [value]="fdAddress.id" (change)="enableAddressOther(fdAddress.id)">
-                  <label class="custom-control-label" [for]="fdAddress.id">
+                  <label class="custom-control-label" [for]="fdAddress.id" >
                     {{fdAddress.name}}
                   </label>
                 </div>
                 <div class="col" *ngIf="getFDAddressOther">
-
-                  <div class="collapse multi-collapse" id="multiCollapseExample1">
+                  <div class="collapse multi-collapse show" id="multiCollapseExample1">
                     <!-- <div class="card card-body"> -->
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                       placeholder="ที่อยู่ อื่น ๆ"></textarea>

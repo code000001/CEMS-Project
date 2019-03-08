@@ -12,14 +12,14 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/announcement" routerLinkActive="active">ประกาศ</a>
       </li>
-      <li class="nav-item " *ngIf="isSignin && isUser">
+      <li class="nav-item " *ngIf="isUser">
         <a class="nav-link" routerLink="/app-form" routerLinkActive="active">สมัครคัดเลือก</a>
       </li>
-      <li class="nav-item" *ngIf="isSignin && isUser">
+      <li class="nav-item" *ngIf="isUser">
         <a class="nav-link" routerLink="/qualifying" routerLinkActive="active">ตรวจสอบสถานะ</a>
       </li>
       <!-- <li class="nav-item" *ngIf="isStaff || isAdmin"> -->
-      <li class="nav-item" *ngIf="isSignin && isUser">
+      <li class="nav-item" *ngIf="isUser">
         <a class="nav-link" routerLink="/qualification" routerLinkActive="active">คัดเลือก</a>
       </li>
       <li class="nav-item" *ngIf="isStaff || isAdmin">
@@ -46,7 +46,7 @@
 
     <ul class="navbar-nav">
       <ng-container *ngIf="!isSignin; else elseTemplate">
-        <li class="nav-item">
+        <li class="nav-item active">
             <a class="nav-link" routerLink="/login" routerLinkActive="active"><fa name="user" ></fa> เข้าสู่ระบบ</a>
         </li>
       </ng-container>
