@@ -27,15 +27,15 @@ import { HomeComponent } from './home/home.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { StudentOrgAppFormComponent } from './App-Form/student-org-app-form/student-org-app-form.component';
 import { EduProfileManagementComponent } from './Profile-Management/edu-profile-management/edu-profile-management.component';
-import { JodDetailAnnouncementComponent } from './jod-detail-announcement/jod-detail-announcement/jod-detail-announcement.component';
+import { JodDetailAnnouncementComponent } from './job-detail-announcement/jod-detail-announcement/jod-detail-announcement.component';
 import { StuQualificationcementComponent } from './Qualificationcement/stu-qualificationcement/stu-qualificationcement.component';
 import { StuQualifyingStatusComponent } from './Qualifying/stu-qualifying-status/stu-qualifying-status.component';
 import { StaffProfileManagementComponent } from './Profile-Management/staff-profile-management/staff-profile-management.component';
 import { NewAccountComponent } from './Admin/new-account/new-account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AddJodDetailAnnouncementComponent} from './jod-detail-announcement/add-job-detail-component/add-announcement.component'
-import { ViewJodDetailAnnouncementComponent} from './jod-detail-announcement/view-job-detail-component/view-announcement.component'
-import { UpdateJodDetailAnnouncementComponent} from './jod-detail-announcement/update-job-detail-component/update-announcement.component'
+import { AddJodDetailAnnouncementComponent} from './job-detail-announcement/add-job-detail-component/add-announcement.component'
+import { ViewJodDetailAnnouncementComponent} from './job-detail-announcement/view-job-detail-component/view-announcement.component'
+import { UpdateJodDetailAnnouncementComponent} from './job-detail-announcement/update-job-detail-component/update-announcement.component'
 import { SkillTestManagementComponent } from './Profile-Management/skill-test-management/skill-test-management.component';
 import { SiteLayoutComponent } from './site-layout/site-layout.component';
 import { InsManagementComponent } from './Profile-Management/ins-management/ins-management.component';
@@ -44,6 +44,7 @@ import { UploadTranscriptComponent } from './Profile-Management/upload-transcrip
 import { UploadResumeComponent } from './Profile-Management/upload-resume/upload-resume.component';
 import { StaffTrainingManagementComponent } from './Profile-Management/staff-training-management/staff-training-management.component';
 import { StaffCoopComponent } from './Profile-Management/staff-coop/staff-coop.component';
+import {OrganizationService} from './_services/organization.service';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { StaffCoopComponent } from './Profile-Management/staff-coop/staff-coop.c
   ],
   providers: [
     Title,
+    OrganizationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

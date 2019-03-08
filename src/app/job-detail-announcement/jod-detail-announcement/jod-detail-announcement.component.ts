@@ -3,31 +3,31 @@ import { Router } from '@angular/router';
 import { AuthGuard } from '../../_guards';
 import { User, Role } from '../../_models';
 import { UserService, AuthenticationService } from '../../_services';
+import {OrganizationService} from '../../_services/organization.service';
+import {OrganizationDataInterface} from '../../interfaces/organization/organization-data-interface';
 @Component({
   selector: 'app-jod-detail-announcement',
   templateUrl: './jod-detail-announcement.component.html',
   styleUrls: ['./jod-detail-announcement.component.css']
 })
 export class JodDetailAnnouncementComponent implements OnInit {
-
-  rows = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-    { name: 'Dany', gender: 'Male', company: 'KFC' },
-    { name: 'Molly', gender: 'Female', company: 'Burger King' },
-  ];
-  columns = [
-    { prop: 'name' },
-    { name: 'Gender' },
-    { name: 'Company' }
-  ];
+  id: number
   currentUser: User;
   userFromApi: User;
-  constructor(  private router: Router,
-    private userService: UserService,
-    private authenticationService: AuthenticationService,
-    private authGuardService: AuthGuard) {  this.userFromApi = this.currentUser = this.authenticationService.currentUserValue;}
+  orgData: OrganizationDataInterface[];
+
+  constructor(private router: Router,
+    private organizationService: OrganizationService) { }
 
   ngOnInit() {
+    this.getOrganization();
+  }
+
+  getOrganization(): void {
+     this.organizationService.get()
+       .subscribe(
+         resultData => { this.orgData = resultData; console.log(this.orgData) },
+      )
   }
 
   get isSignin() {
