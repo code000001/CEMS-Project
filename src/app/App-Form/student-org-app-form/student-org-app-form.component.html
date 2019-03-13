@@ -1,5 +1,5 @@
 <div class="container" *ngIf="userData">
-  <form >
+  <form>
     <div class="accordion mt-5" id="accordionExample">
       <div class="card">
         <div class="card-header" id="headingOne">
@@ -14,12 +14,15 @@
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
           <div class="card-body">
             <div class="form-group row">
-              <label for="staticEmail" class="col-sm-2 col-form-label text-lg-right">สถานประกอบการ :</label>
+              <label for="staticEmail"
+                class="col-sm-2 col-form-label text-lg-right no-padding-right no-padding-right">สถานประกอบการ :</label>
               <div class="col-sm-10">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail"
                   value="เอ็ม เอฟ อี ซี จำกัด (มหาชน)">
               </div>
-              <label for="staticEmail" class="col-sm-2 col-form-label text-lg-right">สมัครงานในตำแหน่ง :</label>
+              <label for="staticEmail"
+                class="col-sm-2 col-form-label text-lg-right no-padding-right no-padding-right">สมัครงานในตำแหน่ง
+                :</label>
               <div class="col-sm-10">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="โปรแกรมเมอร์">
               </div>
@@ -38,60 +41,256 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
           <div class="card-body">
             <div class="form-group row">
-              <label for="stdFirstNameTh" class="col-sm-2 col-form-label text-lg-right"> ชื่อ (ภาษาไทย) :</label>
+              <label for="stdFirstNameTh" class="col-sm-2 col-form-label text-lg-right no-padding-right"> ชื่อ (ภาษาไทย)
+                :</label>
               <div class="col-sm-3">
-                <input type="text" readonly class="form-control-plaintext" id="stdFirstNameTh" [value]="userData.stdFirstNameTh">
+                <input type="text" readonly class="form-control-plaintext" id="stdFirstNameTh"
+                  [value]="userData.stdFirstNameTh">
               </div>
 
-              <label for="stdLastNameTh" class="col-sm-3 col-form-label text-lg-right">นามสกุล (ภาษาไทย) :</label>
+              <label for="stdLastNameTh" class="col-sm-3 col-form-label text-lg-right no-padding-right">นามสกุล
+                (ภาษาไทย) :</label>
               <div class="col-sm-4">
-                <input type="text" readonly class="form-control-plaintext" id="stdLastNameTh" [value]="userData.stdLastNameTh">
+                <input type="text" readonly class="form-control-plaintext" id="stdLastNameTh"
+                  [value]="userData.stdLastNameTh">
               </div>
             </div>
             <div class="form-group row">
-              <label for="stdFirstNameEn" class="col-sm-2 col-form-label text-lg-right">ชื่อ (ภาษาอังกฤษ) :</label>
+              <label for="stdFirstNameEn" class="col-sm-2 col-form-label text-lg-right no-padding-right">ชื่อ
+                (ภาษาอังกฤษ) :</label>
               <div class="col-sm-3">
-                <input type="text" readonly class="form-control-plaintext" id="stdFirstNameEn" [value]="userData.stdFirstNameEn">
+                <input type="text" readonly class="form-control-plaintext" id="stdFirstNameEn"
+                  [value]="userData.stdFirstNameEn">
               </div>
 
-              <label for="stdLastNameEn" class="col-sm-3 col-form-label text-lg-right">นามสกุล (ภาษาอังกฤษ) :</label>
+              <label for="stdLastNameEn" class="col-sm-3 col-form-label text-lg-right no-padding-right">นามสกุล
+                (ภาษาอังกฤษ) :</label>
               <div class="col-sm-4">
-                <input type="text" readonly class="form-control-plaintext" id="stdLastNameEn" [value]="userData.stdLastNameEn">
+                <input type="text" readonly class="form-control-plaintext" id="stdLastNameEn"
+                  [value]="userData.stdLastNameEn">
               </div>
             </div>
+
+            <div class="form-group row">
+              <label for="stdBornDate" class="col-sm-2 col-form-label text-lg-right no-padding-right">วันเกิด :</label>
+              <div class="col-sm-3">
+                <input type="text" readonly class="form-control-plaintext" id="stdBornDate"
+                  [value]="userData.stdBornDate">
+              </div>
+
+              <label for="stdAge" class="col-sm-1 col-form-label text-lg-right no-padding-right">อายุ :</label>
+              <div class="col-sm-2">
+                <input type="text" readonly class="form-control-plaintext" id="stdAge" [value]="userData.stdAge">
+              </div>
+
+              <label for="stdBornPlace" class="col-sm-2 col-form-label text-lg-right no-padding-right">สถานที่เกิด
+                :</label>
+              <div class="col-sm-2">
+                <input type="text" readonly class="form-control-plaintext" id="stdBornPlace"
+                  [value]="userData.stdBornPlace">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="stdPersonId"
+                class="col-sm-2 col-form-label text-lg-right no-padding-right">รหัสประจำตัวประชาชน :</label>
+              <div class="col-sm-3">
+                <input type="text" readonly class="form-control-plaintext" id="stdPersonId"
+                  [value]="userData.stdPersonId">
+              </div>
+
+              <label for="stdNation" class="col-sm-1 col-form-label text-lg-right no-padding-right">สัญชาติ :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="stdNation" [value]="userData.stdNation">
+              </div>
+
+              <label for="stdReligion" class="col-sm-2 col-form-label text-lg-right no-padding-right">ศาสนา :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="stdReligion" [value]="userData.stdReligion">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="genderNameTh" class="col-sm-2 col-form-label text-lg-right no-padding-right">เพศ :</label>
+              <div class="col-sm-3">
+                <input type="text" readonly class="form-control-plaintext" id="genderNameTh"
+                  [value]="userData.genderNameTh">
+              </div>
+
+              <label for="stdHeight" class="col-sm-1 col-form-label text-lg-right no-padding-right">ส่วนสูง :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="stdHeight" [value]="userData.stdHeight">
+              </div>
+
+              <label for="stdWeigh" class="col-sm-2 col-form-label text-lg-right no-padding-right">น้ำหนัก :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="stdWeigh" [value]="userData.stdWeigh">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="stdEmail" class="col-sm-2 col-form-label text-lg-right no-padding-right">อีเมล :</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" id="stdEmail" [value]="userData.stdEmail">
+              </div>
+
+              <label for="stdParentMobileTel"
+                class="col-sm-1 col-form-label text-lg-right no-padding-right no-padding-left">โทรศัพท์ :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="stdParentMobileTel" [value]="userData.stdParentMobileTel">
+              </div>
+
+              <label for="stdParentTel" class="col-sm-2 col-form-label text-lg-right no-padding-right">มือถือ :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="stdParentTel" [value]="userData.stdParentTel">
+              </div>
+            </div>
+
             <hr>
+
             <div class="form-group row">
-              <label for="staticEmail" class="col-sm-1 col-form-label text-lg-right">คณะ :</label>
+              <label for="staticEmail" class="col-sm-1 col-form-label text-lg-right no-padding-right">คณะ :</label>
               <div class="col-sm-3">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="วิทยาการสารสนเทศ">
               </div>
 
-              <label for="staticEmail" class="col-sm-1 col-form-label text-lg-right">สาขา :</label>
+              <label for="staticEmail" class="col-sm-1 col-form-label text-lg-right no-padding-right">สาขา :</label>
               <div class="col-sm-3">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="วิศวกรรมซอฟต์แวร์">
               </div>
 
-              <label for="stdId" class="col-sm-2 col-form-label text-lg-right">รหัสนิสิต :</label>
+              <label for="stdId" class="col-sm-2 col-form-label text-lg-right no-padding-right">รหัสนิสิต :</label>
               <div class="col-sm-2">
                 <input type="text" readonly class="form-control-plaintext" id="stdid" [value]="userData.stdId">
               </div>
+            </div>
 
-              <label for="stdYear" class="col-sm-1 col-form-label text-lg-right">ชั้นปี :</label>
+            <div class="form-group row">
+              <label for="stdYear" class="col-sm-1 col-form-label text-lg-right no-padding-right">ชั้นปี :</label>
               <div class="col-sm-1">
-                <input type="text" readonly class="form-control-plaintext" id="stdYear" [value]="userData.stdYear">
+                <input type="text" class="form-control" id="stdYear" [value]="userData.stdYear">
               </div>
 
-              <label for="std_LastGpa" class="col-sm-3 col-form-label text-lg-right">เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา
+              <label for="std_LastGpa"
+                class="col-sm-3 col-form-label text-lg-right no-padding-right">เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา
                 :</label>
               <div class="col-sm-3">
-                <input type="text" readonly class="form-control-plaintext" id="std_LastGpa" [value]="userData.std_LastGpa">
+                <input type="text" class="form-control" id="std_LastGpa" [value]="userData.std_LastGpa">
               </div>
 
-              <label for="stdHsGpa" class="col-sm-2 col-form-label text-lg-right">เกรดเฉลี่ยสะสม :</label>
+              <label for="stdHsGpa" class="col-sm-2 col-form-label text-lg-right no-padding-right">เกรดเฉลี่ยสะสม
+                :</label>
               <div class="col-sm-2">
-                <input type="text" readonly class="form-control-plaintext" id="stdHsGpa" [value]="userData.stdHsGpa">
+                <input type="text" class="form-control" id="stdHsGpa" [value]="userData.stdHsGpa">
               </div>
             </div>
+
+            <hr>
+
+            <div class="form-group row">
+              <div class="container"><b>ที่อยู่ตามทะเบียนบ้าน</b></div>
+            </div>
+
+            <div class="form-group row">
+              <label for="homeNo" class="col-sm-2 col-form-label text-lg-right no-padding-right"> บ้านเลขที่ :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="homeNo" placeholder="บ้านเลขที่">
+              </div>
+
+              <!-- <label for="stdParentMobileTel" class="col-sm-1 col-form-label text-lg-right no-padding-right">จังหวัด :</label> -->
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="address-detial" placeholder="หมู่/อาคาร/ถนน">
+              </div>
+
+              <label for="Provinces" class="col-sm-2 col-form-label text-lg-right no-padding-right">จังหวัด :</label>
+              <div class="col-sm-2">
+                <ng-select [items]="Provinces" bindLabel="nameTh" bindValue="id" groupBy="name" [selectableGroup]="true"
+                  appendTo="body" placeholder="เลือกจังหวัด" (change)="showAmphures(1,$event)">
+                  <ng-template ng-optgroup-tmp let-item="item">
+                    {{ item.name || 'Unnamed group'}}
+                  </ng-template>
+                </ng-select>
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+              <label for="amphures" class="col-sm-2 col-form-label text-lg-right no-padding-right">เขต/อำเภอ :</label>
+              <div class="col-sm-2">
+                <ng-select [items]="Amphures" bindLabel="nameTh" bindValue="id" appendTo="body" (change)="showDistricts(1,$event)"
+                  placeholder="เลือกเขต/อำเภอ">
+                </ng-select>
+              </div>
+
+              <label for="districts" class="col-sm-2 col-form-label text-lg-right no-padding-right">แขวง/ตำบล :</label>
+              <div class="col-sm-2">
+                <ng-select [items]="Districts" bindLabel="nameTh" bindValue="id" appendTo="body" (change)="showZipcode(1,$event)"
+                  placeholder="เลือกแขวง/ตำบล">
+
+                </ng-select>
+              </div>
+
+              <label for="Zipcode" class="col-sm-2 col-form-label text-lg-right no-padding-right">รหัสไปรษณีย์ :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="Zipcode" placeholder="รหัสไปรษณีย์" [value]="getZipcode" >
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="container"><b>ที่อยู่ที่ติดต่อได้</b></div>
+            </div>
+
+            <div class="form-group row">
+              <label for="homeNo" class="col-sm-2 col-form-label text-lg-right no-padding-right"> บ้านเลขที่ :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="homeNo" placeholder="บ้านเลขที่">
+              </div>
+
+              <!-- <label for="stdParentMobileTel" class="col-sm-1 col-form-label text-lg-right no-padding-right">จังหวัด :</label> -->
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="detial" placeholder="หมู่/อาคาร/ถนน">
+              </div>
+
+              <label for="A2Provinces" class="col-sm-2 col-form-label text-lg-right no-padding-right">จังหวัด :</label>
+              <div class="col-sm-2">
+                <ng-select [items]="A2Provinces" bindLabel="nameTh" bindValue="id" groupBy="name" [selectableGroup]="true" appendTo="body"
+                placeholder="เลือกจังหวัด" (change)="showAmphures(0,$event)">
+                  <ng-template ng-optgroup-tmp let-item="item" >
+                    {{ item.name || 'Unnamed group'}}
+                  </ng-template>
+                </ng-select>
+              </div>
+
+            </div>
+
+            <div class="form-group row">
+              <label for="A2Amphures" class="col-sm-2 col-form-label text-lg-right no-padding-right">เขต/อำเภอ :</label>
+              <div class="col-sm-2">
+                <ng-select [items]="A2Amphures" bindLabel="nameTh" bindValue="id" groupBy="name" [selectableGroup]="true" appendTo="body"
+                placeholder="เลือกเขต/อำเภอ" (change)="showDistricts(0,$event)">
+                  <ng-template ng-optgroup-tmp let-item="item" >
+                    {{ item.name || 'Unnamed group'}}
+                  </ng-template>
+                </ng-select>
+              </div>
+
+              <label for="A2Districts" class="col-sm-2 col-form-label text-lg-right no-padding-right">แขวง/ตำบล
+                :</label>
+              <div class="col-sm-2">
+                <ng-select [items]="A2Districts" bindLabel="nameTh" bindValue="id" groupBy="name" [selectableGroup]="true" appendTo="body"
+                placeholder="เลือกแขวง/ตำบล" (change)="showZipcode(0,$event)">
+                  <ng-template ng-optgroup-tmp let-item="item" >
+                    {{ item.name || 'Unnamed group'}}
+                  </ng-template>
+                </ng-select>
+              </div>
+
+              <label for="A2Zipcode" class="col-sm-2 col-form-label text-lg-right no-padding-right">รหัสไปรษณีย์ :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="A2Zipcode" placeholder="รหัสไปรษณีย์" [value]="getA2Zipcode">
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -107,48 +306,56 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
           <div class="card-body">
             <div class="form-group row">
-              <label for="stdFatherNameTh" class="col-sm-2 col-form-label text-lg-right">บิดา ชื่อ-นามสกุล :</label>
+              <label for="stdFatherNameTh" class="col-sm-2 col-form-label text-lg-right no-padding-right">บิดา
+                ชื่อ-นามสกุล :</label>
               <div class="col-sm-3">
-                <input type="text" readonly class="form-control-plaintext" id="stdFatherNameTh" [value]="userData.stdFatherNameTh">
+                <input type="text" readonly class="form-control-plaintext" id="stdFatherNameTh"
+                  [value]="userData.stdFatherNameTh">
               </div>
 
-              <label for="stdFatherJob" class="col-sm-1 col-form-label text-lg-right">อาชีพ :</label>
+              <label for="stdFatherJob" class="col-sm-1 col-form-label text-lg-right no-padding-right">อาชีพ :</label>
               <div class="col-sm-2">
-                <input type="text" readonly class="form-control-plaintext" id="stdFatherJob" [value]="userData.stdFatherJob">
+                <input type="text" class="form-control" id="stdFatherJob" [value]="userData.stdFatherJob">
               </div>
 
-              <label for="stdFatherMobileTel" class="col-sm-2 col-form-label text-lg-right">โทรศัพท์ :</label>
+              <label for="stdFatherMobileTel" class="col-sm-2 col-form-label text-lg-right no-padding-right">โทรศัพท์
+                :</label>
               <div class="col-sm-2">
-                <input type="text" readonly class="form-control-plaintext" id="stdFatherMobileTel" [value]="userData.stdFatherMobileTel">
+                <input type="text" class="form-control" id="stdFatherMobileTel" [value]="userData.stdFatherMobileTel">
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group row">
+              <label for="stdMotherNameTh" class="col-sm-2 col-form-label text-lg-right no-padding-right">มารดา
+                ชื่อ-นามสกุล :</label>
+              <div class="col-sm-3">
+                <input type="text" readonly class="form-control-plaintext" id="stdMotherNameTh"
+                  [value]="userData.stdMotherNameTh">
+              </div>
+
+              <label for="stdMotherJob" class="col-sm-1 col-form-label text-lg-right no-padding-right">อาชีพ :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="stdMotherJob" [value]="userData.stdMotherJob">
+              </div>
+
+              <label for="stdMotherMobileTel" class="col-sm-2 col-form-label text-lg-right no-padding-right">โทรศัพท์
+                :</label>
+              <div class="col-sm-2">
+                <input type="text" class="form-control" id="stdMotherMobileTel" [value]="userData.stdMotherMobileTel">
               </div>
             </div>
 
             <hr>
             <div class="form-group row">
-              <label for="stdMotherNameTh" class="col-sm-2 col-form-label text-lg-right">มารดา ชื่อ-นามสกุล :</label>
-              <div class="col-sm-3">
-                <input type="text" readonly class="form-control-plaintext" id="stdMotherNameTh" [value]="userData.stdMotherNameTh">
-              </div>
-
-              <label for="stdMotherJob" class="col-sm-1 col-form-label text-lg-right">อาชีพ :</label>
-              <div class="col-sm-2">
-                <input type="text" readonly class="form-control-plaintext" id="stdMotherJob" [value]="userData.stdMotherJob">
-              </div>
-
-              <label for="stdMotherMobileTel" class="col-sm-2 col-form-label text-lg-right">โทรศัพท์ :</label>
-              <div class="col-sm-2">
-                <input type="text" readonly class="form-control-plaintext" id="stdMotherMobileTel" [value]="userData.stdMotherMobileTel">
-              </div>
-            </div>
-
-            <hr>
-            <div class="form-group row">
-              <label for="staticEmail" class="col-sm-1 col-form-label text-lg-right">ที่อยู่ :</label>
+              <label for="staticEmail" class="col-sm-1 col-form-label text-lg-right no-padding-right">ที่อยู่ :</label>
               <div class="col">
-                <div class="custom-control custom-radio" *ngFor="let fdAddress of FDAddress" aria-controls="multiCollapseExample1" data-toggle="collapse" href="#multiCollapseExample1">
+                <div class="custom-control custom-radio" *ngFor="let fdAddress of FDAddress"
+                  aria-controls="multiCollapseExample1" data-toggle="collapse" href="#multiCollapseExample1">
                   <input class="custom-control-input" type="radio" name="FDAddress" [id]="fdAddress.id"
                     [value]="fdAddress.id" (change)="enableAddressOther(fdAddress.id)">
-                  <label class="custom-control-label" [for]="fdAddress.id" >
+                  <label class="custom-control-label" [for]="fdAddress.id">
                     {{fdAddress.name}}
                   </label>
                 </div>
@@ -241,9 +448,9 @@
                     <td colspan="4">
                       <ng-select [items]="LANGUAGElevel" bindLabel="name" bindValue="name" appendTo="body"
                         placeholder="เลือกหัวข้อฝึกอบรม/ฝึกงาน">
-                        <ng-template ng-label-tmp let-item="item">
+                        <!-- <ng-template ng-label-tmp let-item="item">
                           {{item.name}}
-                        </ng-template>
+                        </ng-template> -->
                       </ng-select>
                     </td>
                   </tr>
@@ -310,24 +517,17 @@
                   </tr>
                 </tbody>
               </table> -->
-              <ngx-datatable
-        class="material"
-        [rows]="LANGUAGEskill"
-        columnMode="force"
-        [headerHeight]="50"
-        [footerHeight]="0"
-        [rowHeight]="50"
-        [scrollbarV]="true"
-        [scrollbarH]="true">
-        <ngx-datatable-column class="ngx-th" name="th" [width]="300"></ngx-datatable-column>
-        <ngx-datatable-column headerClass="ngx-th" name="en"></ngx-datatable-column>
-        <ngx-datatable-column headerClass="ngx-th" name="children"></ngx-datatable-column>
-        <ngx-datatable-column headerClass="ngx-th" name="th" [width]="300"></ngx-datatable-column>
-        <ngx-datatable-column headerClass="ngx-th" name="en"></ngx-datatable-column>
-        <ngx-datatable-column headerClass="ngx-th" name="children"></ngx-datatable-column>
-        <!-- <ngx-datatable-column name="City" [width]="300" prop="address.city"></ngx-datatable-column>
+              <ngx-datatable class="material" [rows]="LANGUAGEskill" columnMode="force" [headerHeight]="50"
+                [footerHeight]="0" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
+                <ngx-datatable-column class="ngx-th" name="th" [width]="300"></ngx-datatable-column>
+                <ngx-datatable-column headerClass="ngx-th" name="en"></ngx-datatable-column>
+                <ngx-datatable-column headerClass="ngx-th" name="children"></ngx-datatable-column>
+                <ngx-datatable-column headerClass="ngx-th" name="th" [width]="300"></ngx-datatable-column>
+                <ngx-datatable-column headerClass="ngx-th" name="en"></ngx-datatable-column>
+                <ngx-datatable-column headerClass="ngx-th" name="children"></ngx-datatable-column>
+                <!-- <ngx-datatable-column name="City" [width]="300" prop="address.city"></ngx-datatable-column>
         <ngx-datatable-column name="State" [width]="300" prop="address.state"></ngx-datatable-column> -->
-      </ngx-datatable>
+              </ngx-datatable>
 
             </div>
 
@@ -406,5 +606,12 @@
       </div>
     </div> 
   </div>-->
+    <!-- <button  class="btn btn-primary">บันทึกข้อมูล</button> -->
+    <div class="form-row mt-2 text-center">
+      <button class="btn btn-primary" type="submit">บันทึกข้อมูล</button>
+      <button type="button" class="btn btn-light">
+        <fa name="print"></fa>
+      </button>
+    </div>
   </form>
 </div>
