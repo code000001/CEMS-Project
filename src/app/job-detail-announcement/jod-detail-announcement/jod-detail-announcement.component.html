@@ -13,19 +13,19 @@
         <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
           <div class="card-body">
             <div class="col-sm-12 no-padding">
-              <ngx-datatable class="material" [rows]="orgData" [columns]="columns" columnMode="force" [headerHeight]="50"
-                [footerHeight]="0" [rowHeight]="50" [scrollbarV]="true" [scrollbarH]="true">
+              <ngx-datatable class="material" [rows]="orgData" [loadingIndicator]="loadingIndicator" columnMode="force" [headerHeight]="50"
+                [footerHeight]="0" [rowHeight]="50">
                 <ngx-datatable-column name="orgNameTh">
                   <ng-template let-column="column" ngx-datatable-header-template>
                     <span>รายชื่อบริษัท</span>
                   </ng-template>
                   <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{row}}
+                    {{row.orgNameTh}}
                   </ng-template>
                 </ngx-datatable-column>
                 <ngx-datatable-column name="ดูรายละเอียด">
                   <ng-template ngx-datatable-cell-template let-value="value">
-                    <a routerLink="/view_announcement">
+                    <a routerLink="/view_announcement/{{value.id}}">
                       <fa name="search"></fa>
                     </a>&nbsp;
                     <a *ngIf="isSignin && (isStaff || isAdmin)" routerLink="/add_announcement">

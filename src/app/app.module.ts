@@ -44,7 +44,7 @@ import { UploadTranscriptComponent } from './Profile-Management/upload-transcrip
 import { UploadResumeComponent } from './Profile-Management/upload-resume/upload-resume.component';
 import { StaffTrainingManagementComponent } from './Profile-Management/staff-training-management/staff-training-management.component';
 import { StaffCoopComponent } from './Profile-Management/staff-coop/staff-coop.component';
-import {OrganizationService} from './_services/organization.service';
+import {OrganizationService} from './services/organization.service';
 
 @NgModule({
   declarations: [

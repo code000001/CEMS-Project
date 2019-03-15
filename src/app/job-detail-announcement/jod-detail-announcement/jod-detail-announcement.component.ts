@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { AuthGuard } from '../../_guards';
 import { User, Role } from '../../_models';
 import { UserService, AuthenticationService } from '../../_services';
-import {OrganizationService} from '../../_services/organization.service';
-import {OrganizationDataInterface} from '../../interfaces/organization/organization-data-interface';
+import {OrganizationService} from '../../services/organization.service';
+import {OrganizationDataInterface} from '../../_models/organization-data-interface';
 @Component({
   selector: 'app-jod-detail-announcement',
   templateUrl: './jod-detail-announcement.component.html',
@@ -26,7 +26,7 @@ export class JodDetailAnnouncementComponent implements OnInit {
   getOrganization(): void {
      this.organizationService.get()
        .subscribe(
-         resultData => { this.orgData = resultData; console.log(this.orgData) },
+         resultData => { this.orgData = resultData; },
       )
   }
 

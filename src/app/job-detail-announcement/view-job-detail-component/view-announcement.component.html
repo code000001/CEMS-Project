@@ -9,18 +9,17 @@
               </div>
             </h5>
           </div>
-     
+     <div *ngIf="org">
       <div class="card-body">
-        <div class="panel panel-info">
           <div class="panel-body">
             <form class="needs-validation" novalidate="">
               <div class="row">
                 <div class="col-md-6 mb-3">
-                  <label for="">ตำแหน่งที่เปิดรับสมัคร : </label>
-                  <span id=""></span>
+                  <label>ตำแหน่งที่เปิดรับสมัคร : </label>
+                   {{orgAddress}}
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label for="lastName">จำนวนที่รับ : </label>
+                  <label for="">จำนวนที่รับ : </label>
                   <span id=""></span>&nbsp;คน
                 </div>
               </div>
@@ -35,7 +34,8 @@
               </div>
 
               <div class="mb-3">
-                <label for="address">ที่ตั้งสถานประกอบการ : </label>
+                <label for="orgAddress">ที่ตั้งสถานประกอบการ :</label>
+        
               </div>
 
               <hr class="mb-4">

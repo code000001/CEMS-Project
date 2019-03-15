@@ -53,7 +53,7 @@ const routes: Routes = [
       { path: 'profile-management/staff-training', component: StaffTrainingManagementComponent, canActivate: [AuthGuard], data: { title: 'จัดการชั่วโมงอบรมวิชาการ', roles: [Role.Staff, Role.Admin] } },
       { path: 'profile-management/staff-coop', component: StaffCoopComponent, canActivate: [AuthGuard], data: { title: 'จัดการชั่วโมงอบรมเตรียมความพร้อมสหกิจศึกษา', roles: [Role.Staff, Role.Admin] } },
       { path: 'add_announcement', component: AddJodDetailAnnouncementComponent, data : { title: 'ประกาศบริษัท'} },
-      { path: 'view_announcement', component: ViewJodDetailAnnouncementComponent, data: { title:'รายละเอียดของบริษัท'} },
+      { path: 'view_announcement/:id', component: ViewJodDetailAnnouncementComponent, data: { title:'รายละเอียดของบริษัท'} },
       { path: 'update_announcement', component: UpdateJodDetailAnnouncementComponent, data: { title:'แก้ไขรายละเอียดของบริษัท'} },
       { path: 'qualification', component: StuQualificationcementComponent, canActivate: [AuthGuard], data: { title: 'คัดเลือก', roles: [Role.Admin, Role.Staff, Role.Agent, Role.User] } },
       // -------------------- ADMIN
