@@ -20,6 +20,23 @@ import { Userappform } from '../../_models/userappform';
 export class StudentOrgAppFormComponent implements OnInit {
   
   // rows = [];
+  // Address 1
+  Provinces: any;
+  selectedProvinces = null;
+  Amphures: any;
+  selectedAmphures = null;
+  Districts: any;
+  selectedDistricts = null;
+  Zipcode:number  = null;
+  // Address 2
+  A2Provinces: any;
+  A2selectedProvinces = null;
+  A2Amphures: any;
+  A2selectedAmphures = null;
+  A2Districts: any;
+  A2selectedDistricts = null;
+  A2Zipcode:number  = null;
+
   userData: any ;
   FDAddress = [{id : 1,name:'ที่อยู่ตามทะเบียนบ้าน'}, {id : 2,name:'ที่อยู่ที่ติดต่อได้'}, {id : 0,name:'อื่น ๆ'}];
   FDAddressOther : boolean = false;
@@ -38,6 +55,7 @@ export class StudentOrgAppFormComponent implements OnInit {
     { th: 'พูด',en: 'Speaking', children: this.countLevel },
     { th: 'อ่าน',en: 'Reading', children: this.countLevel },
     { th: 'เขียน',en: 'Writing', children: this.countLevel }]
+    this.loadingProvinces();
   }
 
   public get countLevel() {
@@ -50,6 +68,9 @@ export class StudentOrgAppFormComponent implements OnInit {
 
   ngOnInit() {
     this.loadingData();
+    // this.loadingProvinces();
+    // if(this.Provinces[0].id){ this.selectedProvinces = this.Provinces[0].id }
+    // if(this.selectedProvinces){ console.log(this.selectedProvinces);this.showAmphures(); }
   }
 
   loadingData() {
@@ -59,8 +80,25 @@ export class StudentOrgAppFormComponent implements OnInit {
     });
   }
 
+  loadingProvinces() {
+    this.appFormService.getProvince().subscribe((data: {}) => {
+      this.A2Provinces = this.Provinces = data;
+    });
+  }
+
+  loadingAmphures(adr : number, pv : number) {
+    this.appFormService.getAmphure(pv).subscribe((data: {}) => {
+      if(adr === 1){ this.Amphures = data }else{ this.A2Amphures = data}
+    });
+  }
+
+  loadingDistricts(adr : number, amp : number) {
+    this.appFormService.getDistrict(amp).subscribe((data: {}) => {
+      if(adr === 1){ this.Districts = data }else{ this.A2Districts = data}
+    });
+  }
+
   enableAddressOther(event){
-    console.log(event);
     this.FDAddressOther = false;
     if(event === 0){
       this.FDAddressOther = true;
@@ -70,6 +108,29 @@ export class StudentOrgAppFormComponent implements OnInit {
 
   public get getFDAddressOther(){
     return this.FDAddressOther;
+  }
+
+  showAmphures(adr : number = 0, $event){
+    this.loadingAmphures(adr,$event.id);
+  }
+
+  showDistricts(adr : number = 0, $event){
+    this.loadingDistricts(adr,$event.id);
+  }
+
+  showZipcode(adr : number = 0, $event){
+    if($event.zipcode === 0){
+      return ;
+    }
+    if(adr === 1){ this.Zipcode = $event.zipcode }else{ this.A2Zipcode = $event.zipcode }
+  }
+
+  public get getZipcode(){
+    return this.Zipcode;
+  }
+  
+  public get getA2Zipcode(){
+    return this.A2Zipcode;
   }
 
 }

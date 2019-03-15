@@ -12,6 +12,7 @@ import { Userappform } from '../_models/userappform';
 })
 export class AppFormService {
   private httpHeaders: HttpHeaders;
+  private httpHeadersRes: HttpHeaders;
   private currentUser: User;
   private extractData(res: Response) {
     const body = res;
@@ -22,7 +23,8 @@ export class AppFormService {
     private authenticationService: AuthenticationService,
     private http: HttpClient
   ) {
-    this.httpHeaders = this.authenticationService.gethttpHeadersRes;
+    this.httpHeadersRes = this.authenticationService.gethttpHeadersRes;
+    this.httpHeaders = this.authenticationService.gethttpHeaders;
     this.currentUser = this.authenticationService.currentUserValue;
   }
 
@@ -32,7 +34,25 @@ export class AppFormService {
   }
 
   getINS02(): Observable<any> {
-    return this.http.get<any>(`${this.authenticationService.path_url}/getINS/${this.currentUser.userId}`, ({ headers: this.httpHeaders }))
+    return this.http.get<any>(`${this.authenticationService.path_url}/getINS/${this.currentUser.userId}`, ({ headers: this.httpHeadersRes }))
       .pipe(map(this.extractData), catchError(this.errorHander));
+  }
+
+  getProvince(): Observable<any> {
+    return this.http.get<any>(`${this.authenticationService.path_url}/getProvinces`, ({ headers: this.httpHeaders }))
+      .pipe(map(data => { //console.log("req data => ",data);
+      return data}), catchError(this.errorHander));
+  }
+
+  getAmphure(pv_id : number): Observable<any> {
+    return this.http.get<any>(`${this.authenticationService.path_url}/getAmphures/${pv_id}`, ({ headers: this.httpHeaders }))
+      .pipe(map(data => { //console.log("req data => ",data);
+      return data}), catchError(this.errorHander));
+  }
+
+  getDistrict(amp_id : number): Observable<any> {
+    return this.http.get<any>(`${this.authenticationService.path_url}/getDistricts/${amp_id}`, ({ headers: this.httpHeaders }))
+      .pipe(map(data => { //console.log("req data => ",data);
+      return data}), catchError(this.errorHander));
   }
 }
