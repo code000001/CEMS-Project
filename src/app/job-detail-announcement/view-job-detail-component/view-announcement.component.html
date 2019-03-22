@@ -9,38 +9,39 @@
               </div>
             </h5>
           </div>
-     <div *ngIf="org">
+     <div *ngIf="org||annData||logReqKnow||ListKnowlegde ">
       <div class="card-body">
           <div class="panel-body">
-            <form class="needs-validation" novalidate="">
+            
               <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label>ตำแหน่งที่เปิดรับสมัคร : </label>
-                   {{orgAddress}}
+                <div class="col-md-6 mb-3" *ngIf="ListPosition">
+                  <label>ตำแหน่งที่เปิดรับสมัคร :
+                  <span *ngFor="let pos of ListPosition"> {{pos.annPosNameEn}}</span>
+                </label>
                 </div>
-                <div class="col-md-6 mb-3">
-                  <label for="">จำนวนที่รับ : </label>
-                  <span id=""></span>&nbsp;คน
+                <div class="col-md-6 mb-3" *ngIf="annData && annData[0]">
+                  <label >จำนวนที่รับ : {{annData[0].annStdAmount}}</label>
+                  <span></span>&nbsp;คน
                 </div>
               </div>
 
               <div class="mb-3">
-                <label for="">ความสามารถทางวิชาการ</label>
-                <span class="input-group-text"></span>
+                <label for="">ความสามารถทางวิชาการ :</label>
+                <span *ngFor="let kr of ListKnowlegde"> {{kr.annKreqNameEn}} </span>
               </div>
 
-              <div class="mb-3">
-                <label for="">สวัสดิการ : <span class=""></span></label>
+              <div class="mb-3" *ngIf="annData && annData[0]">
+                <label >สวัสดิการ : <span class="">{{annData[0].annReward}}</span></label>
               </div>
 
-              <div class="mb-3">
-                <label for="orgAddress">ที่ตั้งสถานประกอบการ :</label>
-        
+              <div class="mb-3"  *ngIf="org && org[0]">
+                <label >ที่ตั้งสถานประกอบการ :</label>
+                {{org[0].orgAddress}}
               </div>
 
               <hr class="mb-4">
               <button class="btn btn-primary btn-lg btn-block" type="submit">ลงสมัคร</button>
-            </form>
+            
           </div>
         </div>
       </div>
