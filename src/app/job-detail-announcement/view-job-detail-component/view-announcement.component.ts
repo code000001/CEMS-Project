@@ -23,7 +23,7 @@ export class ViewJodDetailAnnouncementComponent implements OnInit {
   KnowledgeReq: KnowledgeRequirementInterface
   ListKnowlegde: KnowledgeRequirementInterface [] = []
   positionData: PositionDataInterface
-  ListPosition: any[] = []
+  ListPosition: PositionDataInterface[] = []
 
 
   constructor(private route: ActivatedRoute, private organizationService: OrganizationService) { }

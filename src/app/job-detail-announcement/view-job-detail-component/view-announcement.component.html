@@ -1,20 +1,20 @@
 <div class="container">
   <div class="accordion mt-5" id="accordionExample">
-    <div class="card">
+    <div class="card" *ngIf="org||annData||logReqKnow||ListKnowlegde||ListPosition">
         <div class="card-header" id="headingOne">
             <h5 class="mb-0">
               <!--data-target="#collapseOne"-->
               <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-                  รายละเอียดการประกาศรับสมัครนิสิตสหกิจศึกษา
+                  รายละเอียดการประกาศรับสมัครนิสิตสหกิจศึกษา {{org[0].orgNameTh}}
               </div>
             </h5>
           </div>
-     <div *ngIf="org||annData||logReqKnow||ListKnowlegde ">
+     <div>
       <div class="card-body">
           <div class="panel-body">
             
               <div class="row">
-                <div class="col-md-6 mb-3" *ngIf="ListPosition">
+                <div class="col-md-6 mb-3">
                   <label>ตำแหน่งที่เปิดรับสมัคร :
                   <span *ngFor="let pos of ListPosition"> {{pos.annPosNameEn}}</span>
                 </label>
@@ -37,6 +37,11 @@
               <div class="mb-3"  *ngIf="org && org[0]">
                 <label >ที่ตั้งสถานประกอบการ :</label>
                 {{org[0].orgAddress}}
+              </div>
+
+              <div class="mb-3"  *ngIf="annData && annData[0]">
+                <label >ระยะเวลารับสมัคร :</label>
+                {{annData[0].annStartDate}} - {{annData[0].annEndDate}}
               </div>
 
               <hr class="mb-4">
