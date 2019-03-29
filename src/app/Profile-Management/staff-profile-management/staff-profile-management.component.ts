@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthGuard } from '../../_guards';
+import { User, Role } from '../../_models';
+import { UserService, AuthenticationService } from '../../_services';
 
 @Component({
   selector: 'app-staff-profile-management',
@@ -7,7 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaffProfileManagementComponent implements OnInit {
 
-  constructor() { }
+  currentUser: User;
+  userFromApi: User;
+  constructor(private router: Router,
+    private userService: UserService,
+    private authenticationService: AuthenticationService,
+    private authGuardService: AuthGuard) { this.userFromApi = this.currentUser = this.authenticationService.currentUserValue; }
 
   ngOnInit() {
   }

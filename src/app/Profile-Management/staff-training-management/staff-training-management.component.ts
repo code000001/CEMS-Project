@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import {StudentdataInterface} from '../../_models/stu-data-interface';
 
 @Component({
   selector: 'app-staff-training-management',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaffTrainingManagementComponent implements OnInit {
 
-  constructor() { }
+  id: number
+  stdData: StudentdataInterface[];
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.getStuById();
+  }
+
+  getStuById(){
+    const id = +this.route.snapshot.paramMap.get('id');
   }
 
 }
