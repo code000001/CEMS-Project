@@ -9,7 +9,7 @@ import { LogKnowledgeInterface } from '../../_models/log-knowledge-req-interface
 import {LogPositionInterface} from '../../_models/log-position-interface';
 
 @Component({
-  selector: 'app-view-jod-detail-announcement',
+  selector: 'app-view-job-detail-announcement',
   templateUrl: './view-announcement.component.html',
   styleUrls: ['./view-announcement.component.css']
 })
