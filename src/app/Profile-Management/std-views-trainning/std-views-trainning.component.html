@@ -1,0 +1,77 @@
+<div class="container-contact100">
+  <div class="wrap-contact100">
+    <form class="contact100-form validate-form">
+      <span class="contact100-form-title">ชั่วโมงอบรมสหกิจศึกษาของนิสิต</span>
+
+      <nav class="col-md-12">
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+            aria-controls="nav-home" aria-selected="true">อบรมวิชาการ</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+            aria-controls="nav-profile" aria-selected="false">อบรมเตรียมความพร้อมสหกิจศึกษา</a>
+        </div>
+      </nav>
+
+      <div class="tab-content col-md-12" id="nav-tabContent ">
+        <div class="tab-pane fade show active " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <table class="table table-hover ng-scope" style="text-align: center;">
+            <thead style="background:#B0C4DE;">
+              <tr>
+                <th class="ng-binding ng-scope">ลำดับที่</th>
+                <th class="ng-binding ng-scope">หัวข้อ</th>
+                <th class="ng-binding ng-scope">จำนวนทั้งหมด 9 ชั่วโมง</th>
+                <th class="ng-binding ng-scope">รายละเอียด</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in data.rows" class="ng-scope">
+                <td class="ng-binding">1</td>
+                <td class="ng-binding">อบรมวิชาการการทำงานในสถานที่ประกอบการ</td>
+                <td class="ng-binding">3</td>
+                <td class="ng-binding">
+                  <a href="#">
+                    <fa name="search" class="btn btn-secondary"></fa>
+                  </a>
+                </td>
+              </tr>
+              <tr ng-repeat="row in data.rows" class="ng-scope">
+                <td class="ng-binding">1</td>
+                <td class="ng-binding">อบรมวิชาการการทำงานในสถานที่ประกอบการ</td>
+                <td class="ng-binding">3</td>
+                <td class="ng-binding">
+                  <a href="#">
+                    <fa name="search" class="btn btn-secondary"></fa>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <table class="table table-hover ng-scope" style="text-align: center;">
+            <thead style="background:#B0C4DE;">
+              <tr>
+                <th class="ng-binding ng-scope">ลำดับที่</th>
+                <th class="ng-binding ng-scope">หัวข้อ</th>
+                <th class="ng-binding ng-scope">จำนวนทั้งหมด 3 ชั่วโมง</th>
+                <th class="ng-binding ng-scope">รายละเอียด</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="row in data.rows" class="ng-scope">
+                <td class="ng-binding">1</td>
+                <td class="ng-binding">อบรมการพัฒนาซอฟต์แวร์ด้วย Microservices</td>
+                <td class="ng-binding">3</td>
+                <td class="ng-binding">
+                  <a href="#">
+                    <fa name="search" class="btn btn-secondary"></fa>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

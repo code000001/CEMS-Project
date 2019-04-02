@@ -72,17 +72,13 @@
 
       <div class="form-group" style="width:30%;">
         <label for="">สาขาวิชา</label>
-        <select class="form-control" id="">
-          <option>วิศวกรรมซอฟต์แวร์</option>
-          <option>วิทยาการคอมพิวเตอร์</option>
-          <option>เทคโนโลยีสารสนเทศ</option>
-        </select>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="">
       </div>
       <!--ส่วนการศึกษา-->
 
       <!--ที่อยู่ตามทะเบียนบ้าน-->
       <div class="form-group" style="width:100%;">
-        <label for="">ที่อยู่ตามทะเบียนบ้าน (บ้านเลขที่, หมู่, ถนน, ตำบอล, อำเภอ, จังหวัด, รหัสไปรษณีย์)</label>
+        <label for="">ที่อยู่ตามทะเบียนบ้าน (บ้านเลขที่, หมู่, ถนน, ตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์)</label>
         <textarea class="form-control"></textarea>
       </div>
 
@@ -103,27 +99,29 @@
       <!--ที่อยู่ตามทะเบียนบ้าน-->
 
       <!--ที่อยู่ปัจจุบัน-->
-      <div class="form-group" style="width:20%;">
+      <!-- <div class="form-group" style="width:20%;">
         <label for="">ที่พักปัจจุบัน</label>
         <select class="form-control" id="sel-address">
           <option id="dorm">หอพัก</option>
           <option id="other">อื่นๆ ระบุ</option>
         </select>
-      </div>
-
+      </div> -->
+<!-- 
       <div class="form-group" style="width:80%;">
 
-      </div>
+      </div> -->
 
       <div class="form-group" style="width:100%;">
-        <label for="">หอพัก (ชื่อหอพัก, เลขที่ห้อง, โทรศัพท์, มือถือ)</label>
+        <label for="">ที่อยู่ปัจจุบัน (เลขที่, หมู่, ถนน, ตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์, โทรศัพท์, มือถือ)
+          <p>* กรณีอาศัยหอพัก กรุณาใส่ชื่อหอพักและเลขที่ห้องด้วย *</p>
+        </label>
         <textarea class="form-control"></textarea>
       </div>
 
-      <div class="form-group" style="width:100%;">
-        <label for="">บ้าน/อื่นๆ (บ้านเลขที่, หมู่, ถนน, ตำบอล, อำเภอ, จังหวัด, รหัสไปรษณีย์)</label>
+      <!-- <div class="form-group" style="width:100%;">
+        <label for="">บ้าน/อื่นๆ (บ้านเลขที่, หมู่, ถนน, ตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์)</label>
         <textarea class="form-control"></textarea>
-      </div>
+      </div> -->
 
       <div class="form-group" style="width:20%;">
         <label for="">โทรศัพท์</label>
@@ -185,8 +183,10 @@
       </div>
       <!--ผู้ปกครอง-->
 
-      <button type="button" class="btn btn-secondary" style="width:10%;"><a href="/profile-management" style="color:white;">ยกเลิก</a></button>
-      <button type="button" class="btn btn-success" style="width:10%;"><a href="#" style="color:white;">บันทึก</a></button>
+      <button type="button" class="btn btn-secondary" style="width:10%;"><a href="/profile-management"
+          style="color:white;">ยกเลิก</a></button>
+      <button type="button" class="btn btn-success" style="width:10%;"><a href="#"
+          style="color:white;">บันทึก</a></button>
 
     </form>
   </div>

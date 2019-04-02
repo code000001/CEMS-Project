@@ -50,3 +50,6 @@
   padding-bottom: 59px;
 }
 
+tr, th, td{
+  text-align: center;
+}

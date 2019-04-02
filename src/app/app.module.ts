@@ -45,6 +45,7 @@ import { UploadResumeComponent } from './Profile-Management/upload-resume/upload
 import { StaffTrainingManagementComponent } from './Profile-Management/staff-training-management/staff-training-management.component';
 import { StaffCoopComponent } from './Profile-Management/staff-coop/staff-coop.component';
 import {OrganizationService} from './services/organization.service';
+import { StdViewsTrainningComponent } from './Profile-Management/std-views-trainning/std-views-trainning.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import {OrganizationService} from './services/organization.service';
     UploadTranscriptComponent,
     UploadResumeComponent,
     StaffTrainingManagementComponent,
-    StaffCoopComponent
+    StaffCoopComponent,
+    StdViewsTrainningComponent
   ],
   imports: [
     NgbModule,
