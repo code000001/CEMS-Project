@@ -11,7 +11,7 @@ import { LogInComponent } from './log-in/log-in.component';
 import { StudentOrgAppFormComponent } from './App-Form/student-org-app-form/student-org-app-form.component';
 import { EduProfileManagementComponent } from './Profile-Management/edu-profile-management/edu-profile-management.component';
 import { StaffProfileManagementComponent } from './Profile-Management/staff-profile-management/staff-profile-management.component';
-import { JodDetailAnnouncementComponent } from './job-detail-announcement/jod-detail-announcement/jod-detail-announcement.component';
+import { JobDetailAnnouncementComponent } from './job-detail-announcement/jod-detail-announcement/job-detail-announcement.component';
 import { StuQualificationcementComponent } from './Qualificationcement/stu-qualificationcement/stu-qualificationcement.component';
 import { StuQualifyingStatusComponent } from './Qualifying/stu-qualifying-status/stu-qualifying-status.component';
 import { NewAccountComponent } from './Admin/new-account/new-account.component';
@@ -36,7 +36,7 @@ const routes: Routes = [
       { path: '',             component: HomeComponent },
       { path: 'index',        component: MainscreenComponent,            data: { title: 'หน้าแรก' }},
       { path: 'login',        component: LogInComponent,                 data: { title: 'เข้าสู่ระบบ' }},
-      { path: 'announcement', component: JodDetailAnnouncementComponent, data: { title: 'ประกาศ' }},
+      { path: 'announcement', component: JobDetailAnnouncementComponent, data: { title: 'ประกาศ' }},
       { path: 'qualifying',   component: StuQualifyingStatusComponent,   data: { title: 'ดูผลการคัดเลือก' }},
 
       // -------------------- After login สามารถเข้าถึงได้โดยเข้าสู่ระบบแล้ว

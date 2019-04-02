@@ -27,7 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { StudentOrgAppFormComponent } from './App-Form/student-org-app-form/student-org-app-form.component';
 import { EduProfileManagementComponent } from './Profile-Management/edu-profile-management/edu-profile-management.component';
-import { JodDetailAnnouncementComponent } from './job-detail-announcement/jod-detail-announcement/jod-detail-announcement.component';
+import { JobDetailAnnouncementComponent } from './job-detail-announcement/jod-detail-announcement/job-detail-announcement.component';
 import { StuQualificationcementComponent } from './Qualificationcement/stu-qualificationcement/stu-qualificationcement.component';
 import { StuQualifyingStatusComponent } from './Qualifying/stu-qualifying-status/stu-qualifying-status.component';
 import { StaffProfileManagementComponent } from './Profile-Management/staff-profile-management/staff-profile-management.component';
@@ -59,7 +59,7 @@ import { StdViewsTrainningComponent } from './Profile-Management/std-views-train
     LogInComponent,
     StudentOrgAppFormComponent,
     EduProfileManagementComponent,
-    JodDetailAnnouncementComponent,
+    JobDetailAnnouncementComponent,
     ViewJodDetailAnnouncementComponent,
     UpdateJodDetailAnnouncementComponent,
     AddJodDetailAnnouncementComponent,

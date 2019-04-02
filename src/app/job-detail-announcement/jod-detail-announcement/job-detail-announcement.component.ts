@@ -5,22 +5,28 @@ import { User, Role } from '../../_models';
 import { UserService, AuthenticationService } from '../../_services';
 import {OrganizationService} from '../../services/organization.service';
 import {OrganizationDataInterface} from '../../_models/organization-data-interface';
+import { Observable } from 'rxjs';
 @Component({
-  selector: 'app-jod-detail-announcement',
-  templateUrl: './jod-detail-announcement.component.html',
-  styleUrls: ['./jod-detail-announcement.component.css']
+  selector: 'app-job-detail-announcement',
+  templateUrl: './job-detail-announcement.component.html',
+  styleUrls: ['./job-detail-announcement.component.css']
 })
-export class JodDetailAnnouncementComponent implements OnInit {
+export class JobDetailAnnouncementComponent implements OnInit {
   id: number
   currentUser: User;
   userFromApi: User;
   orgData: OrganizationDataInterface[];
 
   constructor(private router: Router,
-    private organizationService: OrganizationService) { }
+    private organizationService: OrganizationService) { 
+     
+    }
 
   ngOnInit() {
     this.getOrganization();
+    if(localStorage.getItem('currentUser') != null){0
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
   }
 
   getOrganization(): void {
