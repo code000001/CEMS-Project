@@ -7,20 +7,25 @@ import { AuthenticationService } from '../_services';
 import { StudentdataInterface } from '../_models/stu-data-interface';
 
 @Injectable()
-export class StudentDataInterface{
+export class StudentDataService{
+
     private httpHeaders: HttpHeaders;
     private extractData(res: Response) {
         const body = res;
         return body || {};
     }
+    constructor(private http: HttpClient, private authenticationService: AuthenticationService) { 
+        this.httpHeaders = this.authenticationService.gethttpHeadersRes;
+    }
 
-    // get(): Observable<StudentdataInterface[]>{
-    //     return this.http.get<StudentdataInterface[]>(`${this.authenticationService.path_url}/std_printout_ins001`,
-    //         ({ headers: this.httpHeaders }))
-    // }
+    get(): Observable<StudentdataInterface[]>{
+        return this.http.get<StudentdataInterface[]>(`${this.authenticationService.path_url}/std_printout_ins001`,
+            ({ headers: this.httpHeaders }))
+    }
 
-    // getBystdId(stdId: number) Observable<StudentdataInterface>{
-    //     return this.http.get<StudentdataInterface>(`${this.authenticationService.path_url}/std_printout_ins001/${id}`, ({ headers: this.httpHeaders }))
-    // }
+    getstddataBystdId(std_id: number): Observable<StudentdataInterface>{
+        return this.http.get<StudentdataInterface>(`${this.authenticationService.path_url}/std_addform/${std_id}`, 
+        ({ headers: this.httpHeaders }))
+    }
     
 }
