@@ -1,5 +1,5 @@
 <meta charset="UTF-8">
-<table>
+<table *ngIf="std">
     <tr>
         <td>
             <table class="table-tr" style="width:100%;">
@@ -34,9 +34,9 @@
                     <td style="width:80%;padding: 1%;">
                         <p style="padding-left:5%;">
                             <b>1. ชื่อ - นามสกุล : </b>
-                            <span style="padding-left:10%;">(ไทย) นาย/น.ส. </span>
+                            <span style="padding-left:10%;">(ไทย) นาย/น.ส. {{std.stdFirstnameTh}}</span>
                         </p>
-                        <p style="padding-left:30%;">(English) Mr./Miss </p>
+                        <p style="padding-left:30%;">(English) {{std.stdPrefixEn}} {{std.stdFirstnameEn}} </p>
                         <p>
                             <span style="padding-left:5%;">รหัสนิสิต </span>
                             <span style="padding-left:10%;">ชั้นปี </span>
