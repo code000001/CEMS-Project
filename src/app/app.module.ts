@@ -77,7 +77,8 @@ import {PipeFormat} from './_helpers/pipe-date';
     UploadTranscriptComponent,
     UploadResumeComponent,
     StaffTrainingManagementComponent,
-    PipeFormat
+    PipeFormat,
+    StaffCoopComponent
   ],
   imports: [
     NgbModule,

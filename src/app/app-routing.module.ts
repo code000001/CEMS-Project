@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './_guards';
 import { Role } from './_models';
@@ -26,6 +26,7 @@ import { UploadTranscriptComponent } from './Profile-Management/upload-transcrip
 import { UploadResumeComponent } from './Profile-Management/upload-resume/upload-resume.component';
 import { StaffTrainingManagementComponent } from './Profile-Management/staff-training-management/staff-training-management.component';
 import { StaffCoopComponent } from './Profile-Management/staff-coop/staff-coop.component';
+import { StdViewsTrainningComponent } from './Profile-Management/std-views-trainning/std-views-trainning.component';
 
 const routes: Routes = [
   // Layout with header and footer ---------- ต้องมีส่วนหัว-ท้าย
@@ -52,6 +53,7 @@ const routes: Routes = [
       { path: 'profile-management/staff', component: StaffProfileManagementComponent, canActivate: [AuthGuard], data: { title: 'จัดการข้อมูลส่วนตัว', roles: [Role.Staff, Role.Admin] } },
       { path: 'profile-management/staff-training', component: StaffTrainingManagementComponent, canActivate: [AuthGuard], data: { title: 'จัดการชั่วโมงอบรมวิชาการ', roles: [Role.Staff, Role.Admin] } },
       { path: 'profile-management/staff-coop', component: StaffCoopComponent, canActivate: [AuthGuard], data: { title: 'จัดการชั่วโมงอบรมเตรียมความพร้อมสหกิจศึกษา', roles: [Role.Staff, Role.Admin] } },
+      { path: 'profile-management/std-views-trainning', component: StdViewsTrainningComponent, canActivate: [AuthGuard], data: { title: 'อัปโหลดเรซูเม', roles: [Role.User] }},
       { path: 'add_announcement', component: AddJodDetailAnnouncementComponent, data : { title: 'ประกาศบริษัท'} },
       { path: 'view_announcement/:id', component: ViewJodDetailAnnouncementComponent, data: { title:'รายละเอียดของบริษัท'} },
       { path: 'update_announcement', component: UpdateJodDetailAnnouncementComponent, data: { title:'แก้ไขรายละเอียดของบริษัท'} },
