@@ -44,7 +44,10 @@ import { UploadTranscriptComponent } from './Profile-Management/upload-transcrip
 import { UploadResumeComponent } from './Profile-Management/upload-resume/upload-resume.component';
 import { StaffTrainingManagementComponent } from './Profile-Management/staff-training-management/staff-training-management.component';
 import { StaffCoopComponent } from './Profile-Management/staff-coop/staff-coop.component';
-import {OrganizationService} from './services/organization.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatFormFieldModule, MatInputModule, MatCheckboxModule,MatNativeDateModule} from '@angular/material';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {PipeFormat} from './_helpers/pipe-date';
 
 @NgModule({
   declarations: [
@@ -74,7 +77,7 @@ import {OrganizationService} from './services/organization.service';
     UploadTranscriptComponent,
     UploadResumeComponent,
     StaffTrainingManagementComponent,
-    StaffCoopComponent
+    PipeFormat
   ],
   imports: [
     NgbModule,
