@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container">
     <div class="accordion mt-5" id="accordionExample">
       <div class="card">
@@ -28,13 +29,6 @@
                     placeholder="Your current email address" style="margin-bottom: 10px" type="email">
                 </div>
               </div>
-              <div id="div_id_password1" class="form-group required">
-                <label for="id_password1" class="control-label col-md-4  requiredField">ความสามารถทางวิชาการ<span
-                    class="asteriskField">*</span> </label>
-                <div class="controls col-md-8 ">
-                  <input class="input-md textinput textInput form-control" id="id_password1">
-                </div>
-              </div>
               <div id="div_id_password2" class="form-group required">
                 <label for="id_password2" class="control-label col-md-4  requiredField">ค่าตอบแทน<span
                     class="asteriskField">*</span> </label>
@@ -46,6 +40,11 @@
               <div id="div_id_name" class="form-group required">
                 <label for="id_name" class="control-label col-md-4  requiredField">วันคัดเลือกส่งใบสมัคร<span
                     class="asteriskField">*</span> </label>
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker startView="year" [startAt]="startDate" ></mat-datepicker>
+                    </mat-form-field>
                 <div class="form-group pull-right">
                   <button type="button" class="btn btn-primary">บันทึก</button>
                 </div>

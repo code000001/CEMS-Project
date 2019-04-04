@@ -4,10 +4,10 @@ import { AuthGuard } from '../../_guards';
 import { User, Role } from '../../_models';
 import { UserService, AuthenticationService } from '../../_services';
 
+
 @Component({
   selector: 'app-add-jod-detail-announcement',
-  templateUrl: './add-announcement.component.html',
-  styleUrls: ['./add-announcement.component.css']
+  templateUrl: './add-announcement.component.html'
 })
 export class AddJodDetailAnnouncementComponent implements OnInit {
   currentUser: User;

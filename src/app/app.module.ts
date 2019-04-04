@@ -93,15 +93,20 @@ import {OrganizationService} from './services/organization.service';
     NgProgressHttpModule,
     NgSelectModule,
     FormsModule,
-    ReactiveFormsModule
+    BrowserAnimationsModule,
+    MatButtonModule, 
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   providers: [
     Title,
-    OrganizationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  exports: [BsDropdownModule, TooltipModule, ModalModule]
+  exports: [BsDropdownModule, TooltipModule, ModalModule,PipeFormat]
 })
 export class AppModule { }
