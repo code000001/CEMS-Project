@@ -11,14 +11,14 @@ import { LogInComponent } from './log-in/log-in.component';
 import { StudentOrgAppFormComponent } from './App-Form/student-org-app-form/student-org-app-form.component';
 import { EduProfileManagementComponent } from './Profile-Management/edu-profile-management/edu-profile-management.component';
 import { StaffProfileManagementComponent } from './Profile-Management/staff-profile-management/staff-profile-management.component';
-import { JobDetailAnnouncementComponent } from './job-detail-announcement/jod-detail-announcement/job-detail-announcement.component';
+import { JobDetailAnnouncementComponent } from './job-detail-announcement/job-detail-announcement/job-detail-announcement.component';
 import { StuQualificationcementComponent } from './Qualificationcement/stu-qualificationcement/stu-qualificationcement.component';
 import { StuQualifyingStatusComponent } from './Qualifying/stu-qualifying-status/stu-qualifying-status.component';
 import { NewAccountComponent } from './Admin/new-account/new-account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AddJodDetailAnnouncementComponent} from './job-detail-announcement/add-job-detail-component/add-announcement.component'
-import { ViewJodDetailAnnouncementComponent} from './job-detail-announcement/view-job-detail-component/view-announcement.component'
-import { UpdateJodDetailAnnouncementComponent} from './job-detail-announcement/update-job-detail-component/update-announcement.component'
+import { AddJobDetailAnnouncementComponent} from './job-detail-announcement/add-job-detail-component/add-announcement.component'
+import { ViewJobDetailAnnouncementComponent} from './job-detail-announcement/view-job-detail-component/view-announcement.component'
+import { UpdateJobDetailAnnouncementComponent} from './job-detail-announcement/update-job-detail-component/update-announcement.component'
 import { SkillTestManagementComponent } from './Profile-Management/skill-test-management/skill-test-management.component';
 import { InsManagementComponent } from './Profile-Management/ins-management/ins-management.component';
 import { DownloadInsComponent } from './Profile-Management/download-ins/download-ins.component';
@@ -26,7 +26,7 @@ import { UploadTranscriptComponent } from './Profile-Management/upload-transcrip
 import { UploadResumeComponent } from './Profile-Management/upload-resume/upload-resume.component';
 import { StaffTrainingManagementComponent } from './Profile-Management/staff-training-management/staff-training-management.component';
 import { StaffCoopComponent } from './Profile-Management/staff-coop/staff-coop.component';
-import { StdViewsTrainningComponent } from './Profile-Management/std-views-trainning/std-views-trainning.component';
+import {StdViewsTrainningComponent} from './Profile-Management/std-views-trainning/std-views-trainning.component';
 
 const routes: Routes = [
   // Layout with header and footer ---------- ต้องมีส่วนหัว-ท้าย
@@ -54,9 +54,9 @@ const routes: Routes = [
       { path: 'profile-management/staff-training', component: StaffTrainingManagementComponent, canActivate: [AuthGuard], data: { title: 'จัดการชั่วโมงอบรมวิชาการ', roles: [Role.Staff, Role.Admin] } },
       { path: 'profile-management/staff-coop', component: StaffCoopComponent, canActivate: [AuthGuard], data: { title: 'จัดการชั่วโมงอบรมเตรียมความพร้อมสหกิจศึกษา', roles: [Role.Staff, Role.Admin] } },
       { path: 'profile-management/std-views-trainning', component: StdViewsTrainningComponent, canActivate: [AuthGuard], data: { title: 'อัปโหลดเรซูเม', roles: [Role.User] }},
-      { path: 'add_announcement', component: AddJodDetailAnnouncementComponent, data : { title: 'ประกาศบริษัท'} },
-      { path: 'view_announcement/:id', component: ViewJodDetailAnnouncementComponent, data: { title:'รายละเอียดของบริษัท'} },
-      { path: 'update_announcement', component: UpdateJodDetailAnnouncementComponent, data: { title:'แก้ไขรายละเอียดของบริษัท'} },
+      { path: 'add_announcement', component: AddJobDetailAnnouncementComponent, data : { title: 'ประกาศบริษัท'} },
+      { path: 'view_announcement/:id', component: ViewJobDetailAnnouncementComponent, data: { title:'รายละเอียดของบริษัท'} },
+      { path: 'update_announcement', component: UpdateJobDetailAnnouncementComponent, data: { title:'แก้ไขรายละเอียดของบริษัท'} },
       { path: 'qualification', component: StuQualificationcementComponent, canActivate: [AuthGuard], data: { title: 'คัดเลือก', roles: [Role.Admin, Role.Staff, Role.Agent, Role.User] } },
       // -------------------- ADMIN
       { path: 'new-account', component: NewAccountComponent, canActivate: [AuthGuard], data: { title: 'เพิ่มผู้ใช้', roles: [Role.Admin] }},

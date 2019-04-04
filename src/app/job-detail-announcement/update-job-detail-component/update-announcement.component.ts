@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-update-jod-detail-announcement',
+  selector: 'app-update-job-detail-announcement',
   templateUrl: './update-announcement.component.html',
   styleUrls: ['./update-announcement.component.css']
 })
-export class UpdateJodDetailAnnouncementComponent implements OnInit {
+export class UpdateJobDetailAnnouncementComponent implements OnInit {
 
   constructor() { }
 

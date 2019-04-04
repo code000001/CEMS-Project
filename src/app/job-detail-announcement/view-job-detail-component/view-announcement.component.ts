@@ -13,7 +13,7 @@ import {LogPositionInterface} from '../../_models/log-position-interface';
   templateUrl: './view-announcement.component.html',
   styleUrls: ['./view-announcement.component.css']
 })
-export class ViewJodDetailAnnouncementComponent implements OnInit {
+export class ViewJobDetailAnnouncementComponent implements OnInit {
 
   org: OrganizationDataInterface
   logPosition : LogPositionInterface

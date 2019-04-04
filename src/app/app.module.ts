@@ -27,15 +27,15 @@ import { HomeComponent } from './home/home.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { StudentOrgAppFormComponent } from './App-Form/student-org-app-form/student-org-app-form.component';
 import { EduProfileManagementComponent } from './Profile-Management/edu-profile-management/edu-profile-management.component';
-import { JobDetailAnnouncementComponent } from './job-detail-announcement/jod-detail-announcement/job-detail-announcement.component';
+import { JobDetailAnnouncementComponent } from './job-detail-announcement/job-detail-announcement/job-detail-announcement.component';
 import { StuQualificationcementComponent } from './Qualificationcement/stu-qualificationcement/stu-qualificationcement.component';
 import { StuQualifyingStatusComponent } from './Qualifying/stu-qualifying-status/stu-qualifying-status.component';
 import { StaffProfileManagementComponent } from './Profile-Management/staff-profile-management/staff-profile-management.component';
 import { NewAccountComponent } from './Admin/new-account/new-account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AddJodDetailAnnouncementComponent} from './job-detail-announcement/add-job-detail-component/add-announcement.component'
-import { ViewJodDetailAnnouncementComponent} from './job-detail-announcement/view-job-detail-component/view-announcement.component'
-import { UpdateJodDetailAnnouncementComponent} from './job-detail-announcement/update-job-detail-component/update-announcement.component'
+import { AddJobDetailAnnouncementComponent} from './job-detail-announcement/add-job-detail-component/add-announcement.component'
+import { ViewJobDetailAnnouncementComponent} from './job-detail-announcement/view-job-detail-component/view-announcement.component'
+import { UpdateJobDetailAnnouncementComponent} from './job-detail-announcement/update-job-detail-component/update-announcement.component'
 import { SkillTestManagementComponent } from './Profile-Management/skill-test-management/skill-test-management.component';
 import { SiteLayoutComponent } from './site-layout/site-layout.component';
 import { InsManagementComponent } from './Profile-Management/ins-management/ins-management.component';
@@ -48,6 +48,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatFormFieldModule, MatInputModule, MatCheckboxModule,MatNativeDateModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {PipeFormat} from './_helpers/pipe-date';
+import {StdViewsTrainningComponent } from './Profile-Management/std-views-trainning/std-views-trainning.component';
+import {OrganizationService} from './services/organization.service';
 
 @NgModule({
   declarations: [
@@ -62,9 +64,9 @@ import {PipeFormat} from './_helpers/pipe-date';
     StudentOrgAppFormComponent,
     EduProfileManagementComponent,
     JobDetailAnnouncementComponent,
-    ViewJodDetailAnnouncementComponent,
-    UpdateJodDetailAnnouncementComponent,
-    AddJodDetailAnnouncementComponent,
+    ViewJobDetailAnnouncementComponent,
+    UpdateJobDetailAnnouncementComponent,
+    AddJobDetailAnnouncementComponent,
     StuQualificationcementComponent,
     StuQualifyingStatusComponent,
     StaffProfileManagementComponent,
@@ -78,7 +80,8 @@ import {PipeFormat} from './_helpers/pipe-date';
     UploadResumeComponent,
     StaffTrainingManagementComponent,
     PipeFormat,
-    StaffCoopComponent
+    StaffCoopComponent,
+    StdViewsTrainningComponent
   ],
   imports: [
     NgbModule,
@@ -103,10 +106,12 @@ import {PipeFormat} from './_helpers/pipe-date';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ReactiveFormsModule
   ],
   providers: [
     Title,
+    OrganizationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
