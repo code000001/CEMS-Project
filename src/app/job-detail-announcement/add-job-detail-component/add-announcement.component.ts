@@ -4,12 +4,12 @@ import { AuthGuard } from '../../_guards';
 import { User, Role } from '../../_models';
 import { UserService, AuthenticationService } from '../../_services';
 
+
 @Component({
-  selector: 'app-add-jod-detail-announcement',
-  templateUrl: './add-announcement.component.html',
-  styleUrls: ['./add-announcement.component.css']
+  selector: 'app-add-job-detail-announcement',
+  templateUrl: './add-announcement.component.html'
 })
-export class AddJodDetailAnnouncementComponent implements OnInit {
+export class AddJobDetailAnnouncementComponent implements OnInit {
   currentUser: User;
   userFromApi: User;
   constructor(  private router: Router,

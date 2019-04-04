@@ -1,10 +1,10 @@
 <div class="container">
   <div class="accordion mt-5" id="accordionExample">
-    <div class="card" *ngIf="org||annData||logReqKnow||ListKnowlegde||ListPosition">
+    <div class="card" *ngIf="org && org[0]||annData && annData[0]||logReqKnow && logReqKnow[0]||ListKnowlegde && ListKnowlegde[0]||ListPosition && ListPosition[0]">
         <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
+            <h5 class="mb-0" *ngIf="org && org[0]">
               <!--data-target="#collapseOne"-->
-              <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+              <div>
                   รายละเอียดการประกาศรับสมัครนิสิตสหกิจศึกษา {{org[0].orgNameTh}}
               </div>
             </h5>
@@ -16,8 +16,9 @@
               <div class="row">
                 <div class="col-md-6 mb-3">
                   <label>ตำแหน่งที่เปิดรับสมัคร :
-                  <span *ngFor="let pos of ListPosition;">{{pos.annPosNameEn}}</span>
+                  <span *ngFor="let pos of ListPosition;">{{pos.annPosNameEn}} </span>
                 </label>
+                
                 </div>
                 <div class="col-md-6 mb-3" *ngIf="annData && annData[0]">
                   <label >จำนวนที่รับ : {{annData[0].annStdAmount}}</label>
@@ -30,8 +31,17 @@
                 <span *ngFor="let kr of ListKnowlegde"> {{kr.annKreqNameEn}} </span>
               </div>
 
-              <div class="mb-3" *ngIf="annData && annData[0]">
-                <label >สวัสดิการ : <span class="">{{annData[0].annReward}}</span></label>
+            
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label>สวัสดิการ : 
+                  <span *ngIf="annData && annData[0]">{{annData[0].annReward}} </span>
+                </label>
+                
+                </div>
+                <div class="col-md-6 mb-3" *ngIf="annData && annData[0]">
+                  <label >วันทำงาน : {{annData[0].annWorkshift}}</label>
+                </div>
               </div>
 
               <div class="mb-3"  *ngIf="org && org[0]">
@@ -41,7 +51,7 @@
 
               <div class="mb-3"  *ngIf="annData && annData[0]">
                 <label >ระยะเวลารับสมัคร :</label>
-                {{annData[0].annStartDate}} - {{annData[0].annEndDate}}
+                วันที่ {{annData[0].annStartDate  | THPipe}} - วันที่ {{annData[0].annEndDate | THPipe}}
               </div>
 
               <hr class="mb-4">
