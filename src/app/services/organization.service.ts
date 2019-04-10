@@ -59,6 +59,18 @@ export class OrganizationService {
     return this.http.get<PositionDataInterface>(`${this.authenticationService.path_url}/announcement_position_data/${id}`,({ headers: this.httpHeaders }))
   }
 
+  postAnnById():Observable<AnouncementInterface>{
+    return this.http.post<AnouncementInterface>(`${this.authenticationService.path_url}/announcement`,({ headers: this.httpHeaders }))
+  }
+
+  postLogPositionById():Observable<LogPositionInterface>{
+    return this.http.post<LogPositionInterface>(`${this.authenticationService.path_url}/announcement_logPosition`,({ headers: this.httpHeaders }))
+  }
+
+  postLogKnowlegdeById():Observable<LogKnowledgeInterface>{
+    return this.http.post<LogKnowledgeInterface>(`${this.authenticationService.path_url}/announcement_logKnowledge`,({ headers: this.httpHeaders }))
+  }
+
   // gets(id:any): Observable<KnowledgeRequirementInterface> {
   //   return this.http.get<KnowledgeRequirementInterface>(`${this.authenticationService.path_url}/announcement_knowledge/${id}`,({ headers: this.httpHeaders }))
   // }
