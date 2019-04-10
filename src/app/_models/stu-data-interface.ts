@@ -27,4 +27,5 @@ export class StudentdataInterface {
     std_parent_mobile: string
     std_parent_tel: string
     std_parent_email: string
+
 }
