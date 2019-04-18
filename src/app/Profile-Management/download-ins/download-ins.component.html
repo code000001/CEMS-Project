@@ -34,18 +34,22 @@
                     <td style="width:80%;padding: 1%;">
                         <p style="padding-left:5%;">
                             <b>1. ชื่อ - นามสกุล : </b>
-                            <span style="padding-left:10%;">(ไทย) นาย/น.ส. {{std.stdFirstnameTh}}</span>
+                            <span style="padding-left:10%;">(ไทย)</span> 
+                            <span style="padding-left:5%;">{{std.stdPrefixTh}}{{std.stdFirstnameTh}} &emsp; {{std.stdLastnameTh}}</span>
                         </p>
-                        <p style="padding-left:30%;">(English) {{std.stdPrefixEn}} {{std.stdFirstnameEn}} </p>
-                        <p>
-                            <span style="padding-left:5%;">รหัสนิสิต </span>
-                            <span style="padding-left:10%;">ชั้นปี </span>
-                            <span style="padding-left:10%;">หลักสูตร </span>
+                        <p style="padding-left:22%;">
+                            <span style="padding-left:10%;">(English)</span>
+                            <span style="padding-left:3%;">{{std.stdPrefixEn}}. {{std.stdFirstnameEn}} &emsp; {{std.stdLastnameEn}}</span>
                         </p>
                         <p>
-                            <span style="padding-left:5%;">สาขาวิชา </span>
-                            <span style="padding-left:5%;">จำนวนหน่วยกิตที่เรียนมาแล้ว หน่วยกิต</span>
-                            <span style="padding-left:5%;">GPAX </span>
+                            <span style="padding-left:5%;">รหัสนิสิต</span> <span style="padding-left:1%;">{{std.stdId}}</span>
+                            <span style="padding-left:10%;">ชั้นปี</span> <span style="padding-left:1%;">{{std.stdYear}}</span>
+                            <span style="padding-left:10%;">หลักสูตร</span> <span style="padding-left:1%;">{{std.stdCourse}}</span>
+                        </p>
+                        <p>
+                            <span style="padding-left:5%;">สาขาวิชา</span> <span style="padding-left:1%;">{{std.stdBranch}}</span>
+                            <span style="padding-left:5%;">จำนวนหน่วยกิตที่เรียนมาแล้ว</span> <span style="padding-left:1%;">{{std.stdCredit}}</span> หน่วยกิต
+                            <span style="padding-left:5%;">GPAX</span> <span style="padding-left:1%;">{{std.stdGpax}}</span>
                         </p>
 
                     </td>
@@ -62,18 +66,12 @@
                         </p>
                         <p>
                             <span style="padding-left:5%;">บ้านเลขที่ </span>
-                            <span style="padding-left:10%;">ถนน </span>
-                            <span style="padding-left:10%;">ตำบล </span>
+                            <span style="padding-left:1%;">{{std.stdAddressPartic}}</span>
                         </p>
                         <p>
-                            <span style="padding-left:5%;">อำเภอ </span>
-                            <span style="padding-left:10%;">จังหวัด </span>
-                            <span style="padding-left:10%;">รหัสไปรษณีย์ </span>
-                        </p>
-                        <p>
-                            <span style="padding-left:5%;">โทรศัพท์ </span>
-                            <span style="padding-left:10%;">โทรสาร </span>
-                            <span style="padding-left:10%;">E-mail </span>
+                            <span style="padding-left:5%;">โทรศัพท์ </span> <span style="padding-left:1%;">{{std.stdMobile}}</span>
+                            <span style="padding-left:10%;">โทรสาร </span> <span style="padding-left:1%;">{{std.stdTel}}</span>
+                            <span style="padding-left:10%;">E-mail </span> <span style="padding-left:1%;">{{std.stdEmail}}</span>
                         </p>
                     </td>
                     <td style="width:10%;">
@@ -87,48 +85,17 @@
                         <p style="padding-left:5%;">
                             <b>3.ที่อยู่ตามทะเบียนปัจจุบัน : </b>
                         </p>
-                        <p style="padding-left:7%;">
+                        <!-- <p style="padding-left:7%;">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">หอพัก</label>
                         </p>
                         <p style="padding-left:7%;">
                             <input type="checkbox" class="form-check-input" id="exampleCheck2">
                             <label class="form-check-label" for="exampleCheck1">บ้าน/อื่นๆ</label>
-                        </p>
+                        </p> -->
                         <p>
-                            <span style="padding-left:5%;">หอพัก </span>
-                            <span style="padding-left:10%;">ห้อง </span>
-                            <span style="padding-left:10%;">โทรศัพท์ </span>
-                            <span style="padding-left:10%;">มือถือ </span>
+                            <span style="padding-left:5%;">{{std.stdAddressNow}}</span> 
                         </p>
-                        <p>
-                            <span style="padding-left:5%;">เลขที่ </span>
-                            <span style="padding-left:10%;">ถนน </span>
-                            <span style="padding-left:10%;">ตำบล </span>
-                        </p>
-                        <p>
-                            <span style="padding-left:5%;">อำเภอ </span>
-                            <span style="padding-left:10%;">จังหวัด </span>
-                            <span style="padding-left:10%;">รหัสไปรษณีย์ </span>
-                        </p>
-                        <div style="display:none;">
-                            <p style="padding-left:5%;">อื่นๆระบุที่อยู่</p>
-                            <p>
-                                <span style="padding-left:5%;">บ้านเลขที่ </span>
-                                <span style="padding-left:10%;">ถนน </span>
-                                <span style="padding-left:10%;">ตำบล </span>
-                            </p>
-                            <p>
-                                <span style="padding-left:5%;">อำเภอ </span>
-                                <span style="padding-left:10%;">จังหวัด </span>
-                                <span style="padding-left:10%;">รหัสไปรษณีย์ </span>
-                            </p>
-                            <p>
-                                <span style="padding-left:5%;">โทรศัพท์ </span>
-                                <span style="padding-left:10%;">โทรสาร </span>
-                                <span style="padding-left:10%;">E-mail </span>
-                            </p>
-                        </div>
                     </td>
                     <td style="width:10%;">
                     </td>
@@ -143,23 +110,16 @@
                             </b>
                         </p>
                         <p>
-                            <span style="padding-left:5%;">ชื่อ</span>
-                            <span style="padding-left:10%;">ความสัมพันธ์กับนิสิต</span>
+                            <span style="padding-left:5%;">ชื่อ</span> <span style="padding-left:1%;">{{std.stdpareFname}} &emsp; {{std.stdpareLname}}</span>
+                            <span style="padding-left:10%;">ความสัมพันธ์กับนิสิต</span> <span style="padding-left:1%;">{{std.stdpareRelation}}</span>
                         </p>
                         <p>
-                            <span style="padding-left:5%;">บ้านเลขที่ </span>
-                            <span style="padding-left:10%;">ถนน </span>
-                            <span style="padding-left:10%;">ตำบล </span>
+                            <span style="padding-left:5%;">บ้านเลขที่ </span> <span style="padding-left:1%;">{{std.stdpareAddress}}</span>
                         </p>
                         <p>
-                            <span style="padding-left:5%;">อำเภอ </span>
-                            <span style="padding-left:10%;">จังหวัด </span>
-                            <span style="padding-left:10%;">รหัสไปรษณีย์ </span>
-                        </p>
-                        <p>
-                            <span style="padding-left:5%;">โทรศัพท์ </span>
-                            <span style="padding-left:10%;">โทรสาร </span>
-                            <span style="padding-left:10%;">E-mail </span>
+                            <span style="padding-left:5%;">โทรศัพท์ </span> <span style="padding-left:1%;">{{std.stdpareMobile}}</span>
+                            <span style="padding-left:10%;">โทรสาร </span> <span style="padding-left:1%;">{{std.stdpareTel}}</span>
+                            <span style="padding-left:10%;">E-mail </span> <span style="padding-left:1%;">{{std.stdpareEmail}}</span>
                         </p>
                     </td>
                     <td style="width:10%;">
@@ -186,7 +146,7 @@
                             <span>ลงชื่อนิสิต______________________________</span>
                         </p>
                         <p style="text-align: right;">
-                            <span>(_____________________________)</span>
+                            <span>({{std.stdPrefixTh}}{{std.stdFirstnameTh}} &emsp; {{std.stdLastnameTh}})</span>
                         </p>
                         <p style="text-align: right;">
                             <span>วันที่______________________________</span>
