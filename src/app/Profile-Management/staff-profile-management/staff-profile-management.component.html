@@ -3,15 +3,6 @@
     <form class="contact100-form validate-form">
       <span class="contact100-form-title">จัดการชั่วโมงอบรมของนิสิต</span>
 
-      <nav class="col-md-12">
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-            aria-controls="nav-home" aria-selected="true">อบรมวิชาการ</a>
-          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-            aria-controls="nav-profile" aria-selected="false">อบรมเตรียมความพร้อมสหกิจศึกษา</a>
-        </div>
-      </nav>
-
       <div class="tab-content col-md-12" id="nav-tabContent ">
         <div class="tab-pane fade show active " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
           <table class="table table-hover ng-scope" style="text-align: center;">
@@ -19,7 +10,8 @@
               <tr>
                 <th class="ng-binding ng-scope">รหัสนิสิต</th>
                 <th class="ng-binding ng-scope">ชื่อ - นามสกุล</th>
-                <th class="ng-binding ng-scope">จำนวนชั่วโมง</th>
+                <th class="ng-binding ng-scope">อบรมวิชาการ</th>
+                <th class="ng-binding ng-scope">อบรมเตรียมความพร้อม</th>
                 <th class="ng-binding ng-scope">จัดการ</th>
               </tr>
             </thead>
@@ -28,10 +20,8 @@
                 <td class="ng-binding">58160651</td>
                 <td class="ng-binding">Mark</td>
                 <td class="ng-binding">3</td>
+                <td class="ng-binding">3</td>
                 <td class="ng-binding">
-                  <a href="#">
-                    <fa name="search" class="btn btn-secondary"></fa>
-                  </a>
                   <a href="#" style="padding-left: 2%;">
                     <fa name="edit" class="btn btn-warning" style="color:white"></fa>
                   </a>
@@ -41,50 +31,8 @@
                 <td class="ng-binding">58160673</td>
                 <td class="ng-binding">Boat</td>
                 <td class="ng-binding">6</td>
-                <td class="ng-binding">
-                  <a href="#">
-                    <fa name="search" class="btn btn-secondary"></fa>
-                  </a>
-                  <a href="#" style="padding-left: 2%;">
-                    <fa name="edit" class="btn btn-warning" style="color:white"></fa>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <table class="table table-hover ng-scope" style="text-align: center;">
-            <thead style="background:#B0C4DE;">
-              <tr>
-                <th class="ng-binding ng-scope">รหัสนิสิต</th>
-                <th class="ng-binding ng-scope">ชื่อ - นามสกุล</th>
-                <th class="ng-binding ng-scope">จำนวนชั่วโมง</th>
-                <th class="ng-binding ng-scope">จัดการ</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="row in data.rows" class="ng-scope">
-                <td class="ng-binding">58160651</td>
-                <td class="ng-binding">Mark</td>
-                <td class="ng-binding">3</td>
-                <td class="ng-binding">
-                  <a href="#">
-                    <fa name="search" class="btn btn-secondary"></fa>
-                  </a>
-                  <a href="#" style="padding-left: 2%;">
-                    <fa name="edit" class="btn btn-warning" style="color:white"></fa>
-                  </a>
-                </td>
-              </tr>
-              <tr ng-repeat="row in data.rows" class="ng-scope">
-                <td class="ng-binding">58160673</td>
-                <td class="ng-binding">Boat</td>
                 <td class="ng-binding">6</td>
                 <td class="ng-binding">
-                  <a href="#">
-                    <fa name="search" class="btn btn-secondary"></fa>
-                  </a>
                   <a href="#" style="padding-left: 2%;">
                     <fa name="edit" class="btn btn-warning" style="color:white"></fa>
                   </a>

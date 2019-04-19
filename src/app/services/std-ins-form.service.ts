@@ -42,9 +42,21 @@ export class StudentDataService{
     //         }), catchError(this.errorHander));
     // }
 
-    getstddataBystdId(std_id: string): Observable<StudentdataInterface>{
-        return this.http.get<StudentdataInterface>(`${this.authenticationService.path_url}/std_addform/${std_id}`, 
-        ({ headers: this.httpHeaders }))
+    getstddataBystdId(std_id: number): Observable<StudentdataInterface>{
+        return this.http.get<StudentdataInterface>(`${this.authenticationService.path_url}/std_data/${std_id}`, 
+            ({ headers: this.httpHeadersRes })).pipe(map(data => {
+                // console.log("req data => ", data);
+                return data
+            }));
+    }
+
+    putstddataBystdId(std_id: number,std: StudentdataInterface): Observable<StudentdataInterface> {
+        // console.log("url : ", `${this.authenticationService.path_url}/std_addform/${std_id}`);
+        // console.log("id : ", std_id);
+        // console.log("std : ", std);
+        // return null;
+        return this.http.put<StudentdataInterface>(`${this.authenticationService.path_url}/std_addform/${std_id}`, std,
+            ({ headers: this.httpHeadersRes }))
     }
     
 }

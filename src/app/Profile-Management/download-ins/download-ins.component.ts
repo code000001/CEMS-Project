@@ -48,10 +48,8 @@ export class DownloadInsComponent implements OnInit {
     // console.log("std id : ", stdId);
     // console.log("std : ", this.userFromApi);
     this.studentdataService.getstdBystdId(stdId).subscribe((data: {}) => {
-    
       this.std = data;
     });
   }
-
 
 }
