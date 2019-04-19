@@ -1,56 +1,102 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="container">
-    <div class="accordion mt-5" id="accordionExample">
-      <div class="card">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
-            <!--data-target="#collapseOne"-->
-            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-                ฟอร์มข้อมูลการประกาศรับสมัคร
+  <div class="accordion mt-5" id="accordionExample">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <!--data-target="#collapseOne"-->
+          <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+            ฟอร์มข้อมูลการประกาศรับสมัคร
+          </div>
+        </h5>
+      </div>
+      <div class="card-body">
+        <div class="panel panel-info">
+          <div class="panel-body">
+            <div class="form-group required">
+              <label class="control-label col-md-4  requiredField" for="annStdAmount">จำนวนที่รับ
+                <span class="asteriskField">*</span>
+              </label>
+              <div class="controls col-md-4 ">
+                <select class="form-control" [(ngModel)]="annStdAmount" id="annStdAmount">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+
             </div>
-          </h5>
-        </div>
-        <div class="card-body">
-          <div class="panel panel-info">
-            <div class="panel-body">
-              <div id="div_id_email" class="form-group required">
-                <label for="id_email" class="control-label col-md-4  requiredField">จำนวนที่รับ<span
-                    class="asteriskField">*</span> </label>
-                <div class="controls col-md-8 ">
-                  <input class="input-md emailinput form-control" id="id_email" name="email"
-                    placeholder="Your current email address" style="margin-bottom: 10px" type="email">
-                </div>
-              </div>
-              <div id="div_id_password2" class="form-group required">
-                <label for="id_password2" class="control-label col-md-4  requiredField">สวัสดิการ<span
-                    class="asteriskField">*</span> </label>
-                <div class="controls col-md-8 ">
-                  <input class="input-md textinput textInput form-control" id="id_password2" name="password2"
-                    placeholder="Confirm your password" style="margin-bottom: 10px" type="password">
-                </div>
-              </div>
-              <div id="div_id_name" class="form-group required">
-                <label for="id_name" class="control-label col-md-4  requiredField">วันคัดเลือกส่งใบสมัคร<span
-                    class="asteriskField">*</span> </label>
-                    <mat-form-field>
-                      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-datepicker #picker startView="year" [startAt]="startDate" ></mat-datepicker>
-                    </mat-form-field>
-                    ถึง
-                    <mat-form-field>
-                        <input matInput [matDatepicker]="picker1" placeholder="Choose a date">
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1 startView="year" [startAt]="startDate" ></mat-datepicker>
-                      </mat-form-field>
-            <div>      
-              <div class="form-group pull-right">
-                <button type="button" class="btn btn-primary">บันทึก</button>
+            <div class="form-group required">
+              <label class="control-label col-md-4  requiredField" for="annReward">สวัสดิการ<span
+                  class="asteriskField">*</span> </label>
+              <div class="controls col-md-8 ">
+                <input class="form-control" id="annReward" name="annReward" [(ngModel)]="annReward"
+                  placeholder="ex. เบี้ยเลี้ยง xxx บาท/วัน หรือ รถรับส่ง" style="margin-bottom: 10px">
               </div>
             </div>
 
+            <div class="form-group required">
+              <label class="control-label col-md-4  requiredField" for="annWorkshift">วันทำงาน<span
+                  class="asteriskField">*</span> </label>
+              <div class="controls col-md-8 ">
+                <input class="form-control" id="annWorkshift" name="annWorkshift" [(ngModel)]="annWorkshift"
+                  placeholder="ex. จันทร์-ศุกร์ เวลา 08.00น.-17.00น." style="margin-bottom: 10px">
+              </div>
+            </div>
+            <div id="div_pos" class="form-group required row controls col-md-12">
+              <label for="logpAnnPosId" class="control-label col-md-3 requiredField">ตำแหน่งที่ต้องการรับสมัคร<span
+                  class="asteriskField">*</span> </label>
+              <div class="controls col-md-4 ">
+                <select class="form-control" id="logpAnnPosId" [(ngModel)]="logpAnnPosId">
+                  <option>Programer</option>
+                  <option>Tester</option>
+                  <option>Business Analyst</option>
+                  <option>Web application</option>
+                </select>
+              </div>
+                <button id="addpos">
+                  <fa name="plus"></fa>
+                </button>
+            </div>
+            <div id="div_know" class="form-group required row  controls col-md-12">
+              <label for="logkAnnKrdId" class="control-label col-md-3 requiredField">ความสามารถด้านวิชาการ<span
+                  class="asteriskField">*</span> </label>
+              <div class="controls col-md-4">
+                <select class="form-control" id="logkAnnKrdId" [(ngModel)]="logkAnnKrdId">
+                  <option>HTML</option>
+                  <option>CSS</option>
+                  <option>PHP</option>
+                  <option>Java Script</option>
+                </select>
+                
+              </div>
+              <button id="addknow">
+                <fa name="plus"></fa>
+              </button>
+            </div>
+            <div class="form-group required">
+              <label class="control-label col-md-2  requiredField">วันคัดเลือกส่งใบสมัคร<span
+                  class="asteriskField">*</span> </label>
+              <mat-form-field>
+                <input matInput [matDatepicker]="annStartDate" placeholder="">
+                <mat-datepicker-toggle matSuffix [for]="annStartDate"></mat-datepicker-toggle>
+                <mat-datepicker #annStartDate startView="year" [startAt]="startDate"></mat-datepicker>
+              </mat-form-field>
+              &nbsp;ถึง&nbsp;
+              <mat-form-field>
+                <input matInput [matDatepicker]="annEndDate" placeholder="">
+                <mat-datepicker-toggle matSuffix [for]="annEndDate"></mat-datepicker-toggle>
+                <mat-datepicker #annEndDate startView="year" [startAt]="startDate"></mat-datepicker>
+              </mat-form-field>
+              <div>
+                <div class="form-group pull-right">
+                  <button type="button" class="btn btn-primary">บันทึก</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-</div>
+    </div>

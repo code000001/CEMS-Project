@@ -1,4 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthGuard } from '../../_guards';
+import { UserService, AuthenticationService } from '../../_services';
+import { User, Role } from '../../_models';
 import { ActivatedRoute } from '@angular/router';
 import { OrganizationService } from '../../services/organization.service';
 import { OrganizationDataInterface } from '../../_models/organization-data-interface';
@@ -15,6 +19,8 @@ import {LogPositionInterface} from '../../_models/log-position-interface';
 })
 export class ViewJobDetailAnnouncementComponent implements OnInit {
 
+  currentUser: User;
+  userFromApi: User;
   org: OrganizationDataInterface
   logPosition : LogPositionInterface
  
@@ -26,7 +32,11 @@ export class ViewJobDetailAnnouncementComponent implements OnInit {
   ListPosition: PositionDataInterface[] = []
 
 
-  constructor(private route: ActivatedRoute, private organizationService: OrganizationService) { }
+  constructor(private route: ActivatedRoute, private organizationService: OrganizationService,
+     private router: Router,
+     private userService: UserService,
+     private authenticationService: AuthenticationService,
+     private authGuardService: AuthGuard) { this.userFromApi = this.currentUser = this.authenticationService.currentUserValue;}
 
   ngOnInit() {
     this.getOrgById()
@@ -117,6 +127,29 @@ export class ViewJobDetailAnnouncementComponent implements OnInit {
       }
       );
 
+  }
+
+  get isSignin() {
+    if (this.currentUser != null) {
+      return true;
+    }
+    return false;
+  }
+
+  get isUser() {
+    return this.currentUser && this.currentUser.accTypeId === Role.User;
+  }
+
+  get isStaff() {
+    return this.currentUser && this.currentUser.accTypeId === Role.Staff;
+  }
+
+  get isAgent() {
+    return this.currentUser && this.currentUser.accTypeId === Role.Agent;
+  }
+
+  get isAdmin() {
+    return this.currentUser && this.currentUser.accTypeId === Role.Admin;
   }
 }
 
