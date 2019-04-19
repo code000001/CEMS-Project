@@ -14,7 +14,7 @@
             <label for="staticEmail" class="col-sm-2 col-form-label">สถานะการสอบทักษะ :</label>
             <div class="custom-control custom-radio col-sm-1 col-form-label"
               *ngFor="let TestQualifyingStatus of testQualifyingStatus">
-              <input class="custom-control-input" type="radio" name="TestQualifyingStatus"
+              <input disabled="true" class="custom-control-input" type="radio" name="TestQualifyingStatus"
                 [id]="TestQualifyingStatus.id" [value]="TestQualifyingStatus.id"
                 [checked]="TestQualifyingStatus.checked">
               <label class="custom-control-label" [for]="TestQualifyingStatus.id">
