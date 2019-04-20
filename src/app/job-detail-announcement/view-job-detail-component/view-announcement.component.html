@@ -54,10 +54,12 @@
                 วันที่ {{annData[0].annStartDate  | THPipe}} - วันที่ {{annData[0].annEndDate | THPipe}}
               </div>
 
-              <hr class="mb-4">
-              <div *ngIf="!(isAdmin)||!(isStaff)">
-              <button class="btn btn-primary btn-lg btn-block" routerLink="/app-form">ลงสมัคร</button>
-              </div>
+              <div *ngIf="isUser">
+                  <hr class="mb-4">
+                  <div *ngIf="isUser">
+                    <button *ngIf="isRegister" class="btn btn-primary btn-lg btn-block" (click)="appfrom()">ลงสมัคร</button>
+                  </div>
+                </div>
           </div>
         </div>
       </div>

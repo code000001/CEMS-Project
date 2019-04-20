@@ -151,5 +151,16 @@ export class ViewJobDetailAnnouncementComponent implements OnInit {
   get isAdmin() {
     return this.currentUser && this.currentUser.accTypeId === Role.Admin;
   }
+
+  appfrom(){
+    this.router.navigate(['/app-form/'+1+'/'+1]);
+  }
+
+  get isRegister() {
+    if(this.org[0].orgStatusId == 1){
+      return true;
+    }
+    return false;
+  }
 }
 
