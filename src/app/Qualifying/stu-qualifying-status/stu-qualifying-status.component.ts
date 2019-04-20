@@ -14,15 +14,12 @@ export class StuQualifyingStatusComponent implements OnInit {
   currentUser: User;
   userFromApi: User;
   testQualifyingStatus = [{id : 1,name:'ผ่าน', checked: false}, {id : 2,name:'ไม่ผ่าน', checked: true}];
-  conferDes = [{id:1,name:'อบรม MFEC', detail:'อบรมๆๆ', hour: 3},{id:2,name:'อบรม NECTEC', detail:'อบรมๆๆ', hour: 3}];
-  conferHead = [];
+
   constructor(  private router: Router,
     private userService: UserService,
     private authenticationService: AuthenticationService,
     private authGuardService: AuthGuard) {  
       this.userFromApi = this.currentUser = this.authenticationService.currentUserValue;
-      this.conferHead = [{ th: 'รายละเอียดในการอบรม',en: 'Description'},
-    { th: 'จำนวนชั่วโมง',en: 'Hour'}]
     }
 
 

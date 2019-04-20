@@ -28,10 +28,10 @@
                     <a routerLink="/view_announcement/{{value.id}}">
                       <fa name="search"></fa>
                     </a>&nbsp;
-                    <a *ngIf="isSignin && (isStaff || isAdmin)" routerLink="/add_announcement">
+                    <a *ngIf="isSignin && isAdmin" routerLink="/add_announcement">
                       <fa name="plus"></fa>
                     </a>&nbsp;
-                    <a *ngIf="isSignin && (isStaff || isAdmin)" routerLink="/update_announcement">
+                    <a *ngIf="isSignin && isAdmin" routerLink="/update_announcement">
                       <fa name="pencil"></fa>
                     </a>
                   </ng-template>

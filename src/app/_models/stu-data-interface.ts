@@ -8,6 +8,7 @@ export class StudentdataInterface {
     stdPrefixEn: string
     stdFirstnameEn: string
     stdLastnameEn: string
+    stdTestScore: string
     std_hr_prepare: number
     std_hr_conference: number
     stdYear: number
