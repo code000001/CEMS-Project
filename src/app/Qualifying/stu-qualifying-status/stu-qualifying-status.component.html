@@ -12,13 +12,14 @@
         <div class="card-body">
           <div class="row">
             <label for="staticEmail" class="col-sm-2 col-form-label">สถานะการสอบทักษะ :</label>
-            <div class="custom-control custom-radio col-sm-1 col-form-label"
-              *ngFor="let TestQualifyingStatus of testQualifyingStatus">
+            <div class="custom-control custom-radio col-sm-1 col-form-label">
               <input disabled="true" class="custom-control-input" type="radio" name="TestQualifyingStatus"
-                [id]="TestQualifyingStatus.id" [value]="TestQualifyingStatus.id"
-                [checked]="TestQualifyingStatus.checked">
-              <label class="custom-control-label" [for]="TestQualifyingStatus.id">
-                {{TestQualifyingStatus.name}}
+                [checked]="true">
+              <label *ngIf="add_std.stdTestScore == 'Y'" class="custom-control-label">
+                ผ่าน
+              </label>
+              <label *ngIf="add_std.stdTestScore == 'N'" class="custom-control-label">
+                ไม่ผ่าน
               </label>
             </div>
           </div>
@@ -47,12 +48,12 @@
               <tr>
                 <td scope="row">อบรมเตรียมความพร้อม</td>
                 <td scope="row">การอบรมเพื่อเตรียมความพร้อมสำหรับการไปสหกิจศึกษา</td>
-                <td style="text-align: center" scope="row">X</td>
+                <td style="text-align: center" scope="row">{{add_std.stdHrPrepare}}</td>
               </tr>
               <tr>
                 <td scope="row">อบรมวิชาการ</td>
                 <td scope="row">การอบรมเชิงวิชาการสำหรับการไปสหกิจศึกษา</td>
-                <td style="text-align: center" scope="row">X</td>
+                <td style="text-align: center" scope="row">{{add_std.stdHrConference}}</td>
               </tr>
             </tbody>
           </table>
@@ -70,7 +71,9 @@
       <div class="collapse show" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <label for="exampleFormControlTextarea1">ไม่ได้ลงสมัครคัดเลือกเป็นนิสิตสหกิจศึกษา</label>
+            <label *ngIf="add_std.stdStatusId != 2 && add_std.stdStatusId != 4" for="exampleFormControlTextarea1">ไม่สามารถลงสมัครเป็นนิสิตสหกิจศึกษาได้ในขณะนี้</label>
+            <label *ngIf="add_std.stdStatusId == 2" for="exampleFormControlTextarea1">{{message}}</label>
+            <label *ngIf="add_std.stdStatusId == 4" for="exampleFormControlTextarea1">ผ่านการคัดเลือกเป็นนิสิตสหกิจศึกษาแล้ว</label>
             <button class="btn btn-primary btn-lg btn-block" routerLink="/announcement">ดูประกาศรับสมัคร</button>
           </div>
         </div>
