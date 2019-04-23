@@ -3,3 +3,8 @@ export class LogPositionInterface{
     logpAnnId:number;
     logpAnnPosId:number;
 }
+
+export class LogPositionInterfacePost{
+    logpAnnId:number;
+    logpAnnPosId:number;
+}

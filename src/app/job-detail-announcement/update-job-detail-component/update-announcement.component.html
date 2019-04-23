@@ -13,73 +13,100 @@
         <div class="card-body">
           <div class="panel panel-info">
             <div class="panel-body">
-              <div id="div_id_email" class="form-group required">
-                <label for="id_email" class="control-label col-md-4  requiredField">จำนวนที่รับ<span
-                    class="asteriskField">*</span> </label>
+              <div class="form-group required">
+                <label class="control-label col-md-4  requiredField" for="annStdAmount">จำนวนที่รับ
+                  <span class="asteriskField">*</span>
+                </label>
                 <div class="controls col-md-4 ">
-                  <select class="form-control" id="exampleFormControlSelect2">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                  <select class="form-control" [(ngModel)]="annStdAmount" id="annStdAmount">
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>5</option>
                   </select>
                 </div>
+  
               </div>
               <div class="form-group required">
-                <label class="control-label col-md-4  requiredField">สวัสดิการ<span
+                <label class="control-label col-md-4  requiredField" for="annReward">สวัสดิการ<span
                     class="asteriskField">*</span> </label>
                 <div class="controls col-md-8 ">
-                  <input class="form-control" id="id_password2" name="password2"
+                  <input class="form-control" id="annReward" name="annReward" [(ngModel)]="annReward"
                     placeholder="ex. เบี้ยเลี้ยง xxx บาท/วัน หรือ รถรับส่ง" style="margin-bottom: 10px">
                 </div>
               </div>
-              <div id="div_id_email" class="form-group required">
-                <label for="" class="control-label col-md-4  requiredField">ตำแหน่งที่ต้องการรับสมัคร<span
+  
+              <div class="form-group required">
+                <label class="control-label col-md-4  requiredField" for="annWorkshift">วันทำงาน<span
                     class="asteriskField">*</span> </label>
-                <div class="controls col-md-4 ">
-                  <select class="form-control" id="exampleFormControlSelect2">
-                    <option>Programer</option>
-                    <option>Tester</option>
-                    <option>Business Analyst</option>
-                    <option>Web application</option>
-                  </select>
+                <div class="controls col-md-8 ">
+                  <input class="form-control" id="annWorkshift" name="annWorkshift" [(ngModel)]="annWorkshift"
+                    placeholder="ex. จันทร์-ศุกร์ เวลา 08.00น.-17.00น." style="margin-bottom: 10px">
                 </div>
               </div>
-              <div id="div_id_email" class="form-group required">
-                <label for="" class="control-label col-md-4  requiredField">ความสามารถด้านวิชาการ<span
+              <div class="form-group required">
+                <label class="control-label col-md-4  requiredField" for="annItemReq">อุปกรณ์ที่ต้องนำติดตัว<span
                     class="asteriskField">*</span> </label>
-                <div class="controls col-md-4 ">
-                  <select class="form-control" id="exampleFormControlSelect2">
-                    <option>HTML</option>
-                    <option>CSS</option>
-                    <option>PHP</option>
-                    <option>Java Script</option>
-                  </select>
+                <div class="controls col-md-8 ">
+                  <input class="form-control" id="annItemReq" name="annItemReq" [(ngModel)]="annItemReq"
+                    placeholder="ex. คอมพิวเตอร์" style="margin-bottom: 10px">
                 </div>
               </div>
-              <div id="div_id_name" class="form-group required">
-                <label for="id_name" class="control-label col-md-2  requiredField">วันคัดเลือกส่งใบสมัคร<span
+              <div id="div_pos" class="form-group required row controls col-md-12">
+                <label for="logpAnnPosId" class="control-label col-md-3 requiredField">ตำแหน่งที่ต้องการรับสมัคร<span
                     class="asteriskField">*</span> </label>
-                    <mat-form-field>
-                      <input matInput [matDatepicker]="picker" placeholder="">
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-datepicker #picker startView="year" [startAt]="startDate" ></mat-datepicker>
-                    </mat-form-field>
-                    &nbsp;ถึง&nbsp;
-                    <mat-form-field>
-                        <input matInput [matDatepicker]="picker1" placeholder="">
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1 startView="year" [startAt]="startDate" ></mat-datepicker>
-                      </mat-form-field>
-                <div>      
+                <div class="controls col-md-4 ">
+                  <select class="form-control" id="logpAnnPosId" [(ngModel)]="logpAnnPosId">
+                    <option value='4'>Tester</option>
+                    <option value='2'>Business Analyst</option>
+                    <option value='3'>Web application</option>
+                  </select>
+                </div>
+                  <button id="addpos">
+                    <fa name="plus"></fa>
+                  </button>
+              </div>
+              <div id="div_know" class="form-group required row  controls col-md-12">
+                <label for="logkAnnKrdId" class="control-label col-md-3 requiredField">ความสามารถด้านวิชาการ<span
+                    class="asteriskField">*</span> </label>
+                <div class="controls col-md-4">
+                  <select class="form-control" id="logkAnnKrdId" [(ngModel)]="logkAnnKrdId">
+                    <option value='2'>HTML</option>
+                    <option value='3'>CSS</option>
+                    <option value='1'>PHP</option>
+                    <option value='4'>JavaScript</option>
+                    <option value='5'>SQL</option>
+                    <option value='6'>Java</option>
+                    <option value='7'>C#</option>
+                  </select>
+                  
+                </div>
+                <button id="addknow">
+                  <fa name="plus"></fa>
+                </button>
+              </div>
+              <div class="form-group required">
+                <label class="control-label col-md-2  requiredField">วันคัดเลือกส่งใบสมัคร<span
+                    class="asteriskField">*</span> </label>
+                <mat-form-field>
+                  <input matInput [matDatepicker]="annStartDate" [(ngModel)]="date.annStartDate">
+                  <mat-datepicker-toggle matSuffix [for]="annStartDate"></mat-datepicker-toggle>
+                  <mat-datepicker #annStartDate startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+                &nbsp;ถึง&nbsp;
+                <mat-form-field>
+                  <input matInput [matDatepicker]="annEndDate" [(ngModel)]="date.annEndDate" >
+                  <mat-datepicker-toggle matSuffix [for]="annEndDate"></mat-datepicker-toggle>
+                  <mat-datepicker #annEndDate startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+                <div>
                   <div class="form-group pull-right">
                     <button type="button" class="btn btn-primary">บันทึก</button>
                   </div>
                 </div>
-
+              </div>
             </div>
           </div>
         </div>
-      </div>
 </div>

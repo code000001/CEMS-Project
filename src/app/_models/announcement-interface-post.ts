@@ -1,6 +1,4 @@
-export class AnouncementInterface{
-    id: number
-    annStatusId: number
+export class AnouncementInterfacePost{
     annOrgId: number
     annAccId: number
     annStartDate : string
