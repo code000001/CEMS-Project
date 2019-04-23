@@ -64,17 +64,16 @@
       <div class="card-header">
         <h5 class="mb-0">
           <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-            สถานะการสมัครคัดเลือกเข้าเป็นนิสิตสหกิจศึกษา
+            สถานะการสมัครคัดเลือกเข้าเป็นนิสิตสหกิจศึกษา <label *ngIf="add_std.stdStatusId != 2 && add_std.stdStatusId != 4" for="exampleFormControlTextarea1">(ไม่สามารถลงสมัครเป็นนิสิตสหกิจศึกษาได้ในขณะนี้)</label>
+              <label *ngIf="add_std.stdStatusId == 2" for="exampleFormControlTextarea1">({{message}})</label>
+              <label *ngIf="add_std.stdStatusId == 4" for="exampleFormControlTextarea1">(ผ่านการคัดเลือกเป็นนิสิตสหกิจศึกษาแล้ว)</label>
           </div>
         </h5>
       </div>
       <div class="collapse show" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <label *ngIf="add_std.stdStatusId != 2 && add_std.stdStatusId != 4" for="exampleFormControlTextarea1">ไม่สามารถลงสมัครเป็นนิสิตสหกิจศึกษาได้ในขณะนี้</label>
-            <label *ngIf="add_std.stdStatusId == 2" for="exampleFormControlTextarea1">{{message}}</label>
-            <label *ngIf="add_std.stdStatusId == 4" for="exampleFormControlTextarea1">ผ่านการคัดเลือกเป็นนิสิตสหกิจศึกษาแล้ว</label>
-            <button class="btn btn-primary btn-lg btn-block" routerLink="/announcement">ดูประกาศรับสมัคร</button>
+            <button class="btn btn-primary btn-lg btn-block" *ngIf="add_std.stdStatusId != 4" routerLink="/announcement">ดูประกาศรับสมัคร</button>
           </div>
         </div>
       </div>

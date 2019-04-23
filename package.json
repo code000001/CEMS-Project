@@ -40,6 +40,7 @@
     "pdfmake": "^0.1.54",
     "popper.js": "^1.14.7",
     "rxjs": "^6.3.3",
+    "sweetalert2": "^8.8.7",
     "tslib": "^1.9.0",
     "zone.js": "~0.8.26"
   },
@@ -51,7 +52,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/moment-timezone": "^0.5.12",
-    "@types/node": "~8.9.4",
+    "@types/node": "^8.9.5",
     "codelyzer": "~4.5.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
