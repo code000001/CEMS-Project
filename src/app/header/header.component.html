@@ -9,7 +9,7 @@
       <!-- <li class="nav-item ">
         <a class="nav-link" routerLink="/home" routerLinkActive="active">หน้าแรก<span class="sr-only">(current)</span></a>
       </li> -->
-      <li class="nav-item" *ngIf="!isSignin||isUser">
+      <li class="nav-item" *ngIf="!isSignin||isUser||isAdmin">
         <a class="nav-link" routerLink="/announcement" routerLinkActive="active">ประกาศ</a>
       </li>
       <li class="nav-item"  *ngIf="isStaff">
@@ -17,7 +17,7 @@
       </li>
       <li class="nav-item " *ngIf="isUser">
         <a class="nav-link" routerLink="/app-form" routerLinkActive="active">สมัครคัดเลือก</a>
-      </li> -->
+      </li>
       <li class="nav-item" *ngIf="isUser">
         <a class="nav-link" routerLink="/qualifying" routerLinkActive="active">ตรวจสอบสถานะ</a>
       </li>
