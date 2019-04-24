@@ -14,6 +14,7 @@ export class AuthenticationService {
     userDataEndpoint = 'http://localhost:8081/cems/getUserData/';
     private httpHeaders: HttpHeaders;
     private httpHeadersRes: HttpHeaders;
+    private httpHeadersText: HttpHeaders;
 
     constructor(private http: HttpClient) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -21,6 +22,7 @@ export class AuthenticationService {
         if (this.currentUserSubject.value) {
             this.setHeader(this.currentUserValue.accLogin, this.currentUserValue.accPassword);
             this.setHeaderRes(this.currentUserValue.accLogin, this.currentUserValue.accPassword);
+            this.setHeaderText(this.currentUserValue.accLogin, this.currentUserValue.accPassword);
         }
     }
 
@@ -40,6 +42,11 @@ export class AuthenticationService {
         return this.httpHeadersRes;
     }
 
+    public get gethttpHeadersText(): HttpHeaders {
+        return this.httpHeadersText;
+    }
+
+
     protected setHeader(user: string, pass: string) {
         this.httpHeaders = new HttpHeaders({
             'Authorization': 'Basic ' + btoa(user + ':' + pass),
@@ -51,6 +58,14 @@ export class AuthenticationService {
         this.httpHeadersRes = new HttpHeaders({
             'Authorization': 'Basic ' + btoa(user + ':' + pass),
             'Content-Type': 'application/json'
+        });
+    }
+
+    protected setHeaderText(user: string, pass: string) {
+        this.httpHeadersText = new HttpHeaders({
+            'Authorization': 'Basic ' + btoa(user + ':' + pass),
+            'Content-Type': 'application/json',
+            'responseType': 'text'
         });
     }
 

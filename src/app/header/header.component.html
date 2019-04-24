@@ -17,12 +17,12 @@
       </li>
       <li class="nav-item " *ngIf="isUser">
         <a class="nav-link" routerLink="/app-form" routerLinkActive="active">สมัครคัดเลือก</a>
-      </li>
+      </li> -->
       <li class="nav-item" *ngIf="isUser">
         <a class="nav-link" routerLink="/qualifying" routerLinkActive="active">ตรวจสอบสถานะ</a>
       </li>
       <!-- <li class="nav-item" *ngIf="isStaff || isAdmin"> -->
-      <li class="nav-item" *ngIf="isUser">
+      <li class="nav-item" *ngIf="isStaff || isAdmin">
         <a class="nav-link" routerLink="/qualification" routerLinkActive="active">คัดเลือก</a>
       </li>
       <li class="nav-item" *ngIf="isStaff || isAdmin">

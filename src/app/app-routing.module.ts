@@ -44,7 +44,7 @@ const routes: Routes = [
       // === Role.User นิสิต/นักศึกษา
       // === Role.Staff เจ้าหน้าที่ของมหา'ลัย
       // === Role.Agent เจ้าหน้าที่ของบริษัท
-      { path: 'app-form', component: StudentOrgAppFormComponent, canActivate: [AuthGuard], data: { title: 'สมัครคัดเลือก', roles: [Role.User] } },
+      { path: 'app-form/:id/:ann', component: StudentOrgAppFormComponent, canActivate: [AuthGuard], data: { title: 'สมัครคัดเลือก', roles: [Role.User] } },
       { path: 'profile-management', component: EduProfileManagementComponent, canActivate: [AuthGuard], data: { title: 'จัดการข้อมูลส่วนตัว', roles: [Role.User] } },
       { path: 'profile-management/ins', component: InsManagementComponent, canActivate: [AuthGuard], data: { title: 'ใบสมัครเป็นนิสิตสหกิจศึกษา', roles: [Role.User] } },
       { path: 'profile-management/skill-test', component: SkillTestManagementComponent, canActivate: [AuthGuard], data: { title: 'ผลการสอบทักษะ', roles: [Role.User] } },

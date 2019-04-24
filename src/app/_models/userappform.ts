@@ -1,5 +1,6 @@
 export interface Userappform {
     Id: number;
+    stdOrgId: number;
     stdAccId: number;
     stdStatusTh: string;
     stdStatusEn: string;
