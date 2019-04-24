@@ -8,30 +8,54 @@ import { AnouncementInterface, } from '../../_models/announcement-interface';
 import { LogKnowledgeInterface } from '../../_models/log-knowledge-req-interface';
 import { LogPositionInterface } from '../../_models/log-position-interface';
 declare var $: any;
-
-
+import {FormControl} from '@angular/forms';
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
+import * as moment from 'moment';
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'YYYY-MM-DD',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
 @Component({
   selector: 'app-add-job-detail-announcement',
-  templateUrl: './add-announcement.component.html'
+  templateUrl: './add-announcement.component.html',
+  providers: [
+    // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
+    // application's root module. We provide it at the component level here, due to limitations of
+    // our example generation script.
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ]
 })
 export class AddJobDetailAnnouncementComponent implements OnInit {
   currentUser: User;
   userFromApi: User;
   id: number = null;
-  annStatusId: number = 1;
-  annOrgId: number
-  annAccId: number
-  annStartDate: Date
-  annEndDate: Date
+  annStatusId: number = null;
+  annOrgId: number = 3
+  annAccId: number = 1
+ 
   annStdAmount: number
   annReward: string
   annWorkshift: string
   annItemReq: string
+  date ={
+    annStartDate: new Date(),
+    annEndDate: new Date()
+  }
 
-  logkAnnId: number;
+  logkAnnId: number =3;
   logkAnnKrdId: number;
 
-  logpAnnId: number;
+  logpAnnId: number =3;
   logpAnnPosId: number;
 
   _getAnouncement: AnouncementInterface[];
@@ -68,8 +92,8 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
       annStatusId: this.annStatusId,
       annOrgId: this.annOrgId,
       annAccId: this.annAccId,
-      annStartDate: this.annStartDate,
-      annEndDate: this.annEndDate,
+      annStartDate: moment(this.date.annStartDate).format("YYYY/MM/DD"),
+      annEndDate:  moment(this.date.annEndDate).format("YYYY/MM/DD"),
       annStdAmount: this.annStdAmount,
       annReward: this.annReward,
       annWorkshift: this.annWorkshift,
@@ -93,6 +117,8 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
       .subscribe((m) => {
         console.log(announcement);
         this._getAnouncement.push(announcement);
+      },()=>{
+        this.router.navigate(['/announcement']);
       })
     
     this.service.postLogKnowlegdeById(annLogKnowledge)

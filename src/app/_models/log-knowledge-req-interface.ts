@@ -3,3 +3,8 @@ export class LogKnowledgeInterface{
     logkAnnId:number;
     logkAnnKrdId:number;
 }
+
+export class LogKnowledgeInterfacePost{
+    logkAnnId:number;
+    logkAnnKrdId:number;
+}

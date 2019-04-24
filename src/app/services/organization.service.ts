@@ -6,10 +6,11 @@ import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../_services';
 import { OrganizationDataInterface } from '../_models/organization-data-interface';
 import { AnouncementInterface } from '../_models/announcement-interface';
-import { LogKnowledgeInterface } from '../_models/log-knowledge-req-interface';
+import { LogKnowledgeInterface ,LogKnowledgeInterfacePost} from '../_models/log-knowledge-req-interface';
 import { KnowledgeRequirementInterface } from '../_models/knowledge-requirement-interface';
-import { LogPositionInterface } from '../_models/log-position-interface';
+import { LogPositionInterface ,LogPositionInterfacePost} from '../_models/log-position-interface';
 import { PositionDataInterface } from '../_models/position-data-interface';
+import { AnouncementInterfacePost } from '../_models/announcement-interface-post';
 
 // const httpOptions = {
 //     headers: new HttpHeaders({
@@ -60,18 +61,33 @@ export class OrganizationService {
   }
 
   postAnnouncement(ann: AnouncementInterface): Observable<AnouncementInterface> {
-    return this.http.post<AnouncementInterface>(`${this.authenticationService.path_url}/announcement`, ({ headers: this.httpHeaders }))
+    const annSend: AnouncementInterfacePost = {
+      annEndDate: ann.annEndDate,
+      annStartDate: ann.annStartDate,
+      annStdAmount: ann.annStdAmount,
+      annOrgId: ann.annOrgId,
+      annItemReq: ann.annItemReq,
+      annReward: ann.annReward,
+      annWorkshift: ann.annWorkshift, 
+      annAccId: ann.annAccId,
+    };
+
+    return this.http.post<AnouncementInterface>(`${this.authenticationService.path_url}/announcement`,annSend, ({ headers: this.httpHeaders }))
   }
 
   postLogPositionById(logPos: LogPositionInterface): Observable<LogPositionInterface> {
-    return this.http.post<LogPositionInterface>(`${this.authenticationService.path_url}/announcement_logPosition`, ({ headers: this.httpHeaders }))
+    const logPostSend: LogPositionInterfacePost = { 
+      logpAnnId: logPos.logpAnnId,
+      logpAnnPosId: logPos.logpAnnPosId
+    };
+    return this.http.post<LogPositionInterface>(`${this.authenticationService.path_url}/announcement_logPosition`, logPostSend,({ headers: this.httpHeaders }))
   }
 
   postLogKnowlegdeById(logKnow: LogKnowledgeInterface): Observable<LogKnowledgeInterface> {
-    return this.http.post<LogKnowledgeInterface>(`${this.authenticationService.path_url}/announcement_logKnowledge`, ({ headers: this.httpHeaders }))
+    const logPostSend: LogKnowledgeInterfacePost = { 
+      logkAnnId: logKnow.logkAnnId,
+      logkAnnKrdId: logKnow.logkAnnKrdId
+    };
+    return this.http.post<LogKnowledgeInterface>(`${this.authenticationService.path_url}/announcement_logKnowledge`, logPostSend, ({ headers: this.httpHeaders }))
   }
-
-  // gets(id:any): Observable<KnowledgeRequirementInterface> {
-  //   return this.http.get<KnowledgeRequirementInterface>(`${this.authenticationService.path_url}/announcement_knowledge/${id}`,({ headers: this.httpHeaders }))
-  // }
 }
