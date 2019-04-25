@@ -2,15 +2,16 @@
   <div class="accordion mt-5" id="accordionExample">
     <div class="card"
       *ngIf="org && org[0]||annData && annData[0]||logReqKnow && logReqKnow[0]||ListKnowlegde && ListKnowlegde[0]||ListPosition && ListPosition[0]">
-      <div class="card-header" id="headingOne">
+      <div class="card-header">
         <h5 class="mb-0">
-            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne" *ngIf="org && org[0]">
-                รายละเอียดการประกาศรับสมัครนิสิตสหกิจศึกษา {{org[0].orgNameTh}}
-              </div>
+          <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne"
+            *ngIf="org && org[0]">
+            รายละเอียดการประกาศรับสมัครนิสิตสหกิจศึกษา {{org[0].orgNameTh}}
+          </div>
         </h5>
       </div>
       <div>
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="collapse show" data-parent="#accordionExample">
           <div class="card-body">
             <div class="form-group row">
               <label class="col-sm-4 col-form-label text-lg-right no-padding-right">ตำแหน่งที่เปิดรับสมัคร : </label>
@@ -18,22 +19,18 @@
                 <span readonly class="form-control-plaintext" *ngFor="let pos of ListPosition;"> {{pos.annPosNameEn}}
                   &nbsp;</span>
               </div>
-
-              <label class="col-md-3 col-form-label text-lg-right no-padding-right">จำนวนที่รับ :
+              <label class="col-md-2 col-form-label text-lg-right no-padding-right">จำนวนที่รับ : </label>
+              <div class="col-md-2 col-form-label no-padding-right">
                 <span *ngIf="annData && annData[0]">{{annData[0].annStdAmount}}</span>&nbsp;คน
-              </label>
+              </div>
             </div>
-
             <div class="form-group row">
               <label class="col-sm-4 col-form-label text-lg-right no-padding-right">ความสามารถทางวิชาการ : </label>
               <div class="col-md-2 col-form-label no-padding-right">
                 <span *ngFor="let kr of ListKnowlegde"> {{kr.annKreqNameEn}} </span>
               </div>
             </div>
-
-
             <div class="form-group row">
-
               <label class="col-sm-4 col-form-label text-lg-right no-padding-right">สวัสดิการ : </label>
               <div class="col-md-2 col-form-label no-padding-right">
                 <span *ngIf="annData && annData[0]">{{annData[0].annReward}} </span>
@@ -47,45 +44,56 @@
         </div>
       </div>
     </div>
-  </div>
-
-
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <!--data-target="#collapseOne"-->
-        <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-          ข้อมูลสถานประกอบการ
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <div class="bd-content-title" data-toggle="collapse" aria-expanded="true">
+            ข้อมูลสถานประกอบการ
+          </div>
+        </h5>
+      </div>
+      <div class="collapse show" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="form-group row">
+        <label class="col-sm-3 col-form-label text-lg-right no-padding-right">ที่ตั้งสถานประกอบการ :</label>
+        <div class="col-md-3 col-form-label no-padding-right">
+          <span *ngIf="org && org[0]">{{org[0].orgAddress}}</span>
         </div>
-      </h5>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label text-lg-right no-padding-right">ที่ตั้งสถานประกอบการ :</label>
-      <div class="col-md-3 col-form-label no-padding-right">
-        <span *ngIf="org && org[0]">{{org[0].orgAddress}}</span>
+        <label class="col-sm-2 col-form-label text-lg-right no-padding-right">ติดต่อ : </label>
+        <div class="col-md-2 col-form-label no-padding-right">
+          <span *ngIf="org && org[0]"> {{org[0].orgEmail}} </span>
+        </div>
       </div>
-      <label class="col-sm-2 col-form-label text-lg-right no-padding-right">ติดต่อ : </label>
-      <div class="col-md-2 col-form-label no-padding-right">
-        <span *ngIf="org && org[0]"> {{org[0].orgEmail}} </span>
-      </div>
-    </div>
-    <hr>
-    <div class="form-group row">
-      <label class="col-sm-5 col-form-label text-lg-right no-padding-right">ระยะเวลารับสมัคร :</label>
-      <div class="col-md-4 col-form-label no-padding-right">
-        <span *ngIf="annData && annData[0]"> วันที่ {{annData[0].annStartDate  | THPipe}} - วันที่
-          {{annData[0].annEndDate | THPipe}}</span>
-      </div>
-    </div>
+       
+      
 
-    <div *ngIf="isUser">
-      <hr class="mb-4">
       <div *ngIf="isUser">
-        <button *ngIf="isRegister" class="btn btn-primary btn-lg btn-block" (click)="appfrom()">ลงสมัคร</button>
+        <hr class="mb-4">
+        <div *ngIf="isUser">
+          <button *ngIf="isRegister" class="btn btn-primary btn-lg btn-block" (click)="appfrom()">ลงสมัคร</button>
+        </div>
+      </div>
       </div>
     </div>
-
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+            ระยะเวลาการรับสมัคร
+          </div>
+        </h5>
+      </div>
+      <div class="collapse show" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="form-group">
+            <div class="col-sm-8 col-form-label text-lg-right no-padding-right">
+              <span *ngIf="annData && annData[0]"> วันที่ {{annData[0].annStartDate  | THPipe}} - วันที่
+                {{annData[0].annEndDate | THPipe}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-
 </div> <!-- class="container" -->
