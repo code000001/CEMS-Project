@@ -10,11 +10,11 @@
             </div>
           </h5>
         </div>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingThreex" data-parent="#accordionExample">
           <div class="card-body">
             <div class="col-sm-12 no-padding">
-              <ngx-datatable class="material" [rows]="orgData" [loadingIndicator]="loadingIndicator" columnMode="force" [headerHeight]="50"
-                [footerHeight]="0" [rowHeight]="50">
+              <ngx-datatable class="bootstrap" [rows]="orgData" [loadingIndicator]="loadingIndicator" columnMode="force"
+                [headerHeight]="50" [footerHeight]="0" [rowHeight]="50">
                 <ngx-datatable-column name="orgNameTh">
                   <ng-template let-column="column" ngx-datatable-header-template>
                     <span>รายชื่อบริษัท</span>
@@ -25,15 +25,15 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column name="ดูรายละเอียด">
                   <ng-template ngx-datatable-cell-template let-value="value">
-                    <a routerLink="/view_announcement/{{value.id}}">
+                    <button class="btn btn-primary" routerLink="/view_announcement/{{value.id}}">
                       <fa name="search"></fa>
-                    </a>&nbsp;
-                    <a *ngIf="isSignin && isAdmin" routerLink="/add_announcement">
+                    </button>&nbsp;
+                    <button class="btn btn-primary" *ngIf="isSignin && isAdmin" routerLink="/add_announcement">
                       <fa name="plus"></fa>
-                    </a>&nbsp;
-                    <a *ngIf="isSignin && isAdmin" routerLink="/update_announcement">
+                    </button>&nbsp;
+                    <button class="btn btn-warning" *ngIf="isSignin && isAdmin" routerLink="/update_announcement">
                       <fa name="pencil"></fa>
-                    </a>
+                    </button>
                   </ng-template>
                 </ngx-datatable-column>
               </ngx-datatable>

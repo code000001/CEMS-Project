@@ -1,68 +1,91 @@
 <div class="container">
   <div class="accordion mt-5" id="accordionExample">
-    <div class="card" *ngIf="org && org[0]||annData && annData[0]||logReqKnow && logReqKnow[0]||ListKnowlegde && ListKnowlegde[0]||ListPosition && ListPosition[0]">
-        <div class="card-header" id="headingOne">
-            <h5 class="mb-0" *ngIf="org && org[0]">
-              <!--data-target="#collapseOne"-->
-              <div>
-                  รายละเอียดการประกาศรับสมัครนิสิตสหกิจศึกษา {{org[0].orgNameTh}}
+    <div class="card"
+      *ngIf="org && org[0]||annData && annData[0]||logReqKnow && logReqKnow[0]||ListKnowlegde && ListKnowlegde[0]||ListPosition && ListPosition[0]">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne" *ngIf="org && org[0]">
+                รายละเอียดการประกาศรับสมัครนิสิตสหกิจศึกษา {{org[0].orgNameTh}}
               </div>
-            </h5>
-          </div>
-     <div>
-      <div class="card-body">
-          <div class="panel-body">
-            
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label>ตำแหน่งที่เปิดรับสมัคร :
-                  <span *ngFor="let pos of ListPosition;">{{pos.annPosNameEn}} </span>
-                </label>
-                
-                </div>
-                <div class="col-md-6 mb-3" *ngIf="annData && annData[0]">
-                  <label >จำนวนที่รับ : {{annData[0].annStdAmount}}</label>
-                  <span></span>&nbsp;คน
-                </div>
+        </h5>
+      </div>
+      <div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label text-lg-right no-padding-right">ตำแหน่งที่เปิดรับสมัคร : </label>
+              <div class="col-sm-2">
+                <span readonly class="form-control-plaintext" *ngFor="let pos of ListPosition;"> {{pos.annPosNameEn}}
+                  &nbsp;</span>
               </div>
 
-              <div class="mb-3">
-                <label for="">ความสามารถทางวิชาการ :</label>
+              <label class="col-md-3 col-form-label text-lg-right no-padding-right">จำนวนที่รับ :
+                <span *ngIf="annData && annData[0]">{{annData[0].annStdAmount}}</span>&nbsp;คน
+              </label>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label text-lg-right no-padding-right">ความสามารถทางวิชาการ : </label>
+              <div class="col-md-2 col-form-label no-padding-right">
                 <span *ngFor="let kr of ListKnowlegde"> {{kr.annKreqNameEn}} </span>
               </div>
+            </div>
 
-            
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label>สวัสดิการ : 
-                  <span *ngIf="annData && annData[0]">{{annData[0].annReward}} </span>
-                </label>
-                
-                </div>
-                <div class="col-md-6 mb-3" *ngIf="annData && annData[0]">
-                  <label >วันทำงาน : {{annData[0].annWorkshift}}</label>
-                </div>
+
+            <div class="form-group row">
+
+              <label class="col-sm-4 col-form-label text-lg-right no-padding-right">สวัสดิการ : </label>
+              <div class="col-md-2 col-form-label no-padding-right">
+                <span *ngIf="annData && annData[0]">{{annData[0].annReward}} </span>
               </div>
-
-              <div class="mb-3"  *ngIf="org && org[0]">
-                <label >ที่ตั้งสถานประกอบการ :</label>
-                {{org[0].orgAddress}}
+              <label class="col-sm-2 col-form-label text-lg-right no-padding-right">วันทำงาน : </label>
+              <div class="col-md-2 col-form-label no-padding-right">
+                <span *ngIf="annData && annData[0]"> {{annData[0].annWorkshift}} </span>
               </div>
-
-              <div class="mb-3"  *ngIf="annData && annData[0]">
-                <label >ระยะเวลารับสมัคร :</label>
-                วันที่ {{annData[0].annStartDate  | THPipe}} - วันที่ {{annData[0].annEndDate | THPipe}}
-              </div>
-
-              <div *ngIf="isUser">
-                  <hr class="mb-4">
-                  <div *ngIf="isUser">
-                    <button *ngIf="isRegister" class="btn btn-primary btn-lg btn-block" (click)="appfrom()">ลงสมัคร</button>
-                  </div>
-                </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <!--data-target="#collapseOne"-->
+        <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+          ข้อมูลสถานประกอบการ
+        </div>
+      </h5>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label text-lg-right no-padding-right">ที่ตั้งสถานประกอบการ :</label>
+      <div class="col-md-3 col-form-label no-padding-right">
+        <span *ngIf="org && org[0]">{{org[0].orgAddress}}</span>
+      </div>
+      <label class="col-sm-2 col-form-label text-lg-right no-padding-right">ติดต่อ : </label>
+      <div class="col-md-2 col-form-label no-padding-right">
+        <span *ngIf="org && org[0]"> {{org[0].orgEmail}} </span>
+      </div>
+    </div>
+    <hr>
+    <div class="form-group row">
+      <label class="col-sm-5 col-form-label text-lg-right no-padding-right">ระยะเวลารับสมัคร :</label>
+      <div class="col-md-4 col-form-label no-padding-right">
+        <span *ngIf="annData && annData[0]"> วันที่ {{annData[0].annStartDate  | THPipe}} - วันที่
+          {{annData[0].annEndDate | THPipe}}</span>
+      </div>
+    </div>
+
+    <div *ngIf="isUser">
+      <hr class="mb-4">
+      <div *ngIf="isUser">
+        <button *ngIf="isRegister" class="btn btn-primary btn-lg btn-block" (click)="appfrom()">ลงสมัคร</button>
+      </div>
+    </div>
+
+  </div>
+
+
+</div> <!-- class="container" -->
