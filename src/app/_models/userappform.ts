@@ -4,6 +4,8 @@ export interface Userappform {
     stdAccId: number;
     stdStatusTh: string;
     stdStatusEn: string;
+    stdPrefixTh: string;
+    stdPrefixEn: string;
     stdFirstNameTh: string;
     stdLastNameTh: string;
     stdFirstNameEn: string
@@ -29,7 +31,7 @@ export interface Userappform {
     stdParentEmail: string;
     stdParentTel: string;
     stdParentPostNo: string;
-    stdParentMobileTel: string;
+    stdParentMobile: string;
     stdBornPlace: string;
     std_LastGpa: string;
     stdBornDate: string;
