@@ -12,6 +12,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable'
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 // import { fakeBackendProvider } from './_helpers';
@@ -107,7 +108,8 @@ import {OrganizationService} from './services/organization.service';
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SweetAlert2Module.forRoot()
   ],
   providers: [
     Title,
