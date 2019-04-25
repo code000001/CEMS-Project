@@ -1,125 +1,147 @@
+<!-- <button [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">
+  Do it!
+</button> -->
+<div class="container-contact100" *ngIf="add_std">
+  <div class="wrap-contact100">
+    <form class="contact100-form validate-form" [formGroup]="StdForm" (ngSubmit)="addupStudentForm()">
+      <span class="contact100-form-title">
+        ใบสมัครเป็นนิสิตสหกิจศึกษา (IN-S001)
+      </span>
+      <!--ส่วนชื่อภาษาไทย-->
+      <div class="form-group" style="width:15%">
+        <label for="">คำนำหน้า</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdPrefixTh" [value]="add_std.stdPrefixTh"
+          name="stdPrefixTh">
+      </div>
 
-  <div class="container-contact100" *ngIf="add_std">
-    <div class="wrap-contact100">
-      <form class="contact100-form validate-form" [formGroup]="StdForm" (ngSubmit)="addupStudentForm()">
-        <span class="contact100-form-title">
-          ใบสมัครเป็นนิสิตสหกิจศึกษา (IN-S001)
-        </span>
-        <!--ส่วนชื่อภาษาไทย-->
-        <div class="form-group" style="width:15%">
-          <label for="">คำนำหน้า</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdPrefixTh" [value]="add_std.stdPrefixTh" name="stdPrefixTh">
-        </div>
+      <div class="form-group" style="width:40%;">
+        <label for="">ชื่อ</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdFirstnameTh" [value]="add_std.stdFirstnameTh"
+          name="stdFirstnameTh">
+      </div>
 
-        <div class="form-group" style="width:40%;">
-          <label for="">ชื่อ</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdFirstnameTh" [value]="add_std.stdFirstnameTh" name="stdFirstnameTh">
-        </div>
+      <div class="form-group" style="width:40%;">
+        <label for="">นามสกุล</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdLastnameTh" [value]="add_std.stdLastnameTh"
+          name="stdLastnameTh">
+      </div>
+      <!--ส่วนชื่อภาษาไทย-->
 
-        <div class="form-group" style="width:40%;">
-          <label for="">นามสกุล</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdLastnameTh" [value]="add_std.stdLastnameTh" name="stdLastnameTh">
-        </div>
-        <!--ส่วนชื่อภาษาไทย-->
+      <!--ส่วนชื่อภาษาอังกฤษ-->
+      <div class="form-group" style="width:15%">
+        <label for="">Prefix</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdPrefixEn" [value]="add_std.stdPrefixEn"
+          name="stdPrefixEn">
+      </div>
 
-        <!--ส่วนชื่อภาษาอังกฤษ-->
-        <div class="form-group" style="width:15%">
-          <label for="">Prefix</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdPrefixEn" [value]="add_std.stdPrefixEn" name="stdPrefixEn">
-        </div>
+      <div class="form-group" style="width:40%;">
+        <label for="">Firstname</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" placeholder="" formControlName="stdFirstnameEn"
+          [value]="add_std.stdFirstnameEn" name="stdFirstnameEn">
+      </div>
 
-        <div class="form-group" style="width:40%;">
-          <label for="">Firstname</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" placeholder="" formControlName="stdFirstnameEn" [value]="add_std.stdFirstnameEn" name="stdFirstnameEn">
-        </div>
+      <div class="form-group" style="width:40%;">
+        <label for="">Lastname</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" placeholder="" formControlName="stdLastnameEn"
+          [value]="add_std.stdLastnameEn" name="stdLastnameEn">
+      </div>
+      <!--ส่วนชื่อภาษาอังกฤษ-->
 
-        <div class="form-group" style="width:40%;">
-          <label for="">Lastname</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" placeholder="" formControlName="stdLastnameEn" [value]="add_std.stdLastnameEn" name="stdLastnameEn">
-        </div>
-        <!--ส่วนชื่อภาษาอังกฤษ-->
+      <!--ส่วนการศึกษา-->
+      <div class="form-group" style="width:30%;">
+        <label for="">รหัส</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdId" [value]="add_std.stdId"
+          name="stdId">
+      </div>
 
-        <!--ส่วนการศึกษา-->
-        <div class="form-group" style="width:30%;">
-          <label for="">รหัส</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdId" [value]="add_std.stdId" name="stdId">
-        </div>
+      <div class="form-group" style="width:30%;">
+        <label for="">ชั้นปี</label>
+        <ng-select [items]="year" formControlName="stdYear" bindLabel="items" appendTo="body" placeholder="เลือกชั้นปี" (change)="selectYear($event)"
+          [(ngModel)]="selectedYear">
+        </ng-select>
+        <!-- <select class="form-control">
+          <option *ngFor="let item of year">{{item}}</option>
+        </select> -->
+        <!-- <input type="text" class="form-control" id="" aria-describedby="" placeholder="" placeholder="" formControlName="stdYear"
+          [value]="add_std.stdYear" name="stdYear"> -->
+      </div>
 
-        <div class="form-group" style="width:30%;">
-          <label for="">ชั้นปี</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" placeholder="" formControlName="stdYear" [value]="add_std.stdYear" name="stdYear">
-        </div>
+      <div class="form-group" style="width:30%;">
+        <label>จำนวนหน่วยกิตที่ผ่านแล้ว</label>
+        <input type="text" class="form-control" id="" placeholder="" placeholder="" formControlName="stdCredit" [value]="add_std.stdCredit"
+          name="stdCredit">
+      </div>
 
-        <div class="form-group" style="width:30%;">
-          <label>จำนวนหน่วยกิตที่ผ่านแล้ว</label>
-          <input type="text" class="form-control" id="" placeholder="" placeholder="" formControlName="stdCredit" [value]="add_std.stdCredit" name="stdCredit">
-        </div>
+      <div class="form-group" style="width:30%;">
+        <label>เกรดเฉลี่ย</label>
+        <input type="number" step="0.01" max="4.00" min="1.00" class="form-control" id="" placeholder="" placeholder="" formControlName="stdGpax"
+          [value]="add_std.stdGpax" name="stdGpax">
+      </div>
 
-        <div class="form-group" style="width:30%;">
-          <label>เกรดเฉลี่ย</label>
-          <input type="text" class="form-control" id="" placeholder="" placeholder="" formControlName="stdGpax" [value]="add_std.stdGpax" name="stdGpax">
-        </div>
+      <div class="form-group" style="width:30%;">
+        <label for="">หลักสูตร</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" placeholder="" formControlName="stdCourse"
+          [value]="add_std.stdCourse" name="stdCourse">
+      </div>
 
-        <div class="form-group" style="width:30%;">
-          <label for="">หลักสูตร</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" placeholder="" formControlName="stdCourse" [value]="add_std.stdCourse" name="stdCourse">
-        </div>
+      <div class="form-group" style="width:30%;">
+        <label for="">สาขาวิชา</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" placeholder="" formControlName="stdBranch"
+          [value]="add_std.stdBranch" name="stdBranch">
+      </div>
+      <!--ส่วนการศึกษา-->
 
-        <div class="form-group" style="width:30%;">
-          <label for="">สาขาวิชา</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" placeholder="" formControlName="stdBranch" [value]="add_std.stdBranch" name="stdBranch">
-        </div>
-        <!--ส่วนการศึกษา-->
+      <!--ที่อยู่ตามทะเบียนบ้าน-->
+      <div class="form-group" style="width:100%;">
+        <label for="">ที่อยู่ตามทะเบียนบ้าน (บ้านเลขที่, หมู่, ถนน, ตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์)</label>
+        <textarea class="form-control" formControlName="stdAddressPartic" [value]="add_std.stdAddressPartic" name="stdAddressPartic"></textarea>
+      </div>
 
-        <!--ที่อยู่ตามทะเบียนบ้าน-->
-        <div class="form-group" style="width:100%;">
-          <label for="">ที่อยู่ตามทะเบียนบ้าน (บ้านเลขที่, หมู่, ถนน, ตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์)</label>
-          <textarea class="form-control" formControlName="stdAddressPartic" [value]="add_std.stdAddressPartic" name="stdAddressPartic"></textarea>
-        </div>
-        
-        <div class="form-group" style="width:20%;">
-          <label for="">มือถือ</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdMobile" [value]="add_std.stdMobile"
-            name="stdMobile">
-        </div>
+      <div class="form-group" style="width:20%;">
+        <label for="">มือถือ</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdMobile" [value]="add_std.stdMobile"
+          name="stdMobile">
+      </div>
 
-        <div class="form-group" style="width:20%;">
-          <label for="">โทรศัพท์</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdTel" [value]="add_std.stdTel" name="stdTel">
-        </div>
+      <div class="form-group" style="width:20%;">
+        <label for="">โทรศัพท์</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdTel" [value]="add_std.stdTel"
+          name="stdTel">
+      </div>
 
-        <div class="form-group" style="width:50%;">
-          <label for="">อีเมล์</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdEmail" [value]="add_std.stdEmail" name="stdEmail">
-        </div>
-        <!--ที่อยู่ตามทะเบียนบ้าน-->
+      <div class="form-group" style="width:50%;">
+        <label for="">อีเมล์</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdEmail" [value]="add_std.stdEmail"
+          name="stdEmail">
+      </div>
+      <!--ที่อยู่ตามทะเบียนบ้าน-->
 
-        <!--ที่อยู่ปัจจุบัน-->
-        <!-- <div class="form-group" style="width:20%;">
+      <!--ที่อยู่ปัจจุบัน-->
+      <!-- <div class="form-group" style="width:20%;">
         <label for="">ที่พักปัจจุบัน</label>
         <select class="form-control" id="sel-address">
           <option id="dorm">หอพัก</option>
           <option id="other">อื่นๆ ระบุ</option>
         </select>
       </div> -->
-        <!-- 
+      <!-- 
       <div class="form-group" style="width:80%;">
 
       </div> -->
 
-        <div class="form-group" style="width:100%;">
-          <label for="">ที่อยู่ปัจจุบัน (เลขที่, หมู่, ถนน, ตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์)
-            <p>* กรณีอาศัยหอพัก กรุณาใส่ชื่อหอพักและเลขที่ห้องด้วย *</p>
-          </label>
-          <textarea class="form-control" formControlName="stdAddressNow" [value]="add_std.stdAddressNow" name="stdAddressNow"></textarea>
-        </div>
+      <div class="form-group" style="width:100%;">
+        <label for="">ที่อยู่ปัจจุบัน (เลขที่, หมู่, ถนน, ตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์)
+          <p>* กรณีอาศัยหอพัก กรุณาใส่ชื่อหอพักและเลขที่ห้องด้วย *</p>
+        </label>
+        <textarea class="form-control" formControlName="stdAddressNow" [value]="add_std.stdAddressNow" name="stdAddressNow"></textarea>
+      </div>
 
-        <!-- <div class="form-group" style="width:100%;">
+      <!-- <div class="form-group" style="width:100%;">
         <label for="">บ้าน/อื่นๆ (บ้านเลขที่, หมู่, ถนน, ตำบล, อำเภอ, จังหวัด, รหัสไปรษณีย์)</label>
         <textarea class="form-control"></textarea>
       </div> -->
 
-        <!-- <div class="form-group" style="width:20%;">
+      <!-- <div class="form-group" style="width:20%;">
           <label for="">โทรศัพท์</label>
           <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdTel" [value]="add_std.stdTel" name="stdTel">
         </div>
@@ -133,57 +155,63 @@
           <label for="">e-mail</label>
           <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdEmail" [value]="add_std.stdEmail" name="stdEmail">
         </div> -->
-        <!--ที่อยู่ปัจจุบัน-->
+      <!--ที่อยู่ปัจจุบัน-->
 
-        <!--ผู้ปกครอง-->
-        <div class="form-group" style="width:38%;">
-          <label for="">ชื่อผู้ปกครอง</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareFname" [value]="add_std.stdpareFname" name="stdpareFname">
-        </div>
+      <!--ผู้ปกครอง-->
+      <div class="form-group" style="width:38%;">
+        <label for="">ชื่อผู้ปกครอง</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareFname" [value]="add_std.stdpareFname"
+          name="stdpareFname">
+      </div>
 
-        <div class="form-group" style="width:38%;">
-          <label for="">นามสกุลผู้ปกครอง</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareLname" [value]="add_std.stdpareLname" name="stdpareLname">
-        </div>
+      <div class="form-group" style="width:38%;">
+        <label for="">นามสกุลผู้ปกครอง</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareLname" [value]="add_std.stdpareLname"
+          name="stdpareLname">
+      </div>
 
-        <div class="form-group" style="width:20%;">
-          <label for="">ความสัมพันธ์กับนิสิต</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareRelation" [value]="add_std.stdpareRelation" name="stdpareRelation">
-        </div>
+      <div class="form-group" style="width:20%;">
+        <label for="">ความสัมพันธ์กับนิสิต</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareRelation" [value]="add_std.stdpareRelation"
+          name="stdpareRelation">
+      </div>
 
-        <div class="form-group" style="width:100%;">
-          <label for="">ที่อยู่ (บ้านเลขที่, หมู่, ถนน, ตำบอล, อำเภอ, จังหวัด, รหัสไปรษณีย์)</label>
-          <textarea class="form-control" formControlName="stdpareAddress" [value]="add_std.stdpareAddress" name="stdpareAddress"></textarea>
-        </div>
+      <div class="form-group" style="width:100%;">
+        <label for="">ที่อยู่ (บ้านเลขที่, หมู่, ถนน, ตำบอล, อำเภอ, จังหวัด, รหัสไปรษณีย์)</label>
+        <textarea class="form-control" formControlName="stdpareAddress" [value]="add_std.stdpareAddress" name="stdpareAddress"></textarea>
+      </div>
 
-        <div class="form-group" style="width:20%;">
-          <label for="">มือถือ</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareMobile" [value]="add_std.stdpareMobile" name="stdpareMobile">
-        </div>
-        <div style="width:5%;">
+      <div class="form-group" style="width:20%;">
+        <label for="">มือถือ</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareMobile" [value]="add_std.stdpareMobile"
+          name="stdpareMobile">
+      </div>
+      <div style="width:5%;">
 
-        </div>
+      </div>
 
-        <div class="form-group" style="width:20%;">
-          <label for="">โทรศัพท์</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareTel" [value]="add_std.stdpareTel" name="stdpareTel">
-        </div>
+      <div class="form-group" style="width:20%;">
+        <label for="">โทรศัพท์</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareTel" [value]="add_std.stdpareTel"
+          name="stdpareTel">
+      </div>
 
-        <div style="width:5%;">
+      <div style="width:5%;">
 
-        </div>
+      </div>
 
-        <div class="form-group" style="width:50%;">
-          <label for="">อีเมล์</label>
-          <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareEmail" [value]="add_std.stdpareEmail" name="stdpareEmail">
-        </div>
-        <!--ผู้ปกครอง-->
+      <div class="form-group" style="width:50%;">
+        <label for="">อีเมล์</label>
+        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdpareEmail" [value]="add_std.stdpareEmail"
+          name="stdpareEmail">
+      </div>
+      <!--ผู้ปกครอง-->
 
-        <button type="button" class="btn btn-secondary" style="width:10%;">
-          <a href="/profile-management" style="color:white;">ยกเลิก</a>
-        </button>
-        <button type="submit" class="btn btn-success" style="width:10%;">บันทึก
-        </button>
-      </form>
-    </div>
+      <button type="button" class="btn btn-secondary" style="width:10%;">
+        <a href="/profile-management" style="color:white;">ยกเลิก</a>
+      </button>
+      <button type="submit" class="btn btn-success" style="width:10%;" (click)="popup()">บันทึก
+      </button>
+    </form>
   </div>
+</div>
