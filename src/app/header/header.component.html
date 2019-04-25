@@ -15,8 +15,8 @@
       <li class="nav-item"  *ngIf="isStaff">
         <a class="nav-link" routerLink="/add_announcement" routerLinkActive="active">ประกาศ</a>
       </li>
-      <li class="nav-item"  *ngIf="isAgent">
-        <a class="nav-link" routerLink="/view_announcement/:id" routerLinkActive="active">ประกาศ</a>
+      <li class="nav-item"  *ngIf="isAgent" let value="value">
+        <a class="nav-link" routerLink="/view_announcement/{{currentUserSubject?.value.stfOrgId}}" routerLinkActive="active">ประกาศ</a>
       </li>
       <li class="nav-item " *ngIf="isUser">
         <a class="nav-link" routerLink="/app-form" routerLinkActive="active">สมัครคัดเลือก</a>

@@ -11,3 +11,17 @@ export class OrganizationDataInterface{
     orgAnnAmount: number;
 	orgDetail: string;
 }
+
+export class StaffOrgDataInterface{
+	id: number;
+	stfOrgId: number;
+	stfOrgAccId:number;
+	stfOrgFirstNameTh:string;
+	stfOrgFirstNameEn:string;
+	stfOrgLastNameTh:string;
+	stfOrgLastNameEn:string;
+	stfOrgTel:string;
+	stfOrgEmail:string;
+	stfOrgMobileTel:string;
+
+}

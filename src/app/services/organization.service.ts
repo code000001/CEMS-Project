@@ -11,6 +11,7 @@ import { KnowledgeRequirementInterface } from '../_models/knowledge-requirement-
 import { LogPositionInterface ,LogPositionInterfacePost} from '../_models/log-position-interface';
 import { PositionDataInterface } from '../_models/position-data-interface';
 import { AnouncementInterfacePost } from '../_models/announcement-interface-post';
+import { StaffOrgDataInterface } from '../_models/organization-data-interface';
 
 // const httpOptions = {
 //     headers: new HttpHeaders({

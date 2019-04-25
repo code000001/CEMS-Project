@@ -58,6 +58,9 @@ export class LogInComponent implements OnInit {
                 data => {
                   window.location.reload();
                     //  this.router.navigate([this.returnUrl]);
+                    if(this.authenticationService.isAgent){
+                        this.authenticationService.getStaff();
+                      }
                 },
                 error => {
                     this.error = error;
