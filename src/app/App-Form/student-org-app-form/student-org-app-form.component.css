@@ -26,3 +26,7 @@ th{
 .ngx-th{
     font-weight: bold;
 }
+
+.btn-toolbar > .btn{
+    margin: 3px;
+}

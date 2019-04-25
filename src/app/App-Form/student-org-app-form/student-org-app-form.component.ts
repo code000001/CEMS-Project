@@ -12,7 +12,7 @@ import { OrganizationService } from '../../services/organization.service';
 import { Userappform, AnouncementInterface, OrganizationDataInterface } from '../../_models';
 import { PositionDataInterface } from '../../_models/position-data-interface';
 // import { KeyedWrite } from '@angular/compiler';
-import {formatDate} from '@angular/common';
+import { formatDate } from '@angular/common';
 
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -51,16 +51,18 @@ export class StudentOrgAppFormComponent implements OnInit {
   A2Districts: any;
   A2selectedDistricts = null;
   A2Zipcode: number = null;
+  stdBornPlace: number = null;
 
   userData: Userappform;
   FDAddress = [{ id: 1, name: 'ที่อยู่ตามทะเบียนบ้าน' }, { id: 2, name: 'ที่อยู่ที่ติดต่อได้' }, { id: 0, name: 'อื่น ๆ' }];
-  FDAddressOther: boolean = false;
+  FDAddressOther: boolean = true;
   selectedSimpleItem = 'Two';
   LANGUAGE = [{ th: 'อังกฤษ', en: 'English', value: true }, { th: 'จีน', en: 'Chinese', value: true }];
   LANGUAGEskill = [];
   // LANGUAGEskill = ['ฟัง (Listening)','พูด (Speaking)','อ่าน (Reading)','เขียน (Writing)'];
   LANGUAGElevel = [{ id: 1, th: 'ปรับปรุง', en: 'low' }, { id: 2, th: 'พอใช้', en: 'medium' }, { id: 3, th: 'ดี', en: 'high' }];
   // countLevel = this.LANGUAGElevel.length;
+  emerg = [{ name: 'บิดา', value: 1, check: true }, { name: 'มารดา', value: 2, check: false }, { name: 'อื่น ๆ', value: 3, check: true }];
 
   constructor(
     private router: Router,
@@ -78,13 +80,15 @@ export class StudentOrgAppFormComponent implements OnInit {
     { th: 'อ่าน', en: 'Reading', children: this.countLevel },
     { th: 'เขียน', en: 'Writing', children: this.countLevel }]
     // this.loadingProvinces();
+    this.loadingData();
+    this.loadingProvinces();
   }
 
   submit(): void {
     this.userData.stdOrgId = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
 
     if (this.AppForm.get('stdParentTel').value != null) { this.userData.stdParentTel = this.AppForm.get('stdParentTel').value }
-    if (this.AppForm.get('stdBornPlace').value != null) { this.userData.stdBornPlace = this.AppForm.get('stdBornPlace').value }
+    if (this.AppForm.get('stdBornPlace').value != null) { this.userData.stdBornPlace = (this.AppForm.get('stdBornPlace').value).toString() }
     if (this.AppForm.get('stdNation').value != null) { this.userData.stdNation = this.AppForm.get('stdNation').value }
     if (this.AppForm.get('stdHeight').value != null) { this.userData.stdHeight = this.AppForm.get('stdHeight').value }
     if (this.AppForm.get('stdWeigh').value != null) { this.userData.stdWeigh = this.AppForm.get('stdWeigh').value }
@@ -92,13 +96,13 @@ export class StudentOrgAppFormComponent implements OnInit {
     if (this.AppForm.get('Address2').value != null) { this.userData.stdNowAddress = this.AppForm.get('Address2').value }
     if (this.SameAddress1 == false) { this.userData.stdNowAddress = this.AppForm.get('Address1').value }
     if (this.AppForm.get('stdReligion').value != null) { this.userData.stdReligion = this.AppForm.get('stdReligion').value }
-    if (this.AppForm.get('stdParentMobileTel').value != null) { this.userData.stdParentMobileTel = this.AppForm.get('stdParentMobileTel').value }
+    if (this.AppForm.get('stdParentMobileTel').value != null) { this.userData.stdParentMobile = this.AppForm.get('stdParentMobileTel').value }
     if (this.AppForm.get('stdYear').value != null) { this.userData.stdYear = this.AppForm.get('stdYear').value }
     if (this.AppForm.get('stdEmail').value != null) { this.userData.stdEmail = this.AppForm.get('stdEmail').value }
-    if (this.AppForm.get('stdGpax').value != null) { this.userData.stdGpax = this.AppForm.get('stdGpax').value }
+    // if (this.AppForm.get('stdGpax').value != null) { this.userData.stdGpax = this.AppForm.get('stdGpax').value }
     if (this.AppForm.get('stdHsGpa').value != null) { this.userData.stdHsGpa = this.AppForm.get('stdHsGpa').value }
     if (this.AppForm.get('stdFatherJob').value != null) { this.userData.stdFatherJob = this.AppForm.get('stdFatherJob').value }
-    if (this.AppForm.get('stdFatherMobileTel').value != null) { this.userData.stdFatherMobileTel = this.AppForm.get('stdFatherMobileTel').value }
+    if (this.AppForm.get('stdParentMobile').value != null) { this.userData.stdParentMobile = this.AppForm.get('stdParentMobile').value }
     if (this.AppForm.get('stdMotherJob').value != null) { this.userData.stdMotherJob = this.AppForm.get('stdMotherJob').value }
     if (this.AppForm.get('stdMotherMobileTel').value != null) { this.userData.stdMotherMobileTel = this.AppForm.get('stdMotherMobileTel').value }
     if (this.AppForm.get('std_LastGpa').value != null) { this.userData.std_LastGpa = this.AppForm.get('std_LastGpa').value }
@@ -108,16 +112,21 @@ export class StudentOrgAppFormComponent implements OnInit {
     // console.log(this.userData);
     this.appFormService.updateStdAppForm(this.userData)
       .subscribe(() => {
-        this.errortype = 'success'; this.error = 'บันทึกข้อมูลสำเร็จ';
-        setTimeout(() => {
-        }, 1000);
-        window.location.reload();
+        this.errortype = 'success';
+        this.error = 'บันทึกข้อมูลสำเร็จ';
+      }, err => {
+        console.log(' err updateStdAppForm -> ', err);
+        this.errortype = 'danger';
+        this.error = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาตรวจสอบข้อมูลของท่าน';
       });
-    // .subscribe(() => this.message = "Customer Updated Successfully!");
-    if (this.errortype == 'success') {
-      window.location.reload();
+
+    if (this.errortype != 'success') {
+
     } else {
-      this.errortype = 'danger'; this.error = 'ไม่สามารถบันทึกข้อมูลได้'
+      setTimeout(() => {
+      }, 1000);
+
+      window.location.reload();
     }
   }
 
@@ -136,7 +145,7 @@ export class StudentOrgAppFormComponent implements OnInit {
     // this.appFormService.checkStatusAnn(parseInt(annid)).subscribe(response => { this.ann = response });
     // console.log('ann -> ',this.ann);
 
-    this.loadingData();
+    // this.loadingData();
     this.AppForm = this.fb.group({
       stdBornDate: null,
       stdFatherJob: null,
@@ -158,12 +167,13 @@ export class StudentOrgAppFormComponent implements OnInit {
       eduForm: null,
       eduTo: null,
       eduGpax: null,
-      std_LastGpa:null,
+      std_LastGpa: null,
+      stdParentAddress: null,
 
       stdEmail: null,
       stdTel: null,
       stdYear: null,
-      stdParentMobileTel: null,
+      stdParentMobile: null,
       stdParentTel: null,
       stdBornPlace: null,
       stdNation: null,
@@ -173,10 +183,17 @@ export class StudentOrgAppFormComponent implements OnInit {
       Address1: null,
       Address2: null,
       newlg: null,
-      SameAddress1: false
+      SameAddress1: false,
+      emergName: null,
+      emergRelation: null,
+      emergAddress: null,
+      emergTel: null,
+
+      exemergName: null,
+      exemergRelation: null,
+      exemergTel: null,
+      exemergAddress: null
     });
-
-
   }
 
   loadingData() {
@@ -203,12 +220,16 @@ export class StudentOrgAppFormComponent implements OnInit {
         this.ListPosition.push(positionData);
         // console.log(this.ListPosition)
       });
-      
-      // this.userData.stdAge ;
-      // this.today - newDate;
-    this.appFormService.getINS02().subscribe(data => {  
+
+    // this.userData.stdAge ;
+    // this.today - newDate;
+    this.appFormService.getINS02().subscribe(data => {
       // data.stdBornDate;
-      data.stdAge = parseInt( formatDate(new Date(), 'yyyy','en')) - parseInt( formatDate(data.stdBornDate , 'yyyy','en'));
+      // console.log(' date ',data.stdAge);
+      this.stdBornPlace = parseInt(data.stdBornPlace);
+      if (data.stdAge != "-" || data.stdAge != null) {
+        data.stdAge = parseInt(formatDate(new Date(), 'yyyy', 'en')) - parseInt(formatDate(data.stdBornDate, 'yyyy', 'en'));
+      }
       this.userData = data;
     });
   }
@@ -246,10 +267,57 @@ export class StudentOrgAppFormComponent implements OnInit {
     const Address2 = this.AppForm.get('Address2');
     if (this.SameAddress1 === true) {
       Address2.enable();
+      this.AppForm.get('Address2').setValue(this.userData.stdNowAddress);
     } else {
       Address2.disable();
+      var str = '';
+      if (this.AppForm.get('Address1').value == null) { str = this.userData.stdHouseParticularsAddress } else { str = this.AppForm.get('Address1').value; }
+      this.AppForm.get('Address2').setValue(str);
     }
   }
+
+  setEmerg($event) {
+    // console.log($event.get(''));
+    this.AppForm.get('emergName').disable();
+    if (this.AppForm.get('emergName').value != null) { this.AppForm.get('exemergName').setValue(this.AppForm.get('emergName').value); }
+    if (this.AppForm.get('emergRelation').value != null) { this.AppForm.get('exemergRelation').setValue(this.AppForm.get('emergRelation').value); }
+    if (this.AppForm.get('emergTel').value != null) { this.AppForm.get('exemergTel').setValue(this.AppForm.get('emergTel').value); }
+    if (this.AppForm.get('emergAddress').value != null) { this.AppForm.get('emergAddress').setValue(this.AppForm.get('exemergAddress').value); }
+  }
+
+  Emerg(emID) {
+    if (emID === 1 || emID === 2) {
+      this.AppForm.get('emergName').disable();
+      this.AppForm.get('emergAddress').enable();
+      this.AppForm.get('emergRelation').disable();
+      this.AppForm.get('emergTel').disable();
+      if (emID === 1) {
+        this.AppForm.get('emergName').setValue(this.userData.stdFatherNameTh);
+        this.AppForm.get('emergRelation').setValue('บิดา');
+        this.AppForm.get('emergTel').setValue(this.userData.stdFatherMobileTel);
+      } else {
+        this.AppForm.get('emergName').setValue(this.userData.stdMotherNameTh);
+        this.AppForm.get('emergRelation').setValue('มารดา');
+        this.AppForm.get('emergTel').setValue(this.userData.stdMotherMobileTel);
+      }
+    } else {
+      this.AppForm.get('emergName').enable();
+      this.AppForm.get('emergAddress').enable();
+      this.AppForm.get('emergRelation').enable();
+      this.AppForm.get('emergTel').enable();
+
+      this.AppForm.get('emergName').setValue(null);
+      this.AppForm.get('emergRelation').setValue(null);
+      this.AppForm.get('emergTel').setValue(null);
+
+      if (this.AppForm.get('emergName').value == null) { this.AppForm.get('emergName').setValue(this.AppForm.get('exemergName').value); }
+      if (this.AppForm.get('emergRelation').value == null) { this.AppForm.get('emergRelation').setValue(this.AppForm.get('exemergRelation').value); }
+      if (this.AppForm.get('emergTel').value == null) { this.AppForm.get('emergTel').setValue(this.AppForm.get('exemergTel').value); }
+
+    }
+
+  }
+
 
   printout() {
 
@@ -278,7 +346,7 @@ export class StudentOrgAppFormComponent implements OnInit {
       content: [
         {
           // layout: 'lightHorizontalLines', // optional
-          defaultStyle: { font: 'Sarabun',margin: [10, 10, 10, 10] },
+          defaultStyle: { font: 'Sarabun', margin: [10, 10, 10, 10] },
           pageBreak: 'after',
           table: {
             // headers are automatically repeated if the table spans over multiple pages
@@ -297,8 +365,8 @@ export class StudentOrgAppFormComponent implements OnInit {
                   widths: '*',
                   body: [
                     [{ text: `ข้อมูลส่วนตัวนิสิต (APPLICANT 'S INFORMATION)`, alignment: 'center' }],
-                    ['ชื่อ (Name) ' + this.userData.stdFirstNameTh + ' นามสกุล (Surname) ' + this.userData.stdLastNameTh + ' โทร.  ' +this.userData.stdMmobileTel+ ' มือถือ ' +this.userData.stdTel+ ' E-mail Address '+this.userData.stdEmail],
-                    [{text : 'ชื่อสถานประกอบการที่ต้องการสมัคร รอบที่ ', alignment: 'center'}],
+                    ['ชื่อ (Name) ' + this.userData.stdFirstNameTh + ' นามสกุล (Surname) ' + this.userData.stdLastNameTh + ' โทร.  ' + this.userData.stdMmobileTel + ' มือถือ ' + this.userData.stdTel + ' E-mail Address ' + this.userData.stdEmail],
+                    [{ text: 'ชื่อสถานประกอบการที่ต้องการสมัคร รอบที่ ', alignment: 'center' }],
                     ['1. ชื่อบริษัท ' + this.org.orgNameTh + '\nสมัครงานในตำแหน่ง_________________________________']
                   ]
                 }
@@ -349,8 +417,8 @@ export class StudentOrgAppFormComponent implements OnInit {
                 keepWithHeaderRows: 1, colSpan: 3, table: {
                   widths: '*',
                   body: [
-                    [{text : `ข้อมูลส่วนตัวนิสิต (APPLICANT 'S INFORMATION)`, alignment: 'center'}],
-                    ['ชื่อ (Name) ' + this.userData.stdFirstNameTh + ' นามสกุล (Surname) ' + this.userData.stdLastNameTh+'\nName '+this.userData.stdFirstNameEn + ' Surname ' + this.userData.stdLastNameEn+ '\nสาขาวิชา ' + this.userData.stdBranch+ ' ชั้นปีที่ ' +this.userData.stdYear + ' เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา ' +this.userData.std_LastGpa + ' เกรดเฉลี่ยสะสม' +this.userData.stdHsGpa + ' สถานที่เกิด ' +this.userData.stdBornPlace + ' วันเดือนปีเกิด' +this.userData.stdBornDate + ' อายุ ' +this.userData.stdAge + ' เพศ ' +this.userData.genderNameTh+ ' บัตรประจำตัวประชาชนเลขที่ ' +this.userData.stdPersonId+ '  สัญชาติ ' +this.userData.stdNation+ ' ศาสนา ' +this.userData.stdReligion+ ' ส่วนสูง cm ' +this.userData.stdHeight+ ' ซม. น้ำหนัก kg ' +this.userData.stdWeigh+ '  ที่อยู่ที่ติดต่อได้ ' +this.userData.stdNowAddress+ '\nที่อยู่ตามทะเบียน ' +this.userData.stdHouseParticularsAddress+ ' โทร.  ' +this.userData.stdMmobileTel+ ' มือถือ ' +this.userData.stdTel+ ' E-mail Address '+this.userData.stdEmail]
+                    [{ text: `ข้อมูลส่วนตัวนิสิต (APPLICANT 'S INFORMATION)`, alignment: 'center' }],
+                    ['ชื่อ (Name) ' + this.userData.stdFirstNameTh + ' นามสกุล (Surname) ' + this.userData.stdLastNameTh + '\nName ' + this.userData.stdFirstNameEn + ' Surname ' + this.userData.stdLastNameEn + '\nสาขาวิชา ' + this.userData.stdBranch + ' ชั้นปีที่ ' + this.userData.stdYear + ' เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา ' + this.userData.std_LastGpa + ' เกรดเฉลี่ยสะสม' + this.userData.stdHsGpa + ' สถานที่เกิด ' + this.userData.stdBornPlace + ' วันเดือนปีเกิด' + this.userData.stdBornDate + ' อายุ ' + this.userData.stdAge + ' เพศ ' + this.userData.genderNameTh + ' บัตรประจำตัวประชาชนเลขที่ ' + this.userData.stdPersonId + '  สัญชาติ ' + this.userData.stdNation + ' ศาสนา ' + this.userData.stdReligion + ' ส่วนสูง cm ' + this.userData.stdHeight + ' ซม. น้ำหนัก kg ' + this.userData.stdWeigh + '  ที่อยู่ที่ติดต่อได้ ' + this.userData.stdNowAddress + '\nที่อยู่ตามทะเบียน ' + this.userData.stdHouseParticularsAddress + ' โทร.  ' + this.userData.stdMmobileTel + ' มือถือ ' + this.userData.stdTel + ' E-mail Address ' + this.userData.stdEmail]
                     // [{ border: [true, false, true, false], text: 'บุคคลที่ติดต่อได้ในกรณีฉุกเฉิน' }],
                     // [{ border: [true, false, true, true], text: 'ชื่อ – นามสกุล _____________________________________________________โทรศัพท์ ___________________\nความสัมพันธ์_____________________________________ที่อยู่ ___________' }]
                   ]
@@ -360,15 +428,15 @@ export class StudentOrgAppFormComponent implements OnInit {
                 colSpan: 3, table: {
                   widths: '*',
                   body: [
-                    [{ text : `ข้อมูลครอบครัว (FAMILY DETAILS)`, alignment: 'center'}],
-                    ['ชื่อบิดา' + this.userData.stdFatherNameTh + ' อาชีพ ' + this.userData.stdFatherJob + ' โทรศัพท์  ' + this.userData.stdFatherMobileTel + '\nชื่อมารดา ' + this.userData.stdMotherNameTh + ' อาชีพ ' + this.userData.stdMotherJob + ' โทรศัพท์  ' + this.userData.stdMotherMobileTel+'\nที่อยู่ ______'],
-                    [{ text : 'ประวัติการศึกษา (EDUCATIONAL HISTORY)', alignment: 'center'}],
+                    [{ text: `ข้อมูลครอบครัว (FAMILY DETAILS)`, alignment: 'center' }],
+                    ['ชื่อบิดา' + this.userData.stdFatherNameTh + ' อาชีพ ' + this.userData.stdFatherJob + ' โทรศัพท์  ' + this.userData.stdFatherMobileTel + '\nชื่อมารดา ' + this.userData.stdMotherNameTh + ' อาชีพ ' + this.userData.stdMotherJob + ' โทรศัพท์  ' + this.userData.stdMotherMobileTel + '\nที่อยู่ ______'],
+                    [{ text: 'ประวัติการศึกษา (EDUCATIONAL HISTORY)', alignment: 'center' }],
                     [{
                       table: {
                         widths: ['*', '*', '*', 'auto', 'auto'],
                         body: [
                           ['ระดับ', 'สถานศึกษา', 'ปีที่เริ่ม', 'ปีที่จบ', 'ผลการศึกษา'],
-                          [ this.AppForm.get('eduLv').value , this.AppForm.get('eduShl').value , this.AppForm.get('eduForm').value, this.AppForm.get('eduTo').value, this.AppForm.get('eduGpax').value]
+                          [this.AppForm.get('eduLv').value, this.AppForm.get('eduShl').value, this.AppForm.get('eduForm').value, this.AppForm.get('eduTo').value, this.AppForm.get('eduGpax').value]
                         ]
                       }
                     }]
@@ -399,7 +467,7 @@ export class StudentOrgAppFormComponent implements OnInit {
             // fillColor: function (rowIndex, node, columnIndex) { return null; }
           }
         }, //end Page 2
-        {defaultStyle: { font: 'Sarabun' },pageBreak: 'after',text : ''},
+        { defaultStyle: { font: 'Sarabun' }, pageBreak: 'after', text: '' },
         {
           // layout: 'lightHorizontalLines', // optional
           defaultStyle: { font: 'Sarabun' },
@@ -420,16 +488,16 @@ export class StudentOrgAppFormComponent implements OnInit {
                 colSpan: 3, table: {
                   widths: '*',
                   body: [
-                    [{ text : `ข้อมูลครอบครัว (FAMILY DETAILS)`, alignment: 'center'}],
-                    ['ชื่อบิดา' + this.userData.stdFatherNameTh + ' อาชีพ ' + this.userData.stdFatherJob + ' โทรศัพท์  ' + this.userData.stdFatherMobileTel + '\nชื่อมารดา ' + this.userData.stdMotherNameTh + ' อาชีพ ' + this.userData.stdMotherJob + ' โทรศัพท์  ' + this.userData.stdMotherMobileTel+'\nที่อยู่ ______'],
-                    [{ text : 'ประวัติการอบรม และกิจกรรมนอกหลักสูตร', alignment: 'center'}],
+                    [{ text: `ข้อมูลครอบครัว (FAMILY DETAILS)`, alignment: 'center' }],
+                    ['ชื่อบิดา' + this.userData.stdFatherNameTh + ' อาชีพ ' + this.userData.stdFatherJob + ' โทรศัพท์  ' + this.userData.stdFatherMobileTel + '\nชื่อมารดา ' + this.userData.stdMotherNameTh + ' อาชีพ ' + this.userData.stdMotherJob + ' โทรศัพท์  ' + this.userData.stdMotherMobileTel + '\nที่อยู่ ______'],
+                    [{ text: 'ประวัติการอบรม และกิจกรรมนอกหลักสูตร', alignment: 'center' }],
                     [{
                       table: {
                         widths: ['*', '*', '*', 'auto'],
                         body: [
-                          [{ text:'หัวข้อฝึกอบรม/ฝึกงาน ',rowSpan : 2}, { text:'หน่วยงาน\nที่ให้การฝึกอบรม/ฝึกงาน',rowSpan : 2},{ text:'ระยะเวลา',colSpan : 2} , ''],
+                          [{ text: 'หัวข้อฝึกอบรม/ฝึกงาน ', rowSpan: 2 }, { text: 'หน่วยงาน\nที่ให้การฝึกอบรม/ฝึกงาน', rowSpan: 2 }, { text: 'ระยะเวลา', colSpan: 2 }, ''],
                           ['', '', 'จาก', 'ถึง'],
-                          [ this.AppForm.get('work').value , this.AppForm.get('work2').value , this.AppForm.get('date').value, this.AppForm.get('date2').value]
+                          [this.AppForm.get('work').value, this.AppForm.get('work2').value, this.AppForm.get('date').value, this.AppForm.get('date2').value]
                         ]
                       }
                     }]
@@ -440,8 +508,8 @@ export class StudentOrgAppFormComponent implements OnInit {
                 keepWithHeaderRows: 1, colSpan: 3, table: {
                   widths: '*',
                   body: [
-                    [{text : `จุดหมายงานอาชีพ (CAREER VISIONS)`, alignment: 'center'}],
-                    [ 'ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ ( List your career goals, fields of interest and job preferences.)\n'+this.AppForm.get('CareerVisions').value ]
+                    [{ text: `จุดหมายงานอาชีพ (CAREER VISIONS)`, alignment: 'center' }],
+                    ['ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ ( List your career goals, fields of interest and job preferences.)\n' + this.AppForm.get('CareerVisions').value]
                   ]
                 }
               }, '', ''],
@@ -449,8 +517,8 @@ export class StudentOrgAppFormComponent implements OnInit {
                 keepWithHeaderRows: 1, colSpan: 3, table: {
                   widths: '*',
                   body: [
-                    [{text : `ความสามารถทางภาษา (LANGUAGE PROFICIENCY)`, alignment: 'center'}],
-                    [ this.AppForm.get('SpecialComputerSkills').value]
+                    [{ text: `ความสามารถทางภาษา (LANGUAGE PROFICIENCY)`, alignment: 'center' }],
+                    [this.AppForm.get('SpecialComputerSkills').value]
                   ]
                 }
               }, '', ''],
@@ -458,12 +526,12 @@ export class StudentOrgAppFormComponent implements OnInit {
                 keepWithHeaderRows: 1, colSpan: 3, table: {
                   widths: '*',
                   body: [
-                    [{text : `ความสามารถพิเศษทางคอมพิวเตอร์`, alignment: 'center'}],
-                    [ this.AppForm.get('SpecialComputerSkills2').value ]
+                    [{ text: `ความสามารถพิเศษทางคอมพิวเตอร์`, alignment: 'center' }],
+                    [this.AppForm.get('SpecialComputerSkills2').value]
                   ]
                 }
               }, '', '']
-              
+
             ]
           },
           layout: {
@@ -488,7 +556,7 @@ export class StudentOrgAppFormComponent implements OnInit {
             // fillColor: function (rowIndex, node, columnIndex) { return null; }
           }
         }, //end Page 3
-        {defaultStyle: { font: 'Sarabun' },pageBreak: 'after',text : ''},
+        { defaultStyle: { font: 'Sarabun' }, pageBreak: 'after', text: '' },
         {
           // layout: 'lightHorizontalLines', // optional
           defaultStyle: { font: 'Sarabun' },
@@ -505,13 +573,13 @@ export class StudentOrgAppFormComponent implements OnInit {
               ['', { border: [false, false, false, false], text: 'APPLICATION FOR COOPERATIVE EDUCATION JOB', bold: true, alignment: 'center', style: 'tableHeader' }, ''],
               ['', { border: [false, false, false, false], text: 'วิชาสหกิจศึกษา คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา', alignment: 'center', style: 'tableHeader' }, ''],
               ['', { border: [false, false, false, true], text: 'Cooperative Education --- Faculty of Informatics Burapha University', bold: true, alignment: 'center', style: 'tableHeader' }, ''],
-              
+
               [{
                 keepWithHeaderRows: 1, colSpan: 3, table: {
                   widths: '*',
                   body: [
-                    [{text : `โปรดอธิบายให้ผู้อื่นรู้จักตัวท่านดีขึ้น`, alignment: 'left'}],
-                    [ this.AppForm.get('SpecialComputerSkills').value ]
+                    [{ text: `โปรดอธิบายให้ผู้อื่นรู้จักตัวท่านดีขึ้น`, alignment: 'left' }],
+                    [this.AppForm.get('SpecialComputerSkills').value]
                   ]
                 }
               }, '', ''],
@@ -519,12 +587,12 @@ export class StudentOrgAppFormComponent implements OnInit {
                 keepWithHeaderRows: 1, colSpan: 3, table: {
                   widths: '*',
                   body: [
-                    [{text : `ความสามารถพิเศษทางคอมพิวเตอร์`, alignment: 'center'}],
-                    [ this.AppForm.get('SpecialComputerSkills2').value ]
+                    [{ text: `ความสามารถพิเศษทางคอมพิวเตอร์`, alignment: 'center' }],
+                    [this.AppForm.get('SpecialComputerSkills2').value]
                   ]
                 }
               }, '', '']
-              
+
             ]
           },
           layout: {
@@ -558,11 +626,11 @@ export class StudentOrgAppFormComponent implements OnInit {
 
   }
 
-  // loadingProvinces() {
-  //   this.appFormService.getProvince().subscribe((data: {}) => {
-  //     this.A2Provinces = this.Provinces = data;
-  //   });
-  // }
+  loadingProvinces() {
+    this.appFormService.getProvince().subscribe((data: {}) => {
+      this.A2Provinces = this.Provinces = data;
+    });
+  }
 
   // loadingAmphures(adr: boolean, pv: number) {
   //   this.appFormService.getAmphure(pv).subscribe((data: {}) => {
@@ -579,17 +647,33 @@ export class StudentOrgAppFormComponent implements OnInit {
   //   });
   // }
 
-  // enableAddressOther(event) {
-  //   this.FDAddressOther = false;
-  //   if (event === 0) {
-  //     this.FDAddressOther = true;
-  //   }
+  enableAddressOther(event) {
+    this.FDAddressOther = false;
+
+    if (event === 0) {
+      this.FDAddressOther = true;
+    } else if (event === 1) {
+      if (this.AppForm.get('Address1').value != null) {
+        this.AppForm.get('stdParentAddress').setValue(this.AppForm.get('Address1').value);
+      } else {
+        this.AppForm.get('stdParentAddress').setValue(this.userData.stdHouseParticularsAddress);
+      }
+    } else if (event === 2) {
+      if (this.AppForm.get('Address2').value != null) {
+        this.AppForm.get('stdParentAddress').setValue(this.AppForm.get('Address2').value);
+      } else {
+        this.AppForm.get('stdParentAddress').setValue(this.userData.stdNowAddress);
+      }
+    } else {
+      this.AppForm.get('stdParentAddress').setValue(this.userData.stdParentAddress);
+    }
+  }
 
   // }
 
-  // public get getFDAddressOther() {
-  //   return this.FDAddressOther;
-  // }
+  public get getFDAddressOther() {
+    return this.FDAddressOther;
+  }
 
   // showAmphures(adr: boolean = true, $event) {
   //   console.log('adr : ',adr);
