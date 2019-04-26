@@ -27,7 +27,7 @@
                 {{row.orgNameTh}} ({{row?.orgNameEn ? row.orgNameEn : 'N/A'}})
               </ng-template>
             </ngx-datatable-column>
-            <ngx-datatable-column name="ดูรายละเอียด">
+            <ngx-datatable-column name="ดำเนินการ">
               <ng-template ngx-datatable-cell-template let-value="value">
                 <div class="btn-toolbar justify-content-center">
                   <button class="btn btn-primary detailed" routerLink="/view_announcement/{{value.id}}"
@@ -38,7 +38,7 @@
                       <fa name="plus"></fa>
                     </button>&nbsp; -->
                   <button class="btn btn-warning detailed" *ngIf="isSignin && (isAdmin||isStaff)" data-toggle="tooltip"
-                    data-placement="top" title="แก้ไขประกาศ" routerLink="/update_announcement">
+                    data-placement="top" title="แก้ไขประกาศ" routerLink="/update_announcement/{{value.id}}">
                     <fa name="pencil"></fa>
                   </button>
                 </div>

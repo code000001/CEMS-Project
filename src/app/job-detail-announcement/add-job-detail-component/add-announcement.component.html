@@ -13,15 +13,15 @@
       <div class="card-body">
         <div class="form-group row">
           <label class="col-md-3 col-form-label text-lg-right no-padding-right">สถานประกอบการ</label>
+          <span style="color: red;"
+              class="asteriskField">*</span>
           <div class="controls col-md-4 ">
             <select class="form-control" id="annOrgId" [(ngModel)]="annOrgId">
-              <option value='1'>MFEC</option>
-              <option value='2'>TARAD Dot Com</option>
-              <option value='3'>บริษัท ล็อซบิก พีเอ</option>
+              <option *ngFor="let o of org" [value]="o.id">{{o.orgNameTh}}</option>
             </select>
           </div>
           <label class="col-sm-2 col-form-label text-lg-right no-padding-right" for="annStdAmount">จำนวนที่รับ
-            <span class="asteriskField">*</span>
+            <span style="color: red;" class="asteriskField">*</span>
           </label>
           <div class="controls col-md-2 ">
             <select class="form-control" [(ngModel)]="annStdAmount" id="annStdAmount">
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-md-3 col-form-label text-lg-right no-padding-right" for="annReward">สวัสดิการ<span
+          <label class="col-md-3 col-form-label text-lg-right no-padding-right" for="annReward">สวัสดิการ<span style="color: red;"
               class="asteriskField">*</span>
           </label>
           <div class="controls col-md-8 ">
@@ -44,7 +44,7 @@
         </div>
 
         <div class="form-group row">
-          <label class="col-md-3 col-form-label text-lg-right no-padding-right" for="annWorkshift">วันทำงาน<span
+          <label class="col-md-3 col-form-label text-lg-right no-padding-right" for="annWorkshift">วันทำงาน<span style="color: red;"
               class="asteriskField">*</span> </label>
           <div class="controls col-md-8 ">
             <input class="form-control" id="annWorkshift" name="annWorkshift" [(ngModel)]="annWorkshift"
@@ -53,7 +53,7 @@
         </div>
         <div class="form-group row">
           <label class="col-md-3 col-form-label text-lg-right no-padding-right"
-            for="annItemReq">อุปกรณ์ที่ต้องนำติดตัว<span class="asteriskField">*</span> </label>
+            for="annItemReq">อุปกรณ์ที่ต้องนำติดตัว<span style="color: red;" class="asteriskField">*</span> </label>
           <div class="controls col-md-8 ">
             <input class="form-control" id="annItemReq" name="annItemReq" [(ngModel)]="annItemReq"
               placeholder="ex. คอมพิวเตอร์" style="margin-bottom: 10px">
@@ -62,13 +62,13 @@
         <div class="form-group row">
           <div id="div_pos" class="form-group required row controls col-md-6">
             <label for="logpAnnPosId"
-              class="col-md-6 col-form-label text-lg-right no-padding-right">ตำแหน่งที่ต้องการรับสมัคร<span
+              class="col-md-6 col-form-label text-lg-right no-padding-right">ตำแหน่งที่ต้องการรับสมัคร<span style="color: red;"
                 class="asteriskField">*</span> </label>
             <div class="controls col-md-5 ">
               <select class="form-control" id="logpAnnPosId" [(ngModel)]="logpAnnPosId">
                 <option value='4'>Tester</option>
-                <option value='2'>Business Analyst</option>
-                <option value='3'>Web application</option>
+                <option value='3'>Business Analyst</option>
+                <option value='2'>Developer</option>
               </select>
             </div>
             <button id="addpos" class="btn btn-primary">
@@ -78,7 +78,7 @@
           <div id="div_know" class="form-group row  controls col-md-6">
             <label for="logkAnnKrdId"
               class="col-md-6 col-form-label text-lg-right no-padding-right">ความสามารถด้านวิชาการ<span
-                class="asteriskField">*</span> </label>
+                class="asteriskField" style="color: red;">*</span> </label>
             <div class="controls col-md-5">
               <select class="form-control" id="logkAnnKrdId" [(ngModel)]="logkAnnKrdId">
                 <option value='2'>HTML</option>
@@ -98,7 +98,7 @@
         </div>
         <div class="form-group row">
           <label class="col-md-3 col-form-label text-lg-right">วันคัดเลือกส่งใบสมัคร<span
-              class="asteriskField">*</span>
+              class="asteriskField" style="color: red;">*</span>
           </label>
           <div class="controls col-md-3">
             <mat-form-field>
@@ -107,7 +107,7 @@
               <mat-datepicker #annStartDate startView="year" [startAt]="startDate"></mat-datepicker>
             </mat-form-field>
           </div>
-          <label class="col-md-1 col-form-label text-lg-right no-padding-right">ถึง<span class="asteriskField">*</span>
+          <label class="col-md-1 col-form-label text-lg-right no-padding-right">ถึง
           </label>
           <div class="controls col-md-3">
             <mat-form-field>

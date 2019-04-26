@@ -56,7 +56,7 @@ const routes: Routes = [
       { path: 'profile-management/std-views-trainning', component: StdViewsTrainningComponent, canActivate: [AuthGuard], data: { title: 'อัปโหลดเรซูเม', roles: [Role.User] }},
       { path: 'add_announcement', component: AddJobDetailAnnouncementComponent, data : { title: 'ประกาศบริษัท'} },
       { path: 'view_announcement/:id', component: ViewJobDetailAnnouncementComponent, data: { title:'รายละเอียดของบริษัท'} },
-      { path: 'update_announcement', component: UpdateJobDetailAnnouncementComponent, data: { title:'แก้ไขรายละเอียดของบริษัท'} },
+      { path: 'update_announcement/:id', component: UpdateJobDetailAnnouncementComponent, data: { title:'แก้ไขรายละเอียดของบริษัท'} },
       { path: 'qualification', component: StuQualificationcementComponent, canActivate: [AuthGuard], data: { title: 'คัดเลือก', roles: [Role.Admin, Role.Staff, Role.Agent, Role.User] } },
       // -------------------- ADMIN
       { path: 'new-account', component: NewAccountComponent, canActivate: [AuthGuard], data: { title: 'เพิ่มผู้ใช้', roles: [Role.Admin] }},
