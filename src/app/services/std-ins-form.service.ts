@@ -51,8 +51,8 @@ export class StudentDataService{
             }));
     }
     
-    getstudentdataqualifyingbyStdId(std_id: number): Observable<StudentdataInterfaceQualifying>{
-        return this.http.get<StudentdataInterfaceQualifying>(`${this.authenticationService.path_url}/std_data/${std_id}`, 
+    getStudentDataQualification(): Observable<StudentdataInterface[]>{
+        return this.http.get<StudentdataInterface[]>(`${this.authenticationService.path_url}/all_std_data`, 
             ({ headers: this.httpHeadersRes })).pipe(map(data => {
                  console.log("req data => ", data);
                 return data

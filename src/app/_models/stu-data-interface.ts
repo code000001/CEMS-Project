@@ -2,6 +2,7 @@ export class StudentdataInterface {
     id: number
     stdAccId: number
     stdStatusId: number
+    stdOrgId: number
     stdId: number
     stdPrefixTh: string
     stdFirstnameTh: string

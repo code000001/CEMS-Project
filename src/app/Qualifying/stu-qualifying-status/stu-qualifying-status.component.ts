@@ -64,7 +64,8 @@ export class StuQualifyingStatusComponent implements OnInit {
         stdStatusId: null,
         stdTestScore: null,
         std_hr_prepare: null,
-        std_hr_conference: null
+        std_hr_conference: null,
+        stdOrgId: null
       });
       
     }
@@ -76,28 +77,4 @@ export class StuQualifyingStatusComponent implements OnInit {
       console.log("std : ", this.add_std);
     }    );
   }
-
-  get isSignin() {
-    if (this.currentUser != null) {
-      return true;
-    }
-    return false;
-  }
-
-  get isUser() {
-    return this.currentUser && this.currentUser.accTypeId === Role.User;
-  }
-
-  get isStaff() {
-    return this.currentUser && this.currentUser.accTypeId === Role.Staff;
-  }
-
-  get isAgent() {
-    return this.currentUser && this.currentUser.accTypeId === Role.Agent;
-  }
-
-  get isAdmin() {
-    return this.currentUser && this.currentUser.accTypeId === Role.Admin;
-  }
-
 }
