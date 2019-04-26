@@ -55,26 +55,17 @@
       <div class="collapse show" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group row">
-        <label class="col-sm-3 col-form-label text-lg-right no-padding-right">ที่ตั้งสถานประกอบการ :</label>
-        <div class="col-md-3 col-form-label no-padding-right">
-          <span *ngIf="org && org[0]">{{org[0].orgAddress}}</span>
-        </div>
-        <label class="col-sm-2 col-form-label text-lg-right no-padding-right">ติดต่อ : </label>
-        <div class="col-md-2 col-form-label no-padding-right">
-          <span *ngIf="org && org[0]"> {{org[0].orgEmail}} </span>
-        </div>
-      </div>
-       
-      
-
-      <div *ngIf="isUser">
-        <hr class="mb-4">
-        <div *ngIf="isUser">
-          <button *ngIf="isRegister" class="btn btn-primary btn-lg btn-block" (click)="appfrom()">ลงสมัคร</button>
+            <label class="col-sm-3 col-form-label text-lg-right no-padding-right">ที่ตั้งสถานประกอบการ :</label>
+            <div class="col-md-3 col-form-label no-padding-right">
+              <span *ngIf="org && org[0]">{{org[0].orgAddress}}</span>
+            </div>
+            <label class="col-sm-2 col-form-label text-lg-right no-padding-right">ติดต่อ : </label>
+            <div class="col-md-2 col-form-label no-padding-right">
+              <span *ngIf="org && org[0]"> {{org[0].orgEmail}} </span>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-    </div>
     </div>
     <div class="card">
       <div class="card-header">
@@ -91,8 +82,15 @@
               <span *ngIf="annData && annData[0]"> วันที่ {{annData[0].annStartDate  | THPipe}} - วันที่
                 {{annData[0].annEndDate | THPipe}}</span>
             </div>
+            <div *ngIf="isUser">
+              <hr class="mb-4">
+              <div *ngIf="isUser">
+                <button *ngIf="isRegister" class="btn btn-primary btn-lg btn-block" (click)="appfrom()">ลงสมัคร</button>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>

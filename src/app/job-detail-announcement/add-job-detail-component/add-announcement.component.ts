@@ -12,6 +12,7 @@ import {FormControl} from '@angular/forms';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 import * as moment from 'moment';
+import Swal from 'sweetalert2';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL',
@@ -40,8 +41,8 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
   userFromApi: User;
   id: number = null;
   annStatusId: number = null;
-  annOrgId: number = 3
-  annAccId: number = 1
+  annOrgId: number;
+  annAccId: number = 1;
  
   annStdAmount: number
   annReward: string
@@ -69,6 +70,9 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
     private service: OrganizationService) { this.userFromApi = this.currentUser = this.authenticationService.currentUserValue; }
 
   ngOnInit() {
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
     $(document).ready(function () {
       $("#addpos").click(function () {
         $("#div_pos").after("<div class='form-group required row controls col-md-12'><label for='logpAnnPosId' class='control-label col-md-3 requiredField'></label><div class='controls col-md-4'>" +
@@ -119,6 +123,14 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
         this._getAnouncement.push(announcement);
       },()=>{
         this.router.navigate(['/announcement']);
+        
+          Swal.fire({
+                type: 'success',
+                title: 'บันทึกข้อมูลสำเร็จ',
+                showConfirmButton: false,
+                timer: 1500
+              })
+          
       })
     
     this.service.postLogKnowlegdeById(annLogKnowledge)
