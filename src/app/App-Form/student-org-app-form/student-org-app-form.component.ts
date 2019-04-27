@@ -16,7 +16,7 @@ import { formatDate } from '@angular/common';
 
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-student-org-app-form',
   templateUrl: './student-org-app-form.component.html',
@@ -96,38 +96,49 @@ export class StudentOrgAppFormComponent implements OnInit {
     if (this.AppForm.get('Address2').value != null) { this.userData.stdNowAddress = this.AppForm.get('Address2').value }
     if (this.SameAddress1 == false) { this.userData.stdNowAddress = this.AppForm.get('Address1').value }
     if (this.AppForm.get('stdReligion').value != null) { this.userData.stdReligion = this.AppForm.get('stdReligion').value }
-    if (this.AppForm.get('stdParentMobileTel').value != null) { this.userData.stdParentMobile = this.AppForm.get('stdParentMobileTel').value }
+    if (this.AppForm.get('stdParentMobile').value != null) { this.userData.stdParentMobile = this.AppForm.get('stdParentMobile').value }
     if (this.AppForm.get('stdYear').value != null) { this.userData.stdYear = this.AppForm.get('stdYear').value }
     if (this.AppForm.get('stdEmail').value != null) { this.userData.stdEmail = this.AppForm.get('stdEmail').value }
-    // if (this.AppForm.get('stdGpax').value != null) { this.userData.stdGpax = this.AppForm.get('stdGpax').value }
     if (this.AppForm.get('stdHsGpa').value != null) { this.userData.stdHsGpa = this.AppForm.get('stdHsGpa').value }
     if (this.AppForm.get('stdFatherJob').value != null) { this.userData.stdFatherJob = this.AppForm.get('stdFatherJob').value }
     if (this.AppForm.get('stdParentMobile').value != null) { this.userData.stdParentMobile = this.AppForm.get('stdParentMobile').value }
     if (this.AppForm.get('stdMotherJob').value != null) { this.userData.stdMotherJob = this.AppForm.get('stdMotherJob').value }
     if (this.AppForm.get('stdMotherMobileTel').value != null) { this.userData.stdMotherMobileTel = this.AppForm.get('stdMotherMobileTel').value }
     if (this.AppForm.get('std_LastGpa').value != null) { this.userData.std_LastGpa = this.AppForm.get('std_LastGpa').value }
-
+    if (this.AppForm.get('stdParentAddress').value != null) { this.userData.stdParentAddress = this.AppForm.get('stdParentAddress').value }
 
     // this.submitted = true;
     // console.log(this.userData);
     this.appFormService.updateStdAppForm(this.userData)
-      .subscribe(() => {
-        this.errortype = 'success';
-        this.error = 'บันทึกข้อมูลสำเร็จ';
+      .subscribe((data) => {
+
+        console.log('sc -> ',data);
+        Swal.fire({
+          title: "บันทึกข้อมูลสำเร็จ!",
+          text: "ระบบบันทึกข้อมูลเรียบร้อย",
+          type: "success",
+          timer: 1800,
+          confirmButtonColor: '#244f99',
+          confirmButtonText: 'ตกลง',
+          showConfirmButton: false,
+          showCancelButton: false,
+          allowEscapeKey: false,
+          allowOutsideClick: false
+        })
       }, err => {
+        console.log('err -> ',err);
+        Swal.fire({
+          title: "ไม่สามารถบันทึกข้อมูลได้",
+          type: "warning",
+          text: "กรุณาตรวจสอบข้อมูลของท่าน",
+          confirmButtonColor: '#244f99',
+          confirmButtonText: 'ตกลง',
+          showCancelButton: false,
+          allowEscapeKey: false,
+          allowOutsideClick: false
+        })
         console.log(' err updateStdAppForm -> ', err);
-        this.errortype = 'danger';
-        this.error = 'ไม่สามารถบันทึกข้อมูลได้ กรุณาตรวจสอบข้อมูลของท่าน';
       });
-
-    if (this.errortype != 'success') {
-
-    } else {
-      setTimeout(() => {
-      }, 1000);
-
-      window.location.reload();
-    }
   }
 
   public get countLevel() {
@@ -226,9 +237,9 @@ export class StudentOrgAppFormComponent implements OnInit {
     this.appFormService.getINS02().subscribe(data => {
       // data.stdBornDate;
       // console.log(' date ',data.stdAge);
-      this.stdBornPlace = parseInt(data.stdBornPlace);
+      // this.stdBornPlace = parseInt(data.stdBornPlace);
       if (data.stdAge != "-" || data.stdAge != null) {
-        data.stdAge = parseInt(formatDate(new Date(), 'yyyy', 'en')) - parseInt(formatDate(data.stdBornDate, 'yyyy', 'en'));
+        data.stdAge = parseInt(formatDate(new Date(), 'yyyy', 'en','+7')) - parseInt(formatDate(data.stdBornDate, 'yyyy', 'en','+7'));
       }
       this.userData = data;
     });
@@ -318,8 +329,11 @@ export class StudentOrgAppFormComponent implements OnInit {
 
   }
 
+  prinout(){
+    // var doc = new jspdf();
+  }
 
-  printout() {
+  printout1() {
 
     pdfMake.vfs = pdfFonts.pdfMake.vfs;
     pdfMake.fonts = {

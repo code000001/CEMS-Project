@@ -1,7 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
@@ -34,9 +34,9 @@ import { StuQualifyingStatusComponent } from './Qualifying/stu-qualifying-status
 import { StaffProfileManagementComponent } from './Profile-Management/staff-profile-management/staff-profile-management.component';
 import { NewAccountComponent } from './Admin/new-account/new-account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AddJobDetailAnnouncementComponent} from './job-detail-announcement/add-job-detail-component/add-announcement.component'
-import { ViewJobDetailAnnouncementComponent} from './job-detail-announcement/view-job-detail-component/view-announcement.component'
-import { UpdateJobDetailAnnouncementComponent} from './job-detail-announcement/update-job-detail-component/update-announcement.component'
+import { AddJobDetailAnnouncementComponent } from './job-detail-announcement/add-job-detail-component/add-announcement.component'
+import { ViewJobDetailAnnouncementComponent } from './job-detail-announcement/view-job-detail-component/view-announcement.component'
+import { UpdateJobDetailAnnouncementComponent } from './job-detail-announcement/update-job-detail-component/update-announcement.component'
 import { SkillTestManagementComponent } from './Profile-Management/skill-test-management/skill-test-management.component';
 import { SiteLayoutComponent } from './site-layout/site-layout.component';
 import { InsManagementComponent } from './Profile-Management/ins-management/ins-management.component';
@@ -45,12 +45,13 @@ import { UploadTranscriptComponent } from './Profile-Management/upload-transcrip
 import { UploadResumeComponent } from './Profile-Management/upload-resume/upload-resume.component';
 import { StaffTrainingManagementComponent } from './Profile-Management/staff-training-management/staff-training-management.component';
 import { StaffCoopComponent } from './Profile-Management/staff-coop/staff-coop.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatFormFieldModule, MatInputModule, MatCheckboxModule,MatNativeDateModule} from '@angular/material';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {PipeFormat} from './_helpers/pipe-date';
-import {StdViewsTrainningComponent } from './Profile-Management/std-views-trainning/std-views-trainning.component';
-import {OrganizationService} from './services/organization.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatNativeDateModule } from '@angular/material';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { PipeFormat } from './_helpers/pipe-date';
+import { THpersonIDPipe } from './_helpers/person-id';
+import { StdViewsTrainningComponent } from './Profile-Management/std-views-trainning/std-views-trainning.component';
+import { OrganizationService } from './services/organization.service';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import {OrganizationService} from './services/organization.service';
     UploadResumeComponent,
     StaffTrainingManagementComponent,
     PipeFormat,
+    THpersonIDPipe,
     StaffCoopComponent,
     StdViewsTrainningComponent
   ],
@@ -95,14 +97,14 @@ import {OrganizationService} from './services/organization.service';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     NgProgressModule.withConfig({
-      spinner : false,
+      spinner: false,
       color: '#fff'
     }),
     NgProgressHttpModule,
     NgSelectModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatCheckboxModule,
     MatDatepickerModule,
     MatFormFieldModule,
@@ -118,6 +120,6 @@ import {OrganizationService} from './services/organization.service';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
-  exports: [BsDropdownModule, TooltipModule, ModalModule,PipeFormat]
+  exports: [BsDropdownModule, TooltipModule, ModalModule, PipeFormat]
 })
 export class AppModule { }
