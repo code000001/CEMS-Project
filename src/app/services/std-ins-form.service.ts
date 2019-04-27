@@ -5,7 +5,6 @@ import { catchError, tap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../_services';
 import { StudentdataInterface } from '../_models/stu-data-interface';
-import { StudentdataInterfaceQualifying } from '../_models/stu-data-qualifying-interface';
 
 @Injectable({
     providedIn: 'root'
