@@ -71,7 +71,7 @@
     background: #333333;
 }
 
-.hizli-menu .hizli-menu-ic .btn-group:After {
+/* .hizli-menu .hizli-menu-ic .btn-group:After {
     position: absolute;
     display: block;
     content: "";
@@ -82,7 +82,7 @@
     left: 10px;
     margin: auto;
     transition: cubic-bezier(0, 0.71, 0, 1.07) .7s;
-}
+} */
 
 .hizli-menu .hizli-menu-ic .btn-group:hover:After {
     background: #4682B4;

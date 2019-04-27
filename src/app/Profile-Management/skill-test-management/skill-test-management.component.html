@@ -1,16 +1,15 @@
-<div class="container-contact100">
+<div class="container-contact100" *ngIf="std_skill">
   <div class="wrap-contact100">
-    <form class="contact100-form validate-form">
+    <form class="contact100-form validate-form" [formGroup]="Skill" (ngSubmit)="addupSkilltest()">
       <span class="contact100-form-title">
         ผลการสอบทักษะ
       </span>
-      <table class="table table-striped" *ngIf="std_skill">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th scope="col">ลำดับ</th>
             <th scope="col" style="text-align:center;">ทักษะการเขียนโปรแกรม</th>
-            <th scope="col">เกรด</th>
-            <th scope="col">จัดการ</th>
+            <th scope="col" style="width:20%">ผลสอบทักษะ</th>
           </tr>
         </thead>
         <tbody>
@@ -19,41 +18,67 @@
             <th scope="row">
               <fa name="fab fa-html5"></fa> HTML
             </th>
-            <td>{{std_skill.stdSkillHtml}}</td>
-            <td><button type="button" class="btn btn-warning">แก้ไข</button></td>
+            <!-- <td>{{std_skill.stdSkillHtml}}</td> -->
+            <div class="form-group">
+              <td style="width:20%">
+                <input type="text" class="form-control" formControlName="stdSkillHtml" [value]="std_skill.stdSkillHtml" name="stdSkillHtml">
+              </td>
+            </div>
           </tr>
           <tr>
             <th>2.</th>
             <th scope="row">
               <img class="svg" width="13px;" src="/assets/img/icon/css3-alt-brands.svg" alt="CSS"> CSS
             </th>
-            <td>{{std_skill.stdSkillCss}}</td>
-            <td><button type="button" class="btn btn-warning">แก้ไข</button></td>
+            <!-- <td>{{std_skill.stdSkillCss}}</td> -->
+            <div class="form-group">
+              <td style="width:20%">
+                <input type="text" class="form-control" formControlName="stdSkillCss" [value]="std_skill.stdSkillCss" name="stdSkillCss">
+              </td>
+            </div>
           </tr>
           <tr>
             <th>3.</th>
             <th scope="row">
               <img class="svg" width="20px;" src="/assets/img/icon/php-brands.svg" alt="PHP"> PHP</th>
-            <td>{{std_skill.stdSkillPhp}}</td>
-            <td><button type="button" class="btn btn-warning">แก้ไข</button></td>
+            <!-- <td>{{std_skill.stdSkillPhp}}</td> -->
+            <div class="form-group">
+              <td style="width:20%">
+                <input type="text" class="form-control" formControlName="stdSkillPhp" [value]="std_skill.stdSkillPhp" name="stdSkillPhp">
+              </td>
+            </div>
           </tr>
           <tr>
             <th>4.</th>
             <th scope="row">
               <fa name="fas fa-database"></fa> SQL
             </th>
-            <td>{{std_skill.stdSkillSql}}</td>
-            <td><button type="button" class="btn btn-warning">แก้ไข</button></td>
+            <!-- <td>{{std_skill.stdSkillSql}}</td> -->
+            <div class="form-group">
+              <td style="width:20%">
+                <input type="text" class="form-control"formControlName="stdSkillSql" [value]="std_skill.stdSkillSql" name="stdSkillSql">
+              </td>
+            </div>
           </tr>
           <tr>
             <th>5.</th>
-            <th scope="row"><img class="svg" width="15px;" src="/assets/img/icon/js-square-brands.svg" alt="JavaScript">
-              JavaScript</th>
-            <td>{{std_skill.stdSkillJs}}</td>
-            <td><button type="button" class="btn btn-warning">แก้ไข</button></td>
+            <th scope="row">
+              <img class="svg" width="15px;" src="/assets/img/icon/js-square-brands.svg" alt="JavaScript"> JavaScript
+            </th>
+            <!-- <td>{{std_skill.stdSkillJs}}</td> -->
+            <div class="form-group">
+              <td style="width:20%">
+                <input type="text" class="form-control" formControlName="stdSkillJs" [value]="std_skill.stdSkillJs" name="stdSkillJs">
+              </td>
+            </div>
           </tr>
         </tbody>
       </table>
+        <button type="button" class="btn btn-secondary" style="width:10%;">
+          <a href="/profile-management" style="color:white;">ยกเลิก</a>
+        </button>
+        <button type="submit" class="btn btn-success" style="width:10%;" (click)="SuccessAlert()">บันทึก
+      </button>
     </form>
   </div>
 </div>
