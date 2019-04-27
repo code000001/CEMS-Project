@@ -25,6 +25,14 @@ export class StudentSkillSerivce{
 
     getstdskillBystdId(std_id: number): Observable<StudentSkillInterface>{
         return this.http.get<StudentSkillInterface>(`${this.authenticationService.path_url}/std_skill/${std_id}`,
-            ({ headers: this.httpHeaders }))
+            ({ headers: this.httpHeaders })).pipe(map(data => {
+                console.log("req data => ", data);
+                return data
+            }));
+    }
+
+    putstdskillBystdId(std_id: number, skill: StudentSkillInterface): Observable<StudentSkillInterface> {
+        return this.http.put<StudentSkillInterface>(`${this.authenticationService.path_url}/edit_skill/${std_id}`, skill,
+            ({ headers: this.httpHeadersRes }))
     }
 }

@@ -116,16 +116,21 @@ export class UpdateJobDetailAnnouncementComponent implements OnInit {
     this.service.putAnnouncement(announcement)
     .subscribe((m) => {
       console.log(announcement);
-      this._getAnouncement.push(announcement);
+    },(err)=>{
+      Swal.fire({
+        type: 'warning',
+        title: 'ไม่สามารถบันทึกข้อมูลได้',
+        showConfirmButton: false,
+        timer: 1500
+      })     
     },()=>{
-      this.router.navigate(['/announcement']);
+      this.router.navigate([`/view_announcement/${this.annOrgId}`]);
         Swal.fire({
               type: 'success',
               title: 'บันทึกข้อมูลสำเร็จ',
               showConfirmButton: false,
               timer: 1500
-            })
-        
+            })     
     })
   }
 
