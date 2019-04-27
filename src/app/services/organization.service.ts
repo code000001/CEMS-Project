@@ -5,12 +5,13 @@ import { catchError, tap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../_services';
 import { OrganizationDataInterface } from '../_models/organization-data-interface';
-import { AnouncementInterface } from '../_models/announcement-interface';
+import { AnouncementInterface, AnouncementPutInterface } from '../_models/announcement-interface';
 import { LogKnowledgeInterface ,LogKnowledgeInterfacePost} from '../_models/log-knowledge-req-interface';
 import { KnowledgeRequirementInterface } from '../_models/knowledge-requirement-interface';
 import { LogPositionInterface ,LogPositionInterfacePost} from '../_models/log-position-interface';
 import { PositionDataInterface } from '../_models/position-data-interface';
 import { AnouncementInterfacePost } from '../_models/announcement-interface-post';
+import { StaffOrgDataInterface } from '../_models/organization-data-interface';
 
 // const httpOptions = {
 //     headers: new HttpHeaders({
@@ -89,5 +90,21 @@ export class OrganizationService {
       logkAnnKrdId: logKnow.logkAnnKrdId
     };
     return this.http.post<LogKnowledgeInterface>(`${this.authenticationService.path_url}/announcement_logKnowledge`, logPostSend, ({ headers: this.httpHeaders }))
+  }
+
+  putAnnouncement(ann: AnouncementInterface): Observable<AnouncementInterface> {
+    let putId = ann.annOrgId;
+    const annPut : AnouncementPutInterface = {
+      annStatusId: ann.annStatusId,
+    annOrgId: ann.annOrgId,
+    annAccId: ann.annAccId,
+    annStartDate : ann.annStartDate,
+    annEndDate : ann.annEndDate,
+    annStdAmount : ann.annStdAmount,
+    annReward : ann.annReward,
+    annWorkshift : ann.annWorkshift,
+    annItemReq : ann.annItemReq
+    }
+    return this.http.put<AnouncementInterface>(`${this.authenticationService.path_url}/announcement/${putId}`, annPut,({ headers: this.httpHeaders }))
   }
 }

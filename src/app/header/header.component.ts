@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthGuard } from '../_guards';
-import { User, Role } from '../_models';
+import { User, Role, StaffOrgDataInterface } from '../_models';
 import { UserService, AuthenticationService } from '../_services';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +12,11 @@ import { UserService, AuthenticationService } from '../_services';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  private currentUserSubject: BehaviorSubject<StaffOrgDataInterface>;
+  curStaff: Observable<StaffOrgDataInterface>;
   currentUser: User;
   userFromApi: User;
+  yo: number = 0;
 
   constructor(
     private router: Router,
@@ -21,11 +24,14 @@ export class HeaderComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private authGuardService: AuthGuard
   ) {
+    this.currentUserSubject = new BehaviorSubject<StaffOrgDataInterface>(JSON.parse(localStorage.getItem('orgStaffCur')));
+    this.curStaff = this.currentUserSubject.asObservable();
     this.userFromApi = this.currentUser = this.authenticationService.currentUserValue;
   }
 
   ngOnInit() {
   }
+
 
   // check user
   get isSignin() {

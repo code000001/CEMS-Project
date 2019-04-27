@@ -1,0 +1,17 @@
+label{
+    box-shadow: none;
+    font-size: 19px;
+}
+
+span{
+    box-shadow: none;
+    font-size: 19px;
+}
+
+.bd-content-title{
+    font-size: 23px;
+}
+
+button{
+    font-size: 23px;
+}

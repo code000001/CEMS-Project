@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthGuard } from '../../_guards';
-import { User, Role } from '../../_models';
+import { User, Role, OrganizationDataInterface } from '../../_models';
 import { UserService, AuthenticationService } from '../../_services';
 import { OrganizationService } from '../../services/organization.service';
 import { AnouncementInterface, } from '../../_models/announcement-interface';
@@ -12,6 +12,8 @@ import {FormControl} from '@angular/forms';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 import * as moment from 'moment';
+import Swal from 'sweetalert2';
+
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL',
@@ -38,10 +40,12 @@ export const MY_FORMATS = {
 export class AddJobDetailAnnouncementComponent implements OnInit {
   currentUser: User;
   userFromApi: User;
+  org: OrganizationDataInterface[]
+
   id: number = null;
   annStatusId: number = null;
-  annOrgId: number = 3
-  annAccId: number = 1
+  annOrgId: number;
+  annAccId: number = 1;
  
   annStdAmount: number
   annReward: string
@@ -69,16 +73,20 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
     private service: OrganizationService) { this.userFromApi = this.currentUser = this.authenticationService.currentUserValue; }
 
   ngOnInit() {
+    this.getOrg();
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
     $(document).ready(function () {
       $("#addpos").click(function () {
-        $("#div_pos").after("<div class='form-group required row controls col-md-12'><label for='logpAnnPosId' class='control-label col-md-3 requiredField'></label><div class='controls col-md-4'>" +
+        $("#div_pos").after("<div class='form-group required row controls col-md-6'><label for='logpAnnPosId' class='col-md-6 col-form-label text-lg-right no-padding-right'></label><div class='controls col-md-5'>" +
           "<select class='form-control' id='logpAnnPosId'>" +
           "<option>Programer</option><option>Tester</option><option>Business Analyst</option><option>Web application</option>" +
           "</select>" + "</div></div>");
       });
 
       $("#addknow").click(function () {
-        $("#div_know").after("<div class='form-group required row controls col-md-12'><label for='logkAnnKrdId' class='control-label col-md-3 requiredField'></label><div class='controls col-md-4'>" +
+        $("#div_know").after("<div class='form-group required row controls col-md-6'><label for='logkAnnKrdId' class='col-md-6 col-form-label text-lg-right no-padding-right'></label><div class='controls col-md-5'>" +
           "<select class='form-control' id='logkAnnKrdId'>" +
           "<option>HTML</option><option>CSS</option><option>PHP</option><option>Java Script</option>" +
           "</select>" + "</div></div>");
@@ -117,8 +125,21 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
       .subscribe((m) => {
         console.log(announcement);
         this._getAnouncement.push(announcement);
+      },(err)=>{
+        Swal.fire({
+          type: 'warning',
+          title: 'ไม่สามารถบันทึกข้อมูลได้',
+          showConfirmButton: false,
+          timer: 1500
+        })     
       },()=>{
-        this.router.navigate(['/announcement']);
+        this.router.navigate(['/announcement']);      
+          Swal.fire({
+                type: 'success',
+                title: 'บันทึกข้อมูลสำเร็จ',
+                showConfirmButton: false,
+                timer: 1500
+              })    
       })
     
     this.service.postLogKnowlegdeById(annLogKnowledge)
@@ -133,6 +154,15 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
         this._getLogPosition.push(annLogPosition);
       })
   }
+
+  getOrg() {
+    this.service.get()
+      .subscribe(org => {
+      this.org = org
+      console.log(this.org)
+      });
+  }
+
 
   get isSignin() {
     if (this.currentUser != null) {

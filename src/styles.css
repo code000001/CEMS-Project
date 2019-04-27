@@ -3,6 +3,10 @@
 @import url('./assets/custom-font.css');
 @import "~@ng-select/ng-select/themes/default.theme.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
 *{
     font-family: 'Sarabun', sans-serif;
@@ -65,4 +69,8 @@ textarea{
 .card-header {
     background-color: #e2e3e5 !important;
     border-bottom: 1px solid #e2e3e5 !important;
+}
+
+.detailed {
+    /* display: inline-block; margin: 0 auto; */
 }

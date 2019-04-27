@@ -3,7 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { User, Role } from '../_models';
+
+import { User, Role, StaffOrgDataInterface } from '../_models';
+import { OrganizationService } from '../services/organization.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -15,8 +17,12 @@ export class AuthenticationService {
     private httpHeaders: HttpHeaders;
     private httpHeadersRes: HttpHeaders;
     private httpHeadersText: HttpHeaders;
+    staffData: StaffOrgDataInterface;
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient,  
+        private authenticationService: AuthenticationService) {
+        
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
         if (this.currentUserSubject.value) {
@@ -105,6 +111,7 @@ export class AuthenticationService {
                 user.accPassword = password;
                 localStorage.setItem('currentUser', JSON.stringify(user));
                 this.currentUserSubject.next(user);
+                
                 return user;
             }));
     }
@@ -112,6 +119,20 @@ export class AuthenticationService {
     logout() {
         // remove user from local storage to log user out
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('orgStaffCur');
         this.currentUserSubject.next(null);
     }
+    getStaff(){
+        this.getStaffId(this.currentUserValue.userId)
+          .subscribe(orgId => { 
+            this.staffData =  orgId;
+            localStorage.setItem('orgStaffCur', JSON.stringify(orgId));
+            console.log(localStorage.getItem('orgStaffCur'));
+            console.log(localStorage.getItem('currentUser'));
+          });
+      }
+
+      getStaffId(staffId: number): Observable<StaffOrgDataInterface> {
+        return this.http.get<StaffOrgDataInterface>(`${this.path}/getOrgData/${staffId}`, ({ headers: this.httpHeaders }))
+      }
 }

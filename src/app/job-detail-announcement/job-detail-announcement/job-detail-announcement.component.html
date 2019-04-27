@@ -1,46 +1,53 @@
 <div class="container">
-  <form>
-    <div class="accordion mt-5" id="accordionExample">
-      <div class="card">
-        <div class="card-header" id="headingOne">
-          <h5 class="mb-0">
-            <!--data-target="#collapseOne"-->
-            <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-              ประกาศการรับสมัครนิสิตสหกิจศึกษา
-            </div>
-          </h5>
-        </div>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingThreex" data-parent="#accordionExample">
-          <div class="card-body">
-            <div class="col-sm-12 no-padding">
-              <ngx-datatable class="bootstrap" [rows]="orgData" [loadingIndicator]="loadingIndicator" columnMode="force"
-                [headerHeight]="50" [footerHeight]="0" [rowHeight]="50">
-                <ngx-datatable-column name="orgNameTh">
-                  <ng-template let-column="column" ngx-datatable-header-template>
-                    <span>รายชื่อบริษัท</span>
-                  </ng-template>
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{row.orgNameTh}}
-                  </ng-template>
-                </ngx-datatable-column>
-                <ngx-datatable-column name="ดูรายละเอียด">
-                  <ng-template ngx-datatable-cell-template let-value="value">
-                    <button class="btn btn-primary" routerLink="/view_announcement/{{value.id}}">
-                      <fa name="search"></fa>
-                    </button>&nbsp;
-                    <button class="btn btn-primary" *ngIf="isSignin && isAdmin" routerLink="/add_announcement">
-                      <fa name="plus"></fa>
-                    </button>&nbsp;
-                    <button class="btn btn-warning" *ngIf="isSignin && isAdmin" routerLink="/update_announcement">
-                      <fa name="pencil"></fa>
-                    </button>
-                  </ng-template>
-                </ngx-datatable-column>
-              </ngx-datatable>
-            </div>
+  <div class="accordion mt-5" id="accordionExample">
+    <div class="card">
+
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <!--data-target="#collapseOne"-->
+          <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+            ประกาศการรับสมัครนิสิตสหกิจศึกษา
           </div>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse show" aria-labelledby="headingThreex" data-parent="#accordionExample">
+        <div class="card-body">
+            <button class="btn btn-primary" *ngIf="isSignin && (isAdmin||isStaff)" routerLink="/add_announcement"
+            style="float: left;" data-toggle="tooltip" data-placement="top" title="เพิ่มประกาศ">
+            <fa name="plus"></fa> เพิ่ม
+          </button>&nbsp;&nbsp;
+            <hr>
+          <ngx-datatable class="bootstrap" [rows]="orgData" [loadingIndicator]="loadingIndicator" columnMode="force"
+            [headerHeight]="60" [footerHeight]="0" [rowHeight]="60">
+            <ngx-datatable-column name="orgNameTh">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <span>รายชื่อบริษัท</span>
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.orgNameTh}} ({{row?.orgNameEn ? row.orgNameEn : 'N/A'}})
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="ดำเนินการ">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <div class="btn-toolbar justify-content-center">
+                  <button class="btn btn-primary detailed" routerLink="/view_announcement/{{value.id}}"
+                    data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด">
+                    <fa name="search"></fa>
+                  </button>&nbsp;
+                  <!-- <button class="btn btn-primary" *ngIf="isSignin && (isAdmin||isStaff)" routerLink="/add_announcement">
+                      <fa name="plus"></fa>
+                    </button>&nbsp; -->
+                  <button class="btn btn-warning detailed" *ngIf="isSignin && (isAdmin||isStaff)" data-toggle="tooltip"
+                    data-placement="top" title="แก้ไขประกาศ" routerLink="/update_announcement/{{value.id}}">
+                    <fa name="pencil"></fa>
+                  </button>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+
         </div>
       </div>
     </div>
-  </form>
+  </div>
 </div>

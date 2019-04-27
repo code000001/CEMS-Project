@@ -24,7 +24,7 @@ export class JobDetailAnnouncementComponent implements OnInit {
 
   ngOnInit() {
     this.getOrganization();
-    if(localStorage.getItem('currentUser') != null){0
+    if(localStorage.getItem('currentUser') != null){
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
   }
