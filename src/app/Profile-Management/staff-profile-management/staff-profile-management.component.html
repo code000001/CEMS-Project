@@ -1,44 +1,172 @@
 <div class="container-contact100">
   <div class="wrap-contact100">
-    <form class="contact100-form validate-form">
+    <form class="contact100-form validate-form" [formGroup]="HourTrain" (ngSubmit)="addupHourTrain()">
       <span class="contact100-form-title">จัดการชั่วโมงอบรมของนิสิต</span>
 
-
-      <!-- <table class="table table-hover ng-scope" style="text-align: center;">
-            <thead style="background:#B0C4DE;">
-              <tr>
-                <th class="ng-binding ng-scope">รหัสนิสิต</th>
-                <th class="ng-binding ng-scope">ชื่อ - นามสกุล</th>
-                <th class="ng-binding ng-scope">อบรมวิชาการ</th>
-                <th class="ng-binding ng-scope">อบรมเตรียมความพร้อม</th>
-                <th class="ng-binding ng-scope">จัดการ</th>
-              </tr>
+      <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link show active" id="home-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="home" aria-selected="true">จัดการชั่วโมงอบรมวิชาการ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="profile" aria-selected="false">จัดการชั่วโมงอบรมเตรียมความพร้อม</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+          <table class="table table-hover" mdbTable hover="true">
+            <thead>
+              <th *ngFor="let head of headElements" scope="col">{{head}}</th>
             </thead>
             <tbody>
-              <tr ng-repeat="row in data.rows" class="ng-scope">
-                <td class="ng-binding">58160651</td>
-                <td class="ng-binding">เกศสุดา ทวีสุข</td>
-                <td class="ng-binding">3</td>
-                <td class="ng-binding">3</td>
-                <td class="ng-binding">
-                  <a href="#" style="padding-left: 2%;">
-                    <fa name="edit" class="btn btn-warning" style="color:white"></fa>
-                  </a>
-                </td>
-              </tr>
-              <tr ng-repeat="row in data.rows" class="ng-scope">
-                <td class="ng-binding">58160500</td>
-                <td class="ng-binding">สุกัลย์ สิทธิบำรุงสุข</td>
-                <td class="ng-binding">6</td>
-                <td class="ng-binding">6</td>
-                <td class="ng-binding">
-                  <a href="#" style="padding-left: 2%;">
-                    <fa name="edit" class="btn btn-warning" style="color:white"></fa>
-                  </a>
+              <tr mdbTableCol *ngFor="let std_trainning of std_trainning">
+                <td scope="row">{{std_trainning.stdId}}</td>
+                <td scope="row">{{std_trainning.stdFirstnameTh}} {{std_trainning.stdLastnameTh}}</td>
+                <td scope="row">{{std_trainning.stdHrConference}}</td>
+                <td scope="row">
+                  <fa name="edit" class="btn btn-warning" style="color:white" (click)="editHrTrain()"></fa>
                 </td>
               </tr>
             </tbody>
-          </table> -->
+          </table>
+        </div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+      </div> -->
+
+      <table class="table table-hover" mdbTable hover="true">
+        <thead>
+          <th *ngFor="let head of headElements" scope="col">{{head}}</th>
+        </thead>
+        <tbody>
+          <tr mdbTableCol *ngFor="let std_trainning of std_trainning; index as i">
+            <td>{{i+1}}</td>
+            <td scope="row">{{std_trainning.stdId}}</td>
+            <td scope="row">{{std_trainning.stdFirstnameTH}} {{std_trainning.stdLastnameTH}}</td>
+            <td scope="row">
+              {{std_trainning.stdHrConference}}
+            </td>
+            <td scope="row">{{std_trainning.stdHrprepare}}</td>
+            <td scope="row">{{std_trainning.stdTestScore}}</td>
+            <td scope="row">
+              <button class="btn btn-warning" style="color:white" (click)="open(content, i,std_trainning.stdAccId,std_trainning.stdHrConference,std_trainning.stdHrprepare,std_trainning.stdTestScore)">แก้ไข</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">จัดการชั่วโมงอบรมของนิสิต</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="row" style="width:100%;padding-left:5%">
+          <div class="modal-body" style="width:40%;">
+            <label>อบรมวิชาการ : </label>
+            <input type="number" class="form-control" formControlName="stdHrConference">
+          </div>
+          <div class="modal-body" style="width:40%;">
+            <label>อบรมเตรียมความพร้อม : </label>
+            <input type="number" class="form-control" formControlName="stdHrprepare">
+          </div>
+        </div>
+        <!--row-->
+
+        <div class="modal-body" style="width:50%;">
+          <label>สถานะผลการสอบทักษะ : </label>
+          <ng-select formControlName="stdTestScore" >
+            <ng-option *ngFor="let testscore of TestScore"  [value]="testscore.id">{{testscore.th}}</ng-option>
+          </ng-select>
+          <!-- <input type="text" class="form-control" formControlName="stdTestScore"> -->
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success" (click)="addupHourTrain(content)">Save</button>
+        </div>
+      </ng-template>
+      <!-- <button type="submit" class="btn btn-success" style="width:10%;" (click)="SuccessAlert()">บันทึก</button> -->
+
+
+      <!-- <ngx-datatable class="bootstrap" [rows]="std_trainning" [loadingIndicator]="loadingIndicator">
+        <ngx-datatable-column name="stdId">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>รหัสนิสิต</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{std_trainning.stdId}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="stdFirstnameTh">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>ชื่อ - นามสกุล</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{std_trainning.stdFirstnameTh}} {{std_trainning.stdLastnameTh}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="stdHrConference">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>อบรมวิชาการ (ชั่วโมง)</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{std_trainning.stdHrConference}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="stdHrPrepare">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>อบรมเตรียมความพร้อม (ชั่วโมง)</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{std_trainning.stdHrPrepare}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <!-- <ngx-datatable-column name="stdHrPrepare">
+          <ng-template let-column="column" ngx-datatable-header-template>
+            <span>ดำเนินการ</span>
+          </ng-template>
+          <ng-template let-row="row" ngx-datatable-cell-template>
+
+          </ng-template>
+        </ngx-datatable-column> -->
+
+      <!-- </ngx-datatable>  -->
+      <!-- <table class="table table-hover ng-scope" style="text-align: center;">
+        <thead style="background:#B0C4DE;">
+          <tr>
+            <th class="ng-binding ng-scope">รหัสนิสิต</th>
+            <th class="ng-binding ng-scope">ชื่อ - นามสกุล</th>
+            <th class="ng-binding ng-scope">อบรมวิชาการ</th>
+            <th class="ng-binding ng-scope">อบรมเตรียมความพร้อม</th>
+            <th class="ng-binding ng-scope">จัดการ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in data.rows" class="ng-scope">
+            <td class="ng-binding">58160651</td>
+            <td class="ng-binding">เกศสุดา ทวีสุข</td>
+            <td class="ng-binding">3</td>
+            <td class="ng-binding">3</td>
+            <td class="ng-binding">
+              <a href="#" style="padding-left: 2%;">
+                <fa name="edit" class="btn btn-warning" style="color:white"></fa>
+              </a>
+            </td>
+          </tr>
+          <tr ng-repeat="row in data.rows" class="ng-scope">
+            <td class="ng-binding">58160500</td>
+            <td class="ng-binding">สุกัลย์ สิทธิบำรุงสุข</td>
+            <td class="ng-binding">6</td>
+            <td class="ng-binding">6</td>
+            <td class="ng-binding">
+              <fa name="edit" class="btn btn-warning" style="color:white" (click)="editHrTrain()"></fa>
+            </td>
+          </tr>
+        </tbody>
+      </table> -->
 
     </form>
   </div>

@@ -18,7 +18,7 @@
 }
 
 .wrap-contact100 {
-  width: 920px;
+  width: 1000px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -102,6 +102,21 @@
 /* table, td, tr, th{
   border: 1px solid black;
 } */
+
+table{
+    text-align: center;
+}
+
+.tab-content{
+    width: 100%;
+}
+
+.ngx-datatable.bootstrap {
+    box-shadow: none;
+    font-size: 19px;
+    text-align: center;
+ }
+
 
 
 
