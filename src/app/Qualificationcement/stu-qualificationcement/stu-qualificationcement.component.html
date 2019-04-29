@@ -1,53 +1,128 @@
 <div class="container">
-    <div class="accordion mt-5" id="accordionExample">
-        <div class="card">
-            <div class="card-header">
-              <h5 class="mb-0">
-                <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-                  นิสิตที่ลงสมัครคัดเลือก
-                </div>
-              </h5>
-            </div>
-            <div class="collapse show" data-parent="#accordionExample">
-              <div class="card-body">
-                <div class="form-group">
-                  <label for="exampleFormControlTextarea1">ไม่มีนิสิตที่ลงคัดเลือก</label>
-                </div>
-              </div>
-            </div>
+  <div class="accordion mt-5" id="accordionExample">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+            นิสิตที่ลงสมัครคัดเลือก
           </div>
-          <div class="card">
-              <div class="card-header">
-                <h5 class="mb-0">
-                  <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-                    นิสิตที่อยู่ในระหว่างการพิจารณา
-                  </div>
-                </h5>
-              </div>
-              <div class="collapse show" data-parent="#accordionExample">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleFormControlTextarea1">ไม่มีนิสิตที่อยู่ในระหว่างการพิจารณา</label>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                  <h5 class="mb-0">
-                    <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-                      นิสิตที่ผ่านการคัดเลือกเป็นนิสิตสหกิจศึกษา
-                    </div>
-                  </h5>
-                </div>
-                <div class="collapse show" data-parent="#accordionExample">
-                  <div class="card-body">
-                    <div class="form-group">
-                      <label for="exampleFormControlTextarea1">ไม่มีนิสิตที่ผ่านการคัดเลือกเป็นนิสิตสหกิจศึกษา</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            
+        </h5>
       </div>
+      <div class="collapse show" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="form-group">
+            <ngx-datatable class="bootstrap" [rows]="stdAppForm" [loadingIndicator]="loadingIndicator" columnMode="force" 
+              [headerHeight]="60" [footerHeight]="0" [rowHeight]="60">
+              <ngx-datatable-column name="stdNameTh">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                  <span>ชื่อนิสิต</span>
+                </ng-template>
+                <ng-template let-row="row" ngx-datatable-cell-template >
+                  {{row.stdFirstnameTh}} {{row.stdLastnameTh}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="ดำเนินการ">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                  <div class="btn-toolbar justify-content-center">
+                    <button class="btn btn-primary detailed"
+                      data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด">
+                      <fa name="search"></fa>
+                    </button>&nbsp;
+                    <button class="btn btn-warning detailed" *ngIf="isSignin && (isAdmin||isStaff)"
+                      data-toggle="tooltip" data-placement="top" title="นำเข้าพิจารณา"
+                      (click)="updateToQualifying(value.stdAccId)">
+                      <fa name="arrow-down "></fa>
+                    </button>
+                  </div>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+            นิสิตที่อยู่ในระหว่างการพิจารณา
+          </div>
+        </h5>
+      </div>
+      <div class="collapse show" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="form-group">
+            <ngx-datatable class="bootstrap" [rows]="stdInqual" [loadingIndicator]="loadingIndicator" columnMode="force" 
+              [headerHeight]="60" [footerHeight]="0" [rowHeight]="60">
+              <ngx-datatable-column name="stdNameTh">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                  <span>ชื่อนิสิต</span>
+                </ng-template>
+                <ng-template let-row="row" ngx-datatable-cell-template >
+                  {{row.stdFirstnameTh}} {{row.stdLastnameTh}}
+                </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="ดำเนินการ">
+                <ng-template ngx-datatable-cell-template let-value="value">
+                  <div class="btn-toolbar justify-content-center">
+                    <button class="btn btn-primary detailed"
+                      data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด">
+                      <fa name="search"></fa>
+                    </button>&nbsp;
+                    <button class="btn btn-success detailed" *ngIf="isSignin && (isAdmin||isStaff)"
+                      data-toggle="tooltip" data-placement="top" title="ผ่านการคัดเลือก"
+                      (click)="updateToPass(value.stdAccId)">
+                      <fa name="check"></fa>
+                    </button>&nbsp;
+                    <button class="btn btn-danger detailed" *ngIf="isSignin && (isAdmin||isStaff)"
+                      data-toggle="tooltip" data-placement="top" title="ไม่ผ่านการคัดเลือก"
+                      (click)="updateToFail(value.stdAccId)">
+                      <fa name="times"></fa>
+                    </button>
+                  </div>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h5 class="mb-0">
+          <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
+            นิสิตที่ผ่านการคัดเลือกเป็นนิสิตสหกิจศึกษา
+          </div>
+        </h5>
+      </div>
+      <div class="collapse show" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="form-group">
+            <ngx-datatable class="bootstrap" [rows]="stdQualified" [loadingIndicator]="loadingIndicator" columnMode="force" 
+            [headerHeight]="60" [footerHeight]="0" [rowHeight]="60">
+            <ngx-datatable-column name="stdNameTh">
+              <ng-template let-column="column" ngx-datatable-header-template>
+                <span>ชื่อนิสิต</span>
+              </ng-template>
+              <ng-template let-row="row" ngx-datatable-cell-template >
+                {{row.stdFirstnameTh}} {{row.stdLastnameTh}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="ดำเนินการ">
+              <ng-template ngx-datatable-cell-template let-value="value">
+                <div class="btn-toolbar justify-content-center">
+                  <button class="btn btn-primary detailed"
+                    data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด">
+                    <fa name="search"></fa>
+                  </button>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
