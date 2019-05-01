@@ -10,8 +10,12 @@
       <!--ส่วนชื่อภาษาไทย-->
       <div class="form-group" style="width:15%">
         <label for="">คำนำหน้า</label>
-        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdPrefixTh" [value]="add_std.stdPrefixTh"
-          name="stdPrefixTh">
+        <select class="form-control" formControlName="stdPrefixTh" [value]="add_std.stdPrefixTh" name="stdPrefixTh">
+          <option>นาย</option>
+          <option>นางสาว</option>
+        </select>
+        <!-- <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdPrefixTh" [value]="add_std.stdPrefixTh"
+          name="stdPrefixTh"> -->
       </div>
 
       <div class="form-group" style="width:40%;">
@@ -30,8 +34,12 @@
       <!--ส่วนชื่อภาษาอังกฤษ-->
       <div class="form-group" style="width:15%">
         <label for="">Prefix</label>
-        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdPrefixEn" [value]="add_std.stdPrefixEn"
-          name="stdPrefixEn">
+        <select class="form-control" formControlName="stdPrefixEn" [value]="add_std.stdPrefixEn" name="stdPrefixEn">
+          <option>Mr.</option>
+          <option>Miss</option>
+        </select>
+        <!-- <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdPrefixEn" [value]="add_std.stdPrefixEn"
+          name="stdPrefixEn"> -->
       </div>
 
       <div class="form-group" style="width:40%;">
@@ -99,13 +107,13 @@
 
       <div class="form-group" style="width:20%;">
         <label for="">มือถือ</label>
-        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdMobile" [value]="add_std.stdMobile"
+        <input type="tel" class="form-control" id="" max="10" aria-describedby="" placeholder="" formControlName="stdMobile" [value]="add_std.stdMobile"
           name="stdMobile">
       </div>
 
       <div class="form-group" style="width:20%;">
         <label for="">โทรศัพท์</label>
-        <input type="text" class="form-control" id="" aria-describedby="" placeholder="" formControlName="stdTel" [value]="add_std.stdTel"
+        <input type="tel" class="form-control" id="" max="9" aria-describedby="" placeholder="" formControlName="stdTel" [value]="add_std.stdTel"
           name="stdTel">
       </div>
 

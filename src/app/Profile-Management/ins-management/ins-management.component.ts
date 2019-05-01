@@ -97,6 +97,7 @@ export class InsManagementComponent implements OnInit {
     // console.log("std id : ", stdId);
     // var a = parseInt('32');
     this.studentdataService.getstddataBystdId(stdId).subscribe((data) => {
+      console.log("data : ", data);
       this.selectedYear = data.stdYear;
       this.add_std = data; console.log("data : ", data); console.log("std : ", this.add_std);
     }
@@ -150,10 +151,6 @@ export class InsManagementComponent implements OnInit {
       showConfirmButton: false,
       timer: 1500
     })
-  }
-
-  printout() {
-    window.print();
   }
 
 }
