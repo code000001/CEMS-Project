@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { AuthenticationService } from '../_services';
 import { StudentdataInterface } from '../_models/stu-data-interface';
+import { StudentdataInterfaceQualifying } from '../_models/stu-data-qualifying-interface';
 
 @Injectable({
     providedIn: 'root'
@@ -50,8 +51,8 @@ export class StudentDataService{
             }));
     }
     
-    getStudentDataQualification(): Observable<StudentdataInterface[]>{
-        return this.http.get<StudentdataInterface[]>(`${this.authenticationService.path_url}/all_std_data`, 
+    getStudentDataQualification(id: number): Observable<StudentdataInterface[]>{
+        return this.http.get<StudentdataInterface[]>(`${this.authenticationService.path_url}/all_std_data/${id}`, 
             ({ headers: this.httpHeadersRes })).pipe(map(data => {
                  console.log("req data => ", data);
                 return data
@@ -65,5 +66,11 @@ export class StudentDataService{
         return this.http.put<StudentdataInterface>(`${this.authenticationService.path_url}/std_addform/${std_id}`, std,
             ({ headers: this.httpHeadersRes }))
     }
+
+    putStatusUpdate(sqc: StudentdataInterfaceQualifying): Observable<StudentdataInterfaceQualifying> {
+        let putId = sqc.stdAccId;
+        console.log(sqc)
+        return this.http.put<StudentdataInterfaceQualifying>(`${this.authenticationService.path_url}/update_student_status_org/${putId}`, sqc,({ headers: this.httpHeadersRes }))
+      }
     
 }
