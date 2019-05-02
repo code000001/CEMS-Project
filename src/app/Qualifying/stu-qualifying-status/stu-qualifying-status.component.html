@@ -64,16 +64,18 @@
       <div class="card-header">
         <h5 class="mb-0">
           <div class="bd-content-title" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-            สถานะการสมัครคัดเลือกเข้าเป็นนิสิตสหกิจศึกษา <label *ngIf="add_std.stdStatusId != 2 && add_std.stdStatusId != 4" for="exampleFormControlTextarea1">(ไม่สามารถลงสมัครเป็นนิสิตสหกิจศึกษาได้ในขณะนี้)</label>
-              <label *ngIf="add_std.stdStatusId == 2" for="exampleFormControlTextarea1">({{message}})</label>
-              <label *ngIf="add_std.stdStatusId == 4" for="exampleFormControlTextarea1">(ผ่านการคัดเลือกเป็นนิสิตสหกิจศึกษาแล้ว)</label>
+            สถานะการสมัครคัดเลือกเข้าเป็นนิสิตสหกิจศึกษา <label *ngIf="add_std.stdStatusId == 1" for="exampleFormControlTextarea1">(ไม่สามารถลงสมัครเป็นนิสิตสหกิจศึกษาได้ในขณะนี้) <i class="fa fa-times" style="color:rgb(236, 21, 21)"></i></label>
+              <label *ngIf="add_std.stdStatusId == 2" for="exampleFormControlTextarea1">({{message}}) <i class="fa fa-plus" style="color:rgb(29, 67, 129)" ></i></label>
+              <label *ngIf="add_std.stdStatusId == 3" for="exampleFormControlTextarea1">(รอเข้ารับการพิจารณาคัดเลือก) <i class="fa fa-clock-o" style="color:rgb(238, 206, 27)" ></i></label>
+              <label *ngIf="add_std.stdStatusId == 4" for="exampleFormControlTextarea1">(อยู่ในระหว่างการพิจารณาคัดเลือก) <i class="fa fa-clock-o" style="color:rgb(238, 206, 27)" ></i></label>
+              <label *ngIf="add_std.stdStatusId == 5" for="exampleFormControlTextarea1">(ผ่านการคัดเลือกเป็นนิสิตสหกิจศึกษาแล้ว) <i class="fa fa-check" style="color:rgb(52, 238, 27)" ></i></label>
           </div>
         </h5>
       </div>
       <div class="collapse show" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <button class="btn btn-primary btn-lg btn-block" *ngIf="add_std.stdStatusId != 4" routerLink="/announcement">ดูประกาศรับสมัคร</button>
+            <button class="btn btn-primary btn-lg btn-block" *ngIf="add_std.stdStatusId == 1 ||add_std.stdStatusId == 2" routerLink="/announcement">ดูประกาศรับสมัคร</button>
           </div>
         </div>
       </div>
