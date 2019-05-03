@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 
 import { AuthenticationService } from '../../_services';
 import { AppFormService } from '../../Services/app-form.service';
@@ -17,18 +19,23 @@ import { formatDate } from '@angular/common';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import Swal from 'sweetalert2';
+import jsPDF from 'jspdf';
+import html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
+import 'jspdf-autotable';
 @Component({
   selector: 'app-student-org-app-form',
   templateUrl: './student-org-app-form.component.html',
   styleUrls: ['./student-org-app-form.component.css']
 })
 export class StudentOrgAppFormComponent implements OnInit {
+
   org: OrganizationDataInterface;
-  positionData: PositionDataInterface;
+  positionData: string = "";
   ListPosition: PositionDataInterface[] = [];
   errortype: string = '';
   error: string = '';
-  ann: number;
+  ann: string = '';
   message: any;
   AppForm: FormGroup;
   // newlg : string = null;
@@ -64,6 +71,9 @@ export class StudentOrgAppFormComponent implements OnInit {
   // countLevel = this.LANGUAGElevel.length;
   emerg = [{ name: 'บิดา', value: 1, check: true }, { name: 'มารดา', value: 2, check: false }, { name: 'อื่น ๆ', value: 3, check: true }];
 
+  startedClass = new Subject<boolean>();
+  endedClass = new Subject<boolean>();
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -71,10 +81,12 @@ export class StudentOrgAppFormComponent implements OnInit {
     private appFormService: AppFormService,
     private authenticationService: AuthenticationService,
     private http: HttpClient,
-    private organizationService: OrganizationService
+    private organizationService: OrganizationService,
+    private sanitizer: DomSanitizer
+    // private ins: FormIns002Component
   ) {
     // this.activatedRoute.params.subscribe( params => this.orgId = params);
-
+    this.onProgressStarted();
     this.LANGUAGEskill = [{ th: 'ฟัง', en: 'Listening', children: this.countLevel },
     { th: 'พูด', en: 'Speaking', children: this.countLevel },
     { th: 'อ่าน', en: 'Reading', children: this.countLevel },
@@ -82,6 +94,20 @@ export class StudentOrgAppFormComponent implements OnInit {
     // this.loadingProvinces();
     this.loadingData();
     this.loadingProvinces();
+  }
+
+  onProgressStarted() {
+    this.startedClass.next(true);
+    setTimeout(() => {
+      this.startedClass.next(false);
+    }, 800);
+  }
+
+  onProgressCompleted() {
+    this.endedClass.next(true);
+    setTimeout(() => {
+      this.endedClass.next(false);
+    }, 800);
   }
 
   submit(): void {
@@ -111,8 +137,20 @@ export class StudentOrgAppFormComponent implements OnInit {
     // console.log(this.userData);
     this.appFormService.updateStdAppForm(this.userData)
       .subscribe((data) => {
-
-        console.log('sc -> ',data);
+      }, err => {
+        // console.log('err -> ',err);
+        Swal.fire({
+          title: "ไม่สามารถบันทึกข้อมูลได้",
+          type: "warning",
+          text: "กรุณาตรวจสอบข้อมูลของท่าน",
+          confirmButtonColor: '#244f99',
+          confirmButtonText: 'ตกลง',
+          showCancelButton: false,
+          allowEscapeKey: false,
+          allowOutsideClick: false
+        })
+        console.log(' err updateStdAppForm -> ', err);
+      }, () => {
         Swal.fire({
           title: "บันทึกข้อมูลสำเร็จ!",
           text: "ระบบบันทึกข้อมูลเรียบร้อย",
@@ -125,19 +163,6 @@ export class StudentOrgAppFormComponent implements OnInit {
           allowEscapeKey: false,
           allowOutsideClick: false
         })
-      }, err => {
-        console.log('err -> ',err);
-        Swal.fire({
-          title: "ไม่สามารถบันทึกข้อมูลได้",
-          type: "warning",
-          text: "กรุณาตรวจสอบข้อมูลของท่าน",
-          confirmButtonColor: '#244f99',
-          confirmButtonText: 'ตกลง',
-          showCancelButton: false,
-          allowEscapeKey: false,
-          allowOutsideClick: false
-        })
-        console.log(' err updateStdAppForm -> ', err);
       });
   }
 
@@ -152,9 +177,9 @@ export class StudentOrgAppFormComponent implements OnInit {
   ngOnInit() {
 
 
-    // this.ann =  
-    // this.appFormService.checkStatusAnn(parseInt(annid)).subscribe(response => { this.ann = response });
-    // console.log('ann -> ',this.ann);
+    // let annid =  this.activatedRoute.snapshot.paramMap.get('ann');
+    // this.appFormService.checkStatusAnn(parseInt(annid)).subscribe(response => { console.log('ann -> ',response);this.ann = response });
+
 
     // this.loadingData();
     this.AppForm = this.fb.group({
@@ -205,44 +230,51 @@ export class StudentOrgAppFormComponent implements OnInit {
       exemergTel: null,
       exemergAddress: null
     });
+
+    this.onProgressCompleted();
   }
 
   loadingData() {
     const annid = this.activatedRoute.snapshot.paramMap.get('ann');
 
     // console.log(parseInt(annid));
-    this.appFormService.getAnn(parseInt(annid)).subscribe(data => {
-      this.ann = data.annStatusId;
-    });
+    // this.appFormService.getAnn(parseInt(annid)).subscribe(data => {
+    //   console.log('ann => ',data);
+    //   // this.ann = data.annStatusId;
+    // });
 
-    if (this.ann == 2) {
-      this.router.navigate([`/view_announcement/${this.activatedRoute.snapshot.paramMap.get('id')}`]);
-    }
+    // if (this.ann == 2) {
+    //   this.router.navigate([`/view_announcement/${this.activatedRoute.snapshot.paramMap.get('id')}`]);
+    // }
 
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.organizationService.getDetailById(parseInt(id))
-      .subscribe(org =>
-        this.org = org
-      );
+    const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
+    this.organizationService.getDetailById(id).subscribe(org => this.org = org);
 
-    this.organizationService.getPositionById(parseInt(annid))
-      .subscribe(positionData => {
-        this.positionData = positionData
-        this.ListPosition.push(positionData);
-        // console.log(this.ListPosition)
+    this.organizationService.getLogPositionBylogpAnnId(id)
+      .subscribe(logPosition => {
+        // this.logPosition = logPosition
+        // console.log((logPosition).length)
+        //this.getKnowledgeReq(this.logReqKnow.logkAnnKrdId)
+        const max = (logPosition).length;
+        for (let index = 0; index < max; index++) {
+          this.organizationService.getPositionById(logPosition[index].logpAnnPosId)
+            .subscribe(positionData => {
+              // console.log(positionData);
+              (index != (max - 1)) ? this.ann += positionData.annPosNameEn + ', ' : this.ann += positionData.annPosNameEn;
+              // this.ListPosition.push(positionData);
+            });
+        }
       });
 
-    // this.userData.stdAge ;
-    // this.today - newDate;
+
+
     this.appFormService.getINS02().subscribe(data => {
-      // data.stdBornDate;
-      // console.log(' date ',data.stdAge);
-      // this.stdBornPlace = parseInt(data.stdBornPlace);
+      this.stdBornPlace = parseInt(data.stdBornPlace);
       if (data.stdAge != "-" || data.stdAge != null) {
-        data.stdAge = parseInt(formatDate(new Date(), 'yyyy', 'en','+7')) - parseInt(formatDate(data.stdBornDate, 'yyyy', 'en','+7'));
+        data.stdAge = parseInt(formatDate(new Date(), 'yyyy', 'en', '+7')) - parseInt(formatDate(data.stdBornDate, 'yyyy', 'en', '+7'));
       }
       this.userData = data;
-    });
+    }, (err) => { }, () => { });
   }
 
   addFieldValue() {
@@ -264,7 +296,7 @@ export class StudentOrgAppFormComponent implements OnInit {
   }
 
   SameAddress() {
-    console.log(this.AppForm.get('SameAddress1').value);
+    // console.log(this.AppForm.get('SameAddress1').value);
     this.SameAddress1 = this.AppForm.get('SameAddress1').value;
     this.triggerAddress();
   }
@@ -329,8 +361,363 @@ export class StudentOrgAppFormComponent implements OnInit {
 
   }
 
-  prinout(){
-    // var doc = new jspdf();
+  //   SELECT
+  //   a.id AS 'ann_id',
+  //   b.ann_pos_name_th,
+  //   b.ann_pos_name_en
+  // FROM
+  //   `announcement_data` AS a
+  // JOIN announcement_log_pos AS central
+  // ON
+  //   a.id = central.logp_ann_id
+  // JOIN announcement_position_data AS b
+  // ON
+  //   central.logp_ann_pos_id = b.id
+
+  selectedBornPlace($event) {
+
+    this.selectedProvinces = $event.nameTh;
+    // console.log($event.nameTh);
+
+  }
+
+  printout() {
+    // var worker = html2pdf();
+    var doc = new jsPDF();
+    // var element = document.getElementById('my-div');
+    // html2canvas(document.getElementById('my-table')).then(canvas => {
+
+    //   var imgWidth = 208;
+    //   var pageHeight = 295;
+    //   var imgHeight = canvas.height * imgWidth / canvas.width;
+    //   var heightLeft = imgHeight;
+
+    //   const contentDataURL = canvas.toDataURL('image/png')
+
+    //   let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF  
+    //   var position = 0;
+    //   pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+    //   pdf.save('MYPdf.pdf'); // Generated PDF  
+    // });
+
+    var elem = document.getElementById('my-div');
+
+    html2canvas(elem, {
+      onclone: function (clonedDoc) {
+        clonedDoc.getElementById('my-div').style.display = 'block';
+      }
+    }).then((canvas) => {
+      var imgWidth = 208;
+      var pageHeight = 295;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      var heightLeft = imgHeight;
+
+      const contentDataURL = canvas.toDataURL('image/png')
+
+      // var position = 0;
+      // let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF  
+      // pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+
+      // var pagebreak = (canvas === 'specify') ?
+      //   { mode: '', before: '.before', after: '.after' } :
+      //   { mode: canvas };
+
+
+      var opt = {
+        margin: 1,
+        filename: 'INS002-' + this.userData.stdId + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, maxwidth: 719 },
+        pagebreak: { mode: ['.before', '.after'] },
+        jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf(canvas, opt);
+      // pdf.save('INS002-' + this.userData.stdId + '.pdf'); // Generated PDF  
+    })
+  }
+
+  printout2() {
+    var doc = new jsPDF();
+
+    let change_this = this.sanitizer.bypassSecurityTrustHtml(`<table id="my-table" class="table-tr" style="width:100%;margin: 100px;">
+    <tr class="table-tr">
+      <th style="width:10%;">
+        <img src="/assets/img/buu_logo.jpg" style="max-width:100px;max-height:100px">
+      </th>
+      <th style="width:80%;">
+        <br>
+        <br>
+        <br>
+        <span style="font-size:24px;">
+          <b>ใบสมัครงานสหกิจศึกษา/ฝึกงาน</b>
+        </span>
+        <br><span style="font-size:24px;">
+          <b>APPLICATION FOR COOPERATIVE EDUCATION JOB</b>
+        </span>
+        <br>วิชาสหกิจศึกษา คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา
+        <br>
+        <b>Cooperative Education --- Faculty of Informatics Burapha University</b>
+        <br>
+        <br>
+        <br>
+      </th>
+      <th style="width:10%;text-align:center;">
+        <p>
+          <b>IN-S002</b>
+        </p>
+      </th>
+    </tr>
+
+    <tr>
+      <td colspan="3">
+        <table>
+          <tr>
+            <th class="titlename">ข้อมูลส่วนตัวนิสิต (APPLICANT 'S INFORMATION)</th>
+          </tr>
+          <tr>
+            <td>ชื่อ (Name) นามสกุล (Surname)<br>
+              รหัสนิสิต ___________________________ โทร. __________________มือถือ ___________________<br>
+              อีเมล์ _____________________________________
+              <br>สาขาวิชา ( ) วิทยาการคอมพิวเตอร์ ( ) เทคโนโลยีสารสนเทศ ( ) วิศวกรรมซอฟต์แวร์</td>
+          </tr>
+          <tr>
+            <th class="titlename">ชื่อสถานประกอบการที่ต้องการสมัคร รอบที่</th>
+          </tr>
+          <tr>
+            <td>1. __________________________________________________________________________________<br>
+              สมัครงานในตำแหน่ง______________________________________________________________</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3">
+        <table>
+          <tr>
+            <th class="titlename" colspan="2">ข้อมูลส่วนตัวนิสิต (APPLICANT 'S INFORMATION)</th>
+          </tr>
+          <tr>
+            <td class="no-border-bottom">
+              ชื่อ(Name) __________________________ นามสกุล (Surname) ______________________<br>
+              Name _______________________________ Surname ____________________________<br>
+              สาขาวิชา _______________________________________รหัสนิสิต ____________________<br>
+              ชั้นปีที่ _______เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา______________เกรดเฉลี่ยสะสม___________<br>
+              สถานที่เกิด __________________ วันเดือนปีเกิด_______________อายุ_____ เพศ ________ <br>
+              บัตรประจำตัวประชาชนเลขที่
+              ____________________ สัญชาติ________ ศาสนา________<br>
+            </td>
+            <td style="width:10%">รูปถ่าย</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="no-tb">
+              ส่วนสูง cm_____ซม. น้ำหนัก kg______ <br>ที่อยู่ที่ติดต่อได้
+              ________________________________________________
+              __________________________________________________________________________________________
+              <br>ที่อยู่ตามทะเบียนบ้าน__________________________________________________________________________
+              __________________________________________________________________________________________
+              <br>โทร. __________________มือถือ ___________________E-mail Address _______________________________
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="no-tb">บุคคลที่ติดต่อได้ในกรณีฉุกเฉิน</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="no-tb">
+              ชื่อ – นามสกุล _____________________________________________________โทรศัพท์ ___________________<br>
+              ความสัมพันธ์_____________________________________<br>ที่อยู่ ________________________________________
+              ___________________________________________________________________________________________
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3">
+        <table>
+          <tr>
+            <th class="titlename">ข้อมูลครอบครัว (FAMILY DETAILS)</th>
+          </tr>
+          <tr>
+            <td>
+              ชื่อบิดา ____________________________________ อาชีพ ________________โทรศัพท์ ____________________<br>
+              ชื่อมารดา __________________________________ อาชีพ ________________โทรศัพท์ ____________________<br>
+              ที่อยู่ _______________________________________________________________________________________
+            </td>
+          </tr>
+          <tr>
+            <th class="titlename">ประวัติการศึกษา (EDUCATIONAL HISTORY)</th>
+          </tr>
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <th>ระดับ</th>
+                  <th>สถานศึกษา</th>
+                  <th>ปีที่เริ่ม</th>
+                  <th>ปีที่จบ</th>
+                  <th>ผลการศึกษา</th>
+                </tr>
+                <tr>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="titlename">ประวัติการอบรม และกิจกรรมนอกหลักสูตร</td>
+          </tr>
+          <tr>
+            <td>
+              <table>
+                <tr>
+                  <th rowspan="2">หัวข้อฝึกอบรม/ฝึกงาน</th>
+                  <th rowspan="2">หน่วยงาน<br>
+                    ที่ให้การฝึกอบรม/ฝึกงาน</th>
+                  <th colspan="2">ระยะเวลา</th>
+                </tr>
+                <tr>
+                  <th>จาก</th>
+                  <th>ถึง</th>
+                </tr>
+                <tr>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3">
+        <table>
+          <tr>
+            <th class="titlename">จุดหมายงานอาชีพ (CAREER VISIONS)</th>
+          </tr>
+          <tr>
+            <td class="no-border-bottom">ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ ( List your career goals, fields of
+              interest and job preferences.)</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3">
+        <table>
+          <tr>
+            <th class="titlename">ความสามารถทางภาษา (LANGUAGE PROFICIENCY)</th>
+          </tr>
+          <tr>
+            <td class="no-border-bottom"> shdiufyshiuhsdoifsidf </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3">
+        <table>
+          <tr>
+            <th class="titlename">ความสามารถพิเศษทางคอมพิวเตอร์</th>
+          </tr>
+          <tr>
+            <td class="no-border-bottom"> shdiufyshiuhsdoifsidf </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3">
+        <table>
+          <tr>
+            <td class="no-border-bottom"><br>โปรดอธิบายให้ผู้อื่นรู้จักตัวท่านดีขึ้น</td>
+          </tr>
+          <tr>
+            <td class="no-tb"> shdiufyshiuhsdoifsidf </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr class="table-tr">
+      <td style="width:10%;">
+      </td>
+      <td style="padding: 2%;">
+        <p style="text-align: right;">
+          <span>ลายเซ็นผู้สมัคร______________________________</span>
+        </p>
+        <p style="text-align: right;">
+          <span>(_____________________________)</span>
+        </p>
+        <p style="text-align: right;">
+          <span>วันที่______________________________</span>
+        </p>
+        <p style="text-align: center;">
+          <b>คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา</b>
+        </p>
+        <p style="text-align: center;">
+          <b>169 ถ.ลงหาดบางแสน ต.แสนสุข อ.เมือง จ.ชลบุรี 20131</b>
+        </p>
+        <p style="text-align: center;">
+          <b>โทรศัพท์ 038-103060-1 โทรสาร 038-393245</b>
+        </p>
+        <p style="text-align: center;">
+          <b>E-mail: kamonwans@buu.ac.th website : http://www.informatics.buu.ac.th/coop</b>
+        </p>
+      </td>
+      <td style="width:10%;">
+      </td>
+    </tr>
+  </table>`);
+
+    console.log(change_this);
+
+    // this.http.get<any>("http://localhost:4200/app-form/ins2").pipe(map((html: any) => console.log(html)));
+
+    // html2canvas(this.ins.getInform(this.userData)).then(canvas => {
+
+    //   var imgWidth = 208;
+    //   var pageHeight = 295;
+    //   var imgHeight = canvas.height * imgWidth / canvas.width;
+    //   var heightLeft = imgHeight;
+
+    //   const contentDataURL = canvas.toDataURL('image/png')
+
+    //   let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF  
+    //   var position = 0;
+    //   pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)
+    //   pdf.save('MYPdf.pdf'); // Generated PDF  
+    // });
+
   }
 
   printout1() {
@@ -643,6 +1030,13 @@ export class StudentOrgAppFormComponent implements OnInit {
   loadingProvinces() {
     this.appFormService.getProvince().subscribe((data: {}) => {
       this.A2Provinces = this.Provinces = data;
+    }, (err) => { }, () => {
+      for (var i = 0; i < this.Provinces.length; i++) {
+        if (this.Provinces[i].id == this.stdBornPlace) {
+          this.selectedBornPlace(this.Provinces[i]);
+          return;
+        }
+      }
     });
   }
 

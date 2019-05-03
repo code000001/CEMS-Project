@@ -23,6 +23,7 @@
                 class="col-sm-2 col-form-label text-lg-right no-padding-right no-padding-right">สมัครงานในตำแหน่ง
                 :</label>
               <div class="col-sm-10">
+                <p class="form-control-plaintext">{{ ann }}</p>
                 <!-- <span *ngFor="let pos of ListPosition;">{{pos.annPosNameEn}} </span> -->
                 <!-- <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="โปรแกรมเมอร์"> -->
               </div>
@@ -92,7 +93,7 @@
 
                 <ng-select [items]="Provinces" formControlName="stdBornPlace" bindLabel="nameTh" bindValue="id"
                   groupBy="name" [selectableGroup]="true" appendTo="body" placeholder="เลือกจังหวัด"
-                  [(ngModel)]="stdBornPlace" (change)="test()">
+                  [(ngModel)]="stdBornPlace" (change)="selectedBornPlace($event)">
                 </ng-select>
               </div>
             </div>
@@ -101,7 +102,7 @@
               <label for="stdPersonId"
                 class="col-sm-2 col-form-label text-lg-right no-padding-right">รหัสประจำตัวประชาชน :</label>
               <div class="col-sm-3">
-                <p class="form-control-plaintext">{{ userData.stdPersonId | THpersonID }}</p>
+                <p class="form-control-plaintext">{{ userData.stdPersonId | THblindpersonID }}</p>
               </div>
 
               <label for="stdNation" class="col-sm-1 col-form-label text-lg-right no-padding-right">สัญชาติ :</label>
@@ -190,15 +191,15 @@
                 class="col-sm-3 col-form-label text-lg-right no-padding-right">เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา
                 :</label>
               <div class="col-sm-3">
-                <input type="number" step="0.01" max="4.00" min="0.01" formControlName="std_LastGpa" class="form-control" id="std_LastGpa"
-                  [value]="userData.std_LastGpa">
+                <input type="number" step="0.01" max="4.00" min="0.01" formControlName="std_LastGpa"
+                  class="form-control" id="std_LastGpa" [value]="userData.std_LastGpa">
               </div>
 
               <label for="stdHsGpa" class="col-sm-2 col-form-label text-lg-right no-padding-right">เกรดเฉลี่ยสะสม
                 :</label>
               <div class="col-sm-2">
-                <input type="number" step="0.01" max="4.00" min="0.01" formControlName="stdHsGpa" class="form-control" id="stdHsGpa"
-                  [value]="userData.stdHsGpa">
+                <input type="number" step="0.01" max="4.00" min="0.01" formControlName="stdHsGpa" class="form-control"
+                  id="stdHsGpa" [value]="userData.stdHsGpa">
               </div>
             </div>
 
@@ -770,290 +771,283 @@
     </div>-->
 <!-- <button  class="btn btn-primary">บันทึกข้อมูล</button> -->
 
+<!-- <form [formGroup]="userData"> -->
+<!-- <div id="my-div" style="position: absolute; opacity: 0.0;"> -->
 
-<meta charset="UTF-8">
-<style>
-  table {
-    margin: 5px;
-    width: 100%;
-  }
+<div id="my-div" style="display:none;" *ngIf="userData">
+  <table id="my-table">
+    <tr class="table-tr">
+      <th style="width:15%;">
+        <img src="/assets/img/buu_logo.jpg" style="max-width:100px;max-height:100px">
+      </th>
+      <th style="width:75%;">
+        <br>
+        <br>
+        <br>
+        <span style="font-size:24px;">
+          <b>ใบสมัครงานสหกิจศึกษา/ฝึกงาน</b>
+        </span>
+        <br><span style="font-size:24px;">
+          <b>APPLICATION FOR COOPERATIVE EDUCATION JOB</b>
+        </span>
+        <br>วิชาสหกิจศึกษา คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา
+        <br>
+        <b>Cooperative Education --- Faculty of Informatics Burapha University</b>
+        <br>
+        <br>
+        <br>
+      </th>
+      <th style="width:10%;text-align:center;">
+        <p>
+          <b>IN-S002</b>
+        </p>
+      </th>
+    </tr>
 
-  th{
-    text-align: center;
-  }
+    <tr>
+      <td colspan="3">
+        <table class="sub-table break-after">
+          <tr>
+            <th class="titlename">ข้อมูลส่วนตัวนิสิต (APPLICANT 'S INFORMATION)</th>
+          </tr>
+          <tr>
+            <td>ชื่อ (Name) <u>&nbsp;&nbsp; {{userData.stdFirstNameTh}}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> นามสกุล (Surname)
+              <u>&nbsp;&nbsp;&nbsp; {{userData.stdLastNameTh}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+              รหัสนิสิต <u>&nbsp;&nbsp; {{userData.stdId}} &nbsp;&nbsp;&nbsp;&nbsp;</u> โทร. <u>&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;</u> มือถือ <u>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+              อีเมล์ <u>&nbsp;&nbsp; {{userData.stdEmail}} &nbsp;&nbsp;&nbsp;&nbsp;</u>
+              <br>สาขาวิชา ( &nbsp;) วิทยาการคอมพิวเตอร์ ( &nbsp;) เทคโนโลยีสารสนเทศ ( &nbsp;) วิศวกรรมซอฟต์แวร์</td>
+          </tr>
+          <tr>
+            <th class="titlename">ชื่อสถานประกอบการที่ต้องการสมัคร รอบที่</th>
+          </tr>
+          <tr>
+            <td class="before">1. <u>&nbsp;&nbsp; {{org[0].orgNameTh}}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+              สมัครงานในตำแหน่ง <u>&nbsp;&nbsp; {{ ann }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
-  th,
-  td {
-    border: 1px solid black;
-  }
+    <tr>
+      <td colspan="3">
+        <table class="sub-table break-before">
+          <tr>
+            <th class="titlename" colspan="2">ข้อมูลส่วนตัวนิสิต (APPLICANT 'S INFORMATION)</th>
+          </tr>
+          <tr>
+            <td class="no-border-bottom">
+              ชื่อ(Name) <u>&nbsp;&nbsp; {{userData.stdFirstNameTh}}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
+              นามสกุล (Surname)
+              <u>&nbsp;&nbsp;&nbsp; {{userData.stdLastNameTh}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> <br>
+              Name <u>&nbsp;&nbsp;{{userData.stdFirstNameEn}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
+              Surname
+              <u>&nbsp;&nbsp;{{userData.stdLastNameEn}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+              สาขาวิชา <u>&nbsp;&nbsp; {{userData.stdBranch}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
+              รหัสนิสิต <u>&nbsp;&nbsp;{{userData.stdId}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+              ชั้นปีที่ <u>&nbsp;&nbsp; {{userData.stdYear}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
+              เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา <u>&nbsp;&nbsp; {{userData.std_LastGpa}}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> เกรดเฉลี่ยสะสม <u>&nbsp;&nbsp;
+                {{userData.stdHsGpa}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> <br>
+              สถานที่เกิด <u>&nbsp;&nbsp; {{selectedProvinces}} &nbsp;&nbsp;&nbsp;&nbsp;</u> วันเดือนปีเกิด
+              <u>&nbsp;&nbsp; {{userData.stdBornDate | THPipe}} &nbsp;&nbsp;&nbsp;&nbsp;</u> อายุ <u>&nbsp;&nbsp; {{userData.stdAge}} ปี
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u> เพศ <u>{{userData.genderNameTh}}</u><br>
+              <br>
+              บัตรประจำตัวประชาชนเลขที่ <u>&nbsp;&nbsp; {{ userData.stdPersonId | THpersonID }} &nbsp;&nbsp;</u>
+              สัญชาติ________ ศาสนา________<br>
+            </td>
+            <td style="width:10%">รูปถ่าย</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="no-tb">
+              ส่วนสูง cm_____ซม. น้ำหนัก kg______ <br>ที่อยู่ที่ติดต่อได้
+              ________________________________________________
+              __________________________________________________________________________________________
+              <br>ที่อยู่ตามทะเบียนบ้าน__________________________________________________________________________
+              __________________________________________________________________________________________
+              <br>โทร. __________________มือถือ ___________________E-mail Address _______________________________
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" class="no-tb">บุคคลที่ติดต่อได้ในกรณีฉุกเฉิน</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="no-tb">
+              ชื่อ – นามสกุล _____________________________________________________โทรศัพท์ ___________________<br>
+              ความสัมพันธ์_____________________________________<br>ที่อยู่ ________________________________________
+              ___________________________________________________________________________________________
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
-  .no-border-bottom {
-    border-bottom: 0px;
-  }
+    <tr>
+      <td colspan="3">
+        <table class="sub-table">
+          <tr>
+            <th class="titlename">ข้อมูลครอบครัว (FAMILY DETAILS)</th>
+          </tr>
+          <tr>
+            <td>
+              ชื่อบิดา ____________________________________ อาชีพ ________________โทรศัพท์ ____________________<br>
+              ชื่อมารดา __________________________________ อาชีพ ________________โทรศัพท์ ____________________<br>
+              ที่อยู่ _______________________________________________________________________________________
+            </td>
+          </tr>
+          <tr>
+            <th class="titlename">ประวัติการศึกษา (EDUCATIONAL HISTORY)</th>
+          </tr>
+          <tr>
+            <td>
+              <table class="sub-table">
+                <tr>
+                  <th>ระดับ</th>
+                  <th>สถานศึกษา</th>
+                  <th>ปีที่เริ่ม</th>
+                  <th>ปีที่จบ</th>
+                  <th>ผลการศึกษา</th>
+                </tr>
+                <tr>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
 
-  .no-tb {
-    border-top: 0px;
-    border-bottom: 0px;
-  }
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td class="titlename">ประวัติการอบรม และกิจกรรมนอกหลักสูตร</td>
+          </tr>
+          <tr>
+            <td>
+              <table class="sub-table">
+                <tr>
+                  <th rowspan="2">หัวข้อฝึกอบรม/ฝึกงาน</th>
+                  <th rowspan="2">หน่วยงาน<br>
+                    ที่ให้การฝึกอบรม/ฝึกงาน</th>
+                  <th colspan="2">ระยะเวลา</th>
+                </tr>
+                <tr>
+                  <th>จาก</th>
+                  <th>ถึง</th>
+                </tr>
+                <tr>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+                <tr>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                  <td> </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
-  .titlename {
-    font-size: 20px;
-  }
-</style>
+    <tr>
+      <td colspan="3">
+        <table class="sub-table">
+          <tr>
+            <th class="titlename">จุดหมายงานอาชีพ (CAREER VISIONS)</th>
+          </tr>
+          <tr>
+            <td class="no-border-bottom">ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ ( List your career goals, fields of
+              interest and job preferences.)</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
-<table id="my-table" class="table-tr" style="width:100%;">
-  <tr class="table-tr">
-    <th style="width:10%;">
-      <img src="/assets/img/buu_logo.jpg" style="max-width:100px;max-height:100px">
-    </th>
-    <th style="width:80%;">
-      <br>
-      <br>
-      <br>
-      <span style="font-size:24px;">
-        <b>ใบสมัครงานสหกิจศึกษา/ฝึกงาน</b>
-      </span>
-      <br><span style="font-size:24px;">
-        <b>APPLICATION FOR COOPERATIVE EDUCATION JOB</b>
-      </span>
-      <br>วิชาสหกิจศึกษา คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา
-      <br>
-      <b>Cooperative Education --- Faculty of Informatics Burapha University</b>
-      <br>
-      <br>
-      <br>
-    </th>
-    <th style="width:10%;text-align:center;">
-      <p>
-        <b>IN-S002</b>
-      </p>
-    </th>
-  </tr>
+    <tr>
+      <td colspan="3">
+        <table class="sub-table">
+          <tr>
+            <th class="titlename">ความสามารถทางภาษา (LANGUAGE PROFICIENCY)</th>
+          </tr>
+          <tr>
+            <td class="no-border-bottom"> shdiufyshiuhsdoifsidf </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
-  <tr>
-    <td colspan="3">
-      <table>
-        <tr>
-          <th class="titlename">ข้อมูลส่วนตัวนิสิต (APPLICANT 'S INFORMATION)</th>
-        </tr>
-        <tr>
-          <td>ชื่อ (Name) นามสกุล (Surname)
-            รหัสนิสิต ___________________________ โทร. __________________มือถือ ___________________
-            อีเมล์ _____________________________________
-            สาขาวิชา ( ) วิทยาการคอมพิวเตอร์ ( ) เทคโนโลยีสารสนเทศ ( ) วิศวกรรมซอฟต์แวร์</td>
-        </tr>
-        <tr>
-          <th class="titlename">ชื่อสถานประกอบการที่ต้องการสมัคร รอบที่</th>
-        </tr>
-        <tr>
-          <td>1. __________________________________________________________________________________
-            สมัครงานในตำแหน่ง______________________________________________________________</td>
-        </tr>
-      </table>
-    </td>
-  </tr>
+    <tr>
+      <td colspan="3">
+        <table>
+          <tr>
+            <th class="titlename">ความสามารถพิเศษทางคอมพิวเตอร์</th>
+          </tr>
+          <tr>
+            <td class="no-border-bottom"> shdiufyshiuhsdoifsidf </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
-  <tr>
-    <td colspan="3">
-      <table>
-        <tr>
-          <th class="titlename" colspan="2">ข้อมูลส่วนตัวนิสิต (APPLICANT 'S INFORMATION)</th>
-        </tr>
-        <tr>
-          <td class="no-border-bottom">
-            ชื่อ(Name) __________________________ นามสกุล (Surname) ______________________
-            Name _______________________________ Surname ____________________________
-            สาขาวิชา _______________________________________รหัสนิสิต ____________________
-            ชั้นปีที่ _______เกรดเฉลี่ยภาคการศึกษาที่ผ่านมา______________เกรดเฉลี่ยสะสม___________
-            สถานที่เกิด __________________ วันเดือนปีเกิด_______________อายุ_____ เพศ ________ บัตรประจำตัวประชาชนเลขที่
-            ____________________ สัญชาติ________ ศาสนา________
-          </td>
-          <td style="width:10%">รูปถ่าย</td>
-        </tr>
-        <tr>
-          <td colspan="2" class="no-tb">
-            ส่วนสูง cm_____ซม. น้ำหนัก kg______ ที่อยู่ที่ติดต่อได้ ________________________________________________
-            __________________________________________________________________________________________
-            ที่อยู่ตามทะเบียนบ้าน__________________________________________________________________________
-            __________________________________________________________________________________________
-            โทร. __________________มือถือ ___________________E-mail Address _______________________________
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2" class="no-tb">บุคคลที่ติดต่อได้ในกรณีฉุกเฉิน</td>
-        </tr>
-        <tr>
-          <td colspan="2" class="no-tb">
-            ชื่อ – นามสกุล _____________________________________________________โทรศัพท์ ___________________
-            ความสัมพันธ์_____________________________________ที่อยู่ ________________________________________
-            ___________________________________________________________________________________________
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
+    <tr>
+      <td colspan="3">
+        <table>
+          <tr>
+            <td class="no-border-bottom"><br>โปรดอธิบายให้ผู้อื่นรู้จักตัวท่านดีขึ้น</td>
+          </tr>
+          <tr>
+            <td class="no-tb"> shdiufyshiuhsdoifsidf </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
 
-  <tr>
-    <td colspan="3">
-      <table>
-        <tr>
-          <th class="titlename">ข้อมูลครอบครัว (FAMILY DETAILS)</th>
-        </tr>
-        <tr>
-          <td>
-            ชื่อบิดา ____________________________________ อาชีพ ________________โทรศัพท์ ____________________
-            ชื่อมารดา __________________________________ อาชีพ ________________โทรศัพท์ ____________________
-            ที่อยู่ _______________________________________________________________________________________
-          </td>
-        </tr>
-        <tr>
-          <th class="titlename">ประวัติการศึกษา (EDUCATIONAL HISTORY)</th>
-        </tr>
-        <tr>
-          <td>
-            <table>
-              <tr>
-                <th>ระดับ</th>
-                <th>สถานศึกษา</th>
-                <th>ปีที่เริ่ม</th>
-                <th>ปีที่จบ</th>
-                <th>ผลการศึกษา</th>
-              </tr>
-              <tr>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-              </tr>
-
-            </table>
-          </td>
-        </tr>
-        <tr>
-          <td class="titlename">ประวัติการอบรม และกิจกรรมนอกหลักสูตร</td>
-        </tr>
-        <tr>
-          <td>
-            <table>
-              <tr>
-                <th rowspan="2">หัวข้อฝึกอบรม/ฝึกงาน</th>
-                <th rowspan="2">หน่วยงาน<br>
-                  ที่ให้การฝึกอบรม/ฝึกงาน</th>
-                <th colspan="2">ระยะเวลา</th>
-              </tr>
-              <tr>
-                <th>จาก</th>
-                <th>ถึง</th>
-              </tr>
-              <tr>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-              </tr>
-              <tr>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-              </tr>
-              <tr>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-                <td> </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-
-  <tr>
-    <td colspan="3">
-      <table>
-        <tr>
-          <th class="titlename">จุดหมายงานอาชีพ (CAREER VISIONS)</th>
-        </tr>
-        <tr>
-          <td class="no-border-bottom">ระบุสายงานและลักษณะงานอาชีพที่นิสิตสนใจ ( List your career goals, fields of
-            interest and job preferences.)</td>
-        </tr>
-        <tr>
-          <td>1.</td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-
-  <tr>
-    <td colspan="3">
-      <table>
-        <tr>
-          <th class="titlename">ความสามารถทางภาษา (LANGUAGE PROFICIENCY)</th>
-        </tr>
-        <tr>
-          <td class="no-border-bottom"> shdiufyshiuhsdoifsidf </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-
-  <tr>
-    <td colspan="3">
-      <table>
-        <tr>
-          <th class="titlename">ความสามารถพิเศษทางคอมพิวเตอร์</th>
-        </tr>
-        <tr>
-          <td class="no-border-bottom"> shdiufyshiuhsdoifsidf </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-
-  <tr>
-    <td colspan="3">
-      <table>
-        <tr>
-          <td class="no-border-bottom"><br>โปรดอธิบายให้ผู้อื่นรู้จักตัวท่านดีขึ้น</td>
-        </tr>
-        <tr>
-          <td class="no-tb"> shdiufyshiuhsdoifsidf </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-
-  <tr class="table-tr">
-    <td style="width:10%;">
-    </td>
-    <td style="padding: 2%;">
-      <p style="text-align: right;">
-        <span>ลายเซ็นผู้สมัคร______________________________</span>
-      </p>
-      <p style="text-align: right;">
-        <span>(_____________________________)</span>
-      </p>
-      <p style="text-align: right;">
-        <span>วันที่______________________________</span>
-      </p>
-      <p style="text-align: center;">
-        <b>คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา</b>
-      </p>
-      <p style="text-align: center;">
-        <b>169 ถ.ลงหาดบางแสน ต.แสนสุข อ.เมือง จ.ชลบุรี 20131</b>
-      </p>
-      <p style="text-align: center;">
-        <b>โทรศัพท์ 038-103060-1 โทรสาร 038-393245</b>
-      </p>
-      <p style="text-align: center;">
-        <b>E-mail: kamonwans@buu.ac.th website : http://www.informatics.buu.ac.th/coop</b>
-      </p>
-    </td>
-    <td style="width:10%;">
-    </td>
-  </tr>
-</table>
+    <tr class="table-tr">
+      <td style="width:10%;">
+      </td>
+      <td style="padding: 2%;">
+        <p style="text-align: right;">
+          <span>ลายเซ็นผู้สมัคร______________________________</span>
+        </p>
+        <p style="text-align: right;">
+          <span>(_____________________________)</span>
+        </p>
+        <p style="text-align: right;">
+          <span>วันที่______________________________</span>
+        </p>
+        <p style="text-align: center;">
+          <b>คณะวิทยาการสารสนเทศ มหาวิทยาลัยบูรพา</b>
+        </p>
+        <p style="text-align: center;">
+          <b>169 ถ.ลงหาดบางแสน ต.แสนสุข อ.เมือง จ.ชลบุรี 20131</b>
+        </p>
+        <p style="text-align: center;">
+          <b>โทรศัพท์ 038-103060-1 โทรสาร 038-393245</b>
+        </p>
+        <p style="text-align: center;">
+          <b>E-mail: kamonwans@buu.ac.th website : http://www.informatics.buu.ac.th/coop</b>
+        </p>
+      </td>
+      <td style="width:10%;">
+      </td>
+    </tr>
+  </table>
+</div>
+<!-- </form> -->
