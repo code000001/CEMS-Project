@@ -151,13 +151,13 @@
                 class="col-sm-1 col-form-label text-lg-right no-padding-right no-padding-left">โทรศัพท์ :</label>
               <div class="col-sm-2">
                 <input type="text" formControlName="stdParentMobile" class="form-control" id="stdParentMobile"
-                  [value]="userData.stdParentMobile">
+                  [value]="userData.stdTel">
               </div>
 
               <label for="stdParentTel" class="col-sm-2 col-form-label text-lg-right no-padding-right">มือถือ :</label>
               <div class="col-sm-2">
                 <input type="text" formControlName="stdParentTel" class="form-control" id="stdParentTel"
-                  [value]="userData.stdParentTel">
+                  [value]="userData.stdMmobileTel">
               </div>
             </div>
 
@@ -195,11 +195,11 @@
                   class="form-control" id="std_LastGpa" [value]="userData.std_LastGpa">
               </div>
 
-              <label for="stdHsGpa" class="col-sm-2 col-form-label text-lg-right no-padding-right">เกรดเฉลี่ยสะสม
+              <label for="stdGpax" class="col-sm-2 col-form-label text-lg-right no-padding-right">เกรดเฉลี่ยสะสม
                 :</label>
               <div class="col-sm-2">
-                <input type="number" step="0.01" max="4.00" min="0.01" formControlName="stdHsGpa" class="form-control"
-                  id="stdHsGpa" [value]="userData.stdHsGpa">
+                <input type="number" step="0.01" max="4.00" min="0.01" formControlName="stdGpax" class="form-control"
+                  id="stdGpax" [value]="userData.stdGpax">
               </div>
             </div>
 
@@ -302,20 +302,20 @@
                 :</label>
               <div class="col-sm-3">
                 <input type="text" class="form-control" formControlName="emergName" id="emergRelation"
-                  placeholder="ชื่อ-นามสกุล">
+                  placeholder="ชื่อ-นามสกุล" >
               </div>
 
               <label for="stdFatherJob" class="col-sm-2 col-form-label text-lg-right no-padding-right">ความสัมพันธ์
                 :</label>
               <div class="col-sm-2">
                 <input type="text" class="form-control" formControlName="emergRelation" id="emergRelation"
-                  placeholder="ความสัมพันธ์">
+                  placeholder="ความสัมพันธ์" [value]="userData.stdParentRelation">
               </div>
 
               <label for="stdFatherMobileTel"
                 class="col-sm-1 col-form-label text-lg-right no-padding-right-left">โทรศัพท์ :</label>
               <div class="col-sm-2">
-                <input type="text" class="form-control" formControlName="emergTel" id="emergTel" placeholder="โทรศัพท์">
+                <input type="text" class="form-control" formControlName="emergTel" id="emergTel" placeholder="โทรศัพท์" [value]="userData.stdParentMobile">
               </div>
             </div>
             <div class="form-group row">
@@ -496,16 +496,16 @@
                       placeholder="มัธยมศึกษาตอนปลาย">
                   </td>
                   <td>
-                    <input type="text" formControlName="eduShl" class="form-control" id="edu" placeholder="โรงเรียน">
+                    <input type="text" formControlName="eduShl" class="form-control" id="edu" placeholder="โรงเรียน" [value]="userData.stdHsStudyPlace">
                   </td>
                   <td>
-                    <input type="text" formControlName="eduForm" class="form-control" id="edu" placeholder="พ.ศ.">
+                    <input type="text" formControlName="eduForm" class="form-control" id="edu" placeholder="พ.ศ." [value]="userData.stdHsStartYear">
                   </td>
                   <td>
-                    <input type="text" formControlName="eduTo" class="form-control" id="edu" placeholder="พ.ศ.">
+                    <input type="text" formControlName="eduTo" class="form-control" id="edu" placeholder="พ.ศ." [value]="userData.stdHsEndYear">
                   </td>
                   <td>
-                    <input type="text" formControlName="eduGpax" class="form-control" id="edu" placeholder="gpax">
+                    <input type="number" step="0.01" max="4.00" min="0.01" formControlName="eduGpax" class="form-control" id="edu" placeholder="gpax" [value]="userData.stdHsGpa">
                   </td>
                 </tr>
               </tbody>
@@ -854,21 +854,19 @@
                 {{userData.stdHsGpa}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> <br>
               สถานที่เกิด <u>&nbsp;&nbsp; {{selectedProvinces}} &nbsp;&nbsp;&nbsp;&nbsp;</u> วันเดือนปีเกิด
               <u>&nbsp;&nbsp; {{userData.stdBornDate | THPipe}} &nbsp;&nbsp;&nbsp;&nbsp;</u> อายุ <u>&nbsp;&nbsp; {{userData.stdAge}} ปี
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u> เพศ <u>{{userData.genderNameTh}}</u><br>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </u> เพศ <u>&nbsp;&nbsp;{{userData.genderNameTh}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
               <br>
               บัตรประจำตัวประชาชนเลขที่ <u>&nbsp;&nbsp; {{ userData.stdPersonId | THpersonID }} &nbsp;&nbsp;</u>
-              สัญชาติ________ ศาสนา________<br>
+              สัญชาติ <u>&nbsp;&nbsp; {{userData.stdNation}} &nbsp;&nbsp;&nbsp;&nbsp;</u> ศาสนา <u>&nbsp;&nbsp; {{userData.stdReligion}} &nbsp;&nbsp;&nbsp;&nbsp;</u><br>
             </td>
             <td style="width:10%">รูปถ่าย</td>
           </tr>
           <tr>
             <td colspan="2" class="no-tb">
-              ส่วนสูง cm_____ซม. น้ำหนัก kg______ <br>ที่อยู่ที่ติดต่อได้
-              ________________________________________________
-              __________________________________________________________________________________________
-              <br>ที่อยู่ตามทะเบียนบ้าน__________________________________________________________________________
-              __________________________________________________________________________________________
-              <br>โทร. __________________มือถือ ___________________E-mail Address _______________________________
+              ส่วนสูง cm <u>&nbsp;&nbsp; {{userData.stdHeight}} &nbsp;&nbsp;&nbsp;&nbsp;</u> ซม. น้ำหนัก kg <u>&nbsp;&nbsp; {{userData.stdWeigh}} &nbsp;&nbsp;&nbsp;&nbsp;</u> <br>
+              ที่อยู่ที่ติดต่อได้<u>&nbsp;&nbsp; {{userData.stdNowAddress}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
+              <br>ที่อยู่ตามทะเบียนบ้าน <u>&nbsp;&nbsp; {{userData.stdHouseParticularsAddress}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
+              <br>โทร. <u>&nbsp;&nbsp; {{userData.stdTel}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> มือถือ <u>&nbsp;&nbsp; {{userData.stdMmobileTel}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br> E-mail Address <u>&nbsp;&nbsp; {{userData.stdEmail}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u>
             </td>
           </tr>
           <tr>
@@ -876,8 +874,8 @@
           </tr>
           <tr>
             <td colspan="2" class="no-tb">
-              ชื่อ – นามสกุล _____________________________________________________โทรศัพท์ ___________________<br>
-              ความสัมพันธ์_____________________________________<br>ที่อยู่ ________________________________________
+              ชื่อ – นามสกุล <u>&nbsp;&nbsp; {{userData.stdParentFirstName}} {{userData.stdParentLastName}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> โทรศัพท์ <u>&nbsp;&nbsp; {{userData.stdParentMobile}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+              ความสัมพันธ์ <u>&nbsp;&nbsp; {{userData.stdParentRelation}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>ที่อยู่ ________________________________________
               ___________________________________________________________________________________________
             </td>
           </tr>
@@ -893,8 +891,8 @@
           </tr>
           <tr>
             <td>
-              ชื่อบิดา ____________________________________ อาชีพ ________________โทรศัพท์ ____________________<br>
-              ชื่อมารดา __________________________________ อาชีพ ________________โทรศัพท์ ____________________<br>
+              ชื่อบิดา <u>&nbsp;&nbsp; {{userData.stdFatherNameTh}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> อาชีพ <u>&nbsp;&nbsp; {{userData.stdFatherJob}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> โทรศัพท์ <u>&nbsp;&nbsp; {{userData.stdFatherMobileTel}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
+              ชื่อมารดา <u>&nbsp;&nbsp; {{userData.stdMotherNameTh}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> อาชีพ <u>&nbsp;&nbsp; {{userData.stdMotherJob}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> โทรศัพท์ <u>&nbsp;&nbsp; {{userData.stdMotherMobileTel}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u><br>
               ที่อยู่ _______________________________________________________________________________________
             </td>
           </tr>
@@ -913,10 +911,10 @@
                 </tr>
                 <tr>
                   <td> </td>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
-                  <td> </td>
+                  <td>{{userData.stdHsStudyPlace}}</td>
+                  <td>{{userData.stdHsStartYear}}</td>
+                  <td>{{userData.stdHsEndYear}}</td>
+                  <td>{{userData.stdHsGpa}}</td>
                 </tr>
 
               </table>

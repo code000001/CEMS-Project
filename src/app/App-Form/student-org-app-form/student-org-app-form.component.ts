@@ -113,7 +113,7 @@ export class StudentOrgAppFormComponent implements OnInit {
   submit(): void {
     this.userData.stdOrgId = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
 
-    if (this.AppForm.get('stdParentTel').value != null) { this.userData.stdParentTel = this.AppForm.get('stdParentTel').value }
+    if (this.AppForm.get('stdParentTel').value != null) { this.userData.stdMmobileTel = this.AppForm.get('stdParentTel').value }
     if (this.AppForm.get('stdBornPlace').value != null) { this.userData.stdBornPlace = (this.AppForm.get('stdBornPlace').value).toString() }
     if (this.AppForm.get('stdNation').value != null) { this.userData.stdNation = this.AppForm.get('stdNation').value }
     if (this.AppForm.get('stdHeight').value != null) { this.userData.stdHeight = this.AppForm.get('stdHeight').value }
@@ -122,16 +122,25 @@ export class StudentOrgAppFormComponent implements OnInit {
     if (this.AppForm.get('Address2').value != null) { this.userData.stdNowAddress = this.AppForm.get('Address2').value }
     if (this.SameAddress1 == false) { this.userData.stdNowAddress = this.AppForm.get('Address1').value }
     if (this.AppForm.get('stdReligion').value != null) { this.userData.stdReligion = this.AppForm.get('stdReligion').value }
-    if (this.AppForm.get('stdParentMobile').value != null) { this.userData.stdParentMobile = this.AppForm.get('stdParentMobile').value }
+    if (this.AppForm.get('stdParentMobile').value != null) { this.userData.stdTel = this.AppForm.get('stdParentMobile').value }
     if (this.AppForm.get('stdYear').value != null) { this.userData.stdYear = this.AppForm.get('stdYear').value }
     if (this.AppForm.get('stdEmail').value != null) { this.userData.stdEmail = this.AppForm.get('stdEmail').value }
-    if (this.AppForm.get('stdHsGpa').value != null) { this.userData.stdHsGpa = this.AppForm.get('stdHsGpa').value }
+    if (this.AppForm.get('stdGpax').value != null) { this.userData.stdGpax = this.AppForm.get('stdGpax').value }
+    if (this.AppForm.get('eduGpax').value != null) { this.userData.stdHsGpa = this.AppForm.get('eduGpax').value }
+    // if (this.AppForm.get('eduLv').value != null) { this.userData.stdHsGpa = this.AppForm.get('eduLv').value }
+    if (this.AppForm.get('eduShl').value != null) { this.userData.stdHsStudyPlace = this.AppForm.get('eduShl').value }
+    if (this.AppForm.get('eduForm').value != null) { this.userData.stdHsStartYear = this.AppForm.get('eduForm').value }
+    if (this.AppForm.get('eduTo').value != null) { this.userData.stdHsEndYear = this.AppForm.get('eduTo').value }
     if (this.AppForm.get('stdFatherJob').value != null) { this.userData.stdFatherJob = this.AppForm.get('stdFatherJob').value }
     if (this.AppForm.get('stdParentMobile').value != null) { this.userData.stdParentMobile = this.AppForm.get('stdParentMobile').value }
     if (this.AppForm.get('stdMotherJob').value != null) { this.userData.stdMotherJob = this.AppForm.get('stdMotherJob').value }
     if (this.AppForm.get('stdMotherMobileTel').value != null) { this.userData.stdMotherMobileTel = this.AppForm.get('stdMotherMobileTel').value }
     if (this.AppForm.get('std_LastGpa').value != null) { this.userData.std_LastGpa = this.AppForm.get('std_LastGpa').value }
     if (this.AppForm.get('stdParentAddress').value != null) { this.userData.stdParentAddress = this.AppForm.get('stdParentAddress').value }
+    if (this.AppForm.get('emergRelation').value != null) { this.userData.stdParentRelation = this.AppForm.get('emergRelation').value }
+    // if (this.AppForm.get('emergAddress').value != null) { this.userData.stdParentAddress = this.AppForm.get('emergAddress').value }
+    if (this.AppForm.get('emergTel').value != null) { this.userData.stdParentMobile = this.AppForm.get('emergTel').value }
+
 
     // this.submitted = true;
     // console.log(this.userData);
@@ -204,6 +213,7 @@ export class StudentOrgAppFormComponent implements OnInit {
       eduTo: null,
       eduGpax: null,
       std_LastGpa: null,
+      stdGpax: null,
       stdParentAddress: null,
 
       stdEmail: null,
@@ -250,23 +260,21 @@ export class StudentOrgAppFormComponent implements OnInit {
     const id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     this.organizationService.getDetailById(id).subscribe(org => this.org = org);
 
-    this.organizationService.getLogPositionBylogpAnnId(id)
+    this.appFormService.getLogPositionBylogpAnnId(id)
       .subscribe(logPosition => {
         // this.logPosition = logPosition
         // console.log((logPosition).length)
-        //this.getKnowledgeReq(this.logReqKnow.logkAnnKrdId)
-        // const max = (logPosition).length;
-        // for (let index = 0; index < max; index++) {
-        //   this.organizationService.getPositionById(logPosition[index].logpAnnPosId)
-        //     .subscribe(positionData => {
-        //       // console.log(positionData);
-        //       (index != (max - 1)) ? this.ann += positionData.annPosNameEn + ', ' : this.ann += positionData.annPosNameEn;
-        //       // this.ListPosition.push(positionData);
-        //     });
-        // }
+        // this.getKnowledgeReq(this.logReqKnow.logkAnnKrdId)
+        const max = logPosition.length;
+        for (let index = 0; index < max; index++) {
+          this.appFormService.getPositionById(logPosition[index].logpAnnPosId)
+            .subscribe(positionData => {
+              // console.log(positionData);
+              (index != (max - 1)) ? this.ann = positionData.annPosNameEn + ', ' + this.ann : this.ann += positionData.annPosNameEn;
+              // this.ListPosition.push(positionData);
+            });
+        }
       });
-
-
 
     this.appFormService.getINS02().subscribe(data => {
       this.stdBornPlace = parseInt(data.stdBornPlace);
@@ -427,7 +435,7 @@ export class StudentOrgAppFormComponent implements OnInit {
         margin: 1,
         filename: 'INS002-' + this.userData.stdId + '.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, maxwidth: 719 },
+        html2canvas: { scale: 1, maxwidth: 719 },
         pagebreak: { mode: ['.before', '.after'] },
         jsPDF: { unit: 'cm', format: 'a4', orientation: 'portrait' }
       };

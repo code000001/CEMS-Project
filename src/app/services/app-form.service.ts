@@ -6,6 +6,7 @@ import { map, catchError } from 'rxjs/operators';
 import { AuthenticationService } from '../_services';
 import { User, Userappform,AnouncementInterface,OrganizationDataInterface } from '../_models';
 import { PositionDataInterface } from '../_models/position-data-interface';
+import { LogPositionInterface ,LogPositionInterfacePost} from '../_models/log-position-interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -80,4 +81,91 @@ export class AppFormService {
   getPositionById(id: number): Observable<PositionDataInterface> {
     return this.http.get<PositionDataInterface>(`${this.authenticationService.path_url}/announcement_position_data/${id}`, ({ headers: this.httpHeaders }))
   }
+
+  getLogPositionBylogpAnnId(logpAnnId: number): Observable<LogPositionInterface[]> {
+    return this.http.get<LogPositionInterface[]>(`${this.authenticationService.path_url}/announcement_logPosition/${logpAnnId}`, ({ headers: this.httpHeaders }))
+  }
 }
+
+
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class AppFormService {
+//   private httpHeaders: HttpHeaders;
+//   private httpHeadersRes: HttpHeaders;
+//   private currentUser: User;
+//   private httpHeadersText: HttpHeaders;
+//   private extractData(res: Response) {
+//     const body = res;
+//     return body || {};
+//   }
+
+//   constructor(
+//     private authenticationService: AuthenticationService,
+//     private http: HttpClient,
+    
+//   ) {
+//     this.httpHeadersRes = this.authenticationService.gethttpHeadersRes;
+//     this.httpHeaders = this.authenticationService.gethttpHeaders;
+//     this.currentUser = this.authenticationService.currentUserValue;
+//     this.httpHeadersText = this.authenticationService.gethttpHeadersText;
+    
+//   }
+
+//   errorHander(error: HttpErrorResponse) {
+//     // console.log("err status : ",error.status);
+//     return Observable.throw(error.message);
+//   }
+
+//   getINS02(): Observable<any> {
+//     return this.http.get<any>(`${this.authenticationService.path_url}/getINS/${this.currentUser.userId}`, ({ headers: this.httpHeadersRes }))
+//       .pipe(map(this.extractData), catchError(this.errorHander));
+//   }
+
+//   getProvince(): Observable<any> {
+//     return this.http.get<any>(`${this.authenticationService.path_url}/getProvinces`, ({ headers: this.httpHeaders }))
+//       .pipe(map(data => { //console.log("req data => ",data);
+//       return data}), catchError(this.errorHander));
+//   }
+
+//   getAmphure(pv_id : number): Observable<any> {
+//     return this.http.get<any>(`${this.authenticationService.path_url}/getAmphures/${pv_id}`, ({ headers: this.httpHeaders }))
+//       .pipe(map(data => { //console.log("req data => ",data);
+//       return data}), catchError(this.errorHander));
+//   }
+
+//   getDistrict(amp_id : number): Observable<any> {
+//     return this.http.get<any>(`${this.authenticationService.path_url}/getDistricts/${amp_id}`, ({ headers: this.httpHeaders }))
+//       .pipe(map(data => { //console.log("req data => ",data);
+//       return data}), catchError(this.errorHander));
+//   }
+//   updateStdAppForm (std: Userappform): Observable<any> {
+//     return this.http.put(`${this.authenticationService.path_url}/updateProfileAppForm/${this.currentUser.userId}`,std, ({ headers: this.httpHeadersRes }));
+//   }
+
+//   checkStatusAnn (ann: number): Observable<String> {
+//     return this.http.get<String>(`${this.authenticationService.path_url}/getStatusAnn/${ann}`, ({ headers: this.httpHeadersText}))
+//     // .pipe(map((response: Response) => {
+//     //   // this.responseStatus = response.status;
+//     //   // console.log("req data => ",response.status);
+//     //   console.log('response => ',this.extractData(response));
+//     //   return this.extractData(response);
+//     // }), catchError(this.errorHander));
+//     // .pipe(map(data => { //console.log("req dat a => ",data);
+//     // return data}), catchError(this.errorHander));
+
+//     // .pipe(map(data => { console.log("req data => ",data);
+//     // return data}), catchError(this.errorHander));
+//   }
+
+//   getPositionById(id: number): Observable<PositionDataInterface> {
+//     return this.http.get<PositionDataInterface>(`${this.authenticationService.path_url}/announcement_position_data/${id}`, ({ headers: this.httpHeaders }))
+//   }
+
+  
+//   getLogPositionBylogpAnnId(logpAnnId: number): Observable<LogPositionInterface[]> {
+//     return this.http.get<LogPositionInterface[]>(`${this.authenticationService.path_url}/announcement_logPosition/${logpAnnId}`, ({ headers: this.httpHeaders }))
+//   }
+// }
