@@ -153,7 +153,7 @@ export class ViewJobDetailAnnouncementComponent implements OnInit {
   }
 
   appfrom(){
-    this.router.navigate(['/app-form/'+1+'/'+1]);
+    this.router.navigate(['/app-form/'+this.org[0].id+'/'+this.route.snapshot.paramMap.get('id')]);
   }
 
   get isRegister() {
@@ -162,5 +162,6 @@ export class ViewJobDetailAnnouncementComponent implements OnInit {
     }
     return false;
   }
+
 }
 

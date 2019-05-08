@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { AuthenticationService } from '../_services';import { User, Userappform,AnouncementInterface,OrganizationDataInterface } from '../_models';
-
+import { AuthenticationService } from '../_services';
+import { User, Userappform,AnouncementInterface,OrganizationDataInterface } from '../_models';
+import { PositionDataInterface } from '../_models/position-data-interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -76,9 +77,7 @@ export class AppFormService {
     // return data}), catchError(this.errorHander));
   }
 
-  getAnn (annid: number): Observable<AnouncementInterface> {
-    return this.http.get<AnouncementInterface[]>(`${this.authenticationService.path_url}/announcement/${annid}`, ({ headers: this.httpHeadersRes }))
-    .pipe(map(data => { //console.log("req data => ",data);
-      return data[0]}), catchError(this.errorHander));
+  getPositionById(id: number): Observable<PositionDataInterface> {
+    return this.http.get<PositionDataInterface>(`${this.authenticationService.path_url}/announcement_position_data/${id}`, ({ headers: this.httpHeaders }))
   }
 }

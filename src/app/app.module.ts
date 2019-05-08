@@ -50,6 +50,7 @@ import { MatButtonModule, MatFormFieldModule, MatInputModule, MatCheckboxModule,
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { PipeFormat } from './_helpers/pipe-date';
 import { THpersonIDPipe } from './_helpers/person-id';
+import { THblindpersonIDPipe } from './_helpers/blind-person-id';
 import { StdViewsTrainningComponent } from './Profile-Management/std-views-trainning/std-views-trainning.component';
 import { OrganizationService } from './services/organization.service';
 
@@ -83,6 +84,7 @@ import { OrganizationService } from './services/organization.service';
     StaffTrainingManagementComponent,
     PipeFormat,
     THpersonIDPipe,
+    THblindpersonIDPipe,
     StaffCoopComponent,
     StdViewsTrainningComponent
   ],

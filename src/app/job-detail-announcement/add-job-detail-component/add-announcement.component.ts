@@ -62,9 +62,9 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
   logpAnnId: number =3;
   logpAnnPosId: number;
 
-  _getAnouncement: AnouncementInterface[];
-  _getLogKnowledge: LogKnowledgeInterface[];
-  _getLogPosition: LogPositionInterface[];
+  _getAnouncement: AnouncementInterface[] = [];
+  _getLogKnowledge: LogKnowledgeInterface[] = [];
+  _getLogPosition: LogPositionInterface[] = [];
 
   constructor(private router: Router,
     private userService: UserService,
@@ -123,34 +123,34 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
 
     this.service.postAnnouncement(announcement)
       .subscribe((m) => {
-        console.log(announcement);
-        this._getAnouncement.push(announcement);
-      },(err)=>{
-        Swal.fire({
-          type: 'warning',
-          title: 'ไม่สามารถบันทึกข้อมูลได้',
-          showConfirmButton: false,
-          timer: 1500
-        })     
-      },()=>{
-        this.router.navigate(['/announcement']);      
+        console.log(m);
+      },(res)=>{
+        console.log(res);
+        if(res == "OK"){
+          this.router.navigate(['/announcement']);      
           Swal.fire({
                 type: 'success',
                 title: 'บันทึกข้อมูลสำเร็จ',
                 showConfirmButton: false,
                 timer: 1500
-              })    
+              })   
+        }else{
+          Swal.fire({
+            type: 'warning',
+            title: 'ไม่สามารถบันทึกข้อมูลได้',
+            showConfirmButton: false,
+            timer: 5000
+          }) 
+        }  
       })
     
     this.service.postLogKnowlegdeById(annLogKnowledge)
       .subscribe((m) => {
-        console.log(annLogKnowledge);
         this._getLogKnowledge.push(annLogKnowledge);
       })
 
     this.service.postLogPositionById(annLogPosition)
       .subscribe((m) => {
-        console.log(annLogPosition);
         this._getLogPosition.push(annLogPosition);
       })
   }
