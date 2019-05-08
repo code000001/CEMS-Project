@@ -47,6 +47,7 @@ const routes: Routes = [
       { path: 'app-form/:id/:ann', component: StudentOrgAppFormComponent, canActivate: [AuthGuard], data: { title: 'สมัครคัดเลือก', roles: [Role.User] } },
       { path: 'profile-management', component: EduProfileManagementComponent, canActivate: [AuthGuard], data: { title: 'จัดการข้อมูลส่วนตัว', roles: [Role.User] } },
       { path: 'profile-management/ins', component: InsManagementComponent, canActivate: [AuthGuard], data: { title: 'ใบสมัครเป็นนิสิตสหกิจศึกษา', roles: [Role.User] } },
+      { path: 'profile-management/ins/:id', component: InsManagementComponent, canActivate: [AuthGuard], data: { title: 'ใบสมัครเป็นนิสิตสหกิจศึกษา', roles: [Role.Staff, Role.Admin, Role.Agent] } },
       { path: 'profile-management/skill-test', component: SkillTestManagementComponent, canActivate: [AuthGuard], data: { title: 'ผลการสอบทักษะ', roles: [Role.User] } },
       { path: 'profile-management/upload-transcript', component: UploadTranscriptComponent, canActivate: [AuthGuard], data: { title: 'อัปโหลดผลการศึกษา', roles: [Role.User] } },
       { path: 'profile-management/upload-resume', component: UploadResumeComponent, canActivate: [AuthGuard], data: { title: 'อัปโหลดเรซูเม', roles: [Role.User] } },

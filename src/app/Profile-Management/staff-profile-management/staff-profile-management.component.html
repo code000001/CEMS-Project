@@ -1,6 +1,6 @@
 <div class="container-contact100">
   <div class="wrap-contact100">
-    <form class="contact100-form validate-form" [formGroup]="HourTrain" (ngSubmit)="addupHourTrain()">
+    <form class="contact100-form validate-form" [formGroup]="HourTrain" >
       <span class="contact100-form-title">จัดการชั่วโมงอบรมของนิสิต</span>
 
       <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -47,7 +47,7 @@
             <td scope="row">{{std_trainning.stdHrprepare}}</td>
             <td scope="row">{{std_trainning.stdTestScore}}</td>
             <td scope="row">
-              <button class="btn btn-warning" style="color:white" (click)="open(content, i,std_trainning.stdAccId,std_trainning.stdHrConference,std_trainning.stdHrprepare,std_trainning.stdTestScore)">แก้ไข</button>
+              <button type="button" class="btn btn-warning" style="color:white" (click)="open(content, i,std_trainning.stdAccId,std_trainning.stdHrConference,std_trainning.stdHrprepare,std_trainning.stdTestScore)">แก้ไข</button>
             </td>
           </tr>
         </tbody>
@@ -74,14 +74,14 @@
 
         <div class="modal-body" style="width:50%;">
           <label>สถานะผลการสอบทักษะ : </label>
-          <ng-select formControlName="stdTestScore" >
-            <ng-option *ngFor="let testscore of TestScore"  [value]="testscore.id">{{testscore.th}}</ng-option>
+          <ng-select formControlName="stdTestScore">
+            <ng-option *ngFor="let testscore of TestScore" [value]="testscore.id">{{testscore.th}}</ng-option>
           </ng-select>
           <!-- <input type="text" class="form-control" formControlName="stdTestScore"> -->
         </div>
 
         <div class="modal-footer">
-          <button type="submit" class="btn btn-success" (click)="addupHourTrain(content)">Save</button>
+          <button type="Submit" class="btn btn-success" (click)="addupHourTrain()">Save</button>
         </div>
       </ng-template>
       <!-- <button type="submit" class="btn btn-success" style="width:10%;" (click)="SuccessAlert()">บันทึก</button> -->

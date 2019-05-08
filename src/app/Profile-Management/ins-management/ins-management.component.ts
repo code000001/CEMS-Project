@@ -7,6 +7,7 @@ import { AuthGuard } from '../../_guards';
 import { User, Role } from '../../_models';
 import { UserService, AuthenticationService } from '../../_services';
 import Swal from 'sweetalert2';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // declare var require: any;
 
 @Component({
@@ -29,7 +30,9 @@ export class InsManagementComponent implements OnInit {
     private route: ActivatedRoute,
     private authenticationService: AuthenticationService,
     private studentdataService: StudentDataService,
-    private authGuardService: AuthGuard) {
+    private authGuardService: AuthGuard,
+    private modalService: NgbModal) {
+
     this.userFromApi = this.currentUser = this.authenticationService.currentUserValue;
     for (var i = 1; i <= 8; i++) {
       this.year.push(i);
@@ -39,8 +42,12 @@ export class InsManagementComponent implements OnInit {
   ngOnInit() {
 
     // const Swal = require('sweetalert2');
-
-    this.getstudentdata(this.userFromApi.userId);
+    if (this.route.snapshot.paramMap.get('id') != null){
+      this.getstudentdata(+this.route.snapshot.paramMap.get('id'));
+    }else{
+      this.getstudentdata(this.userFromApi.userId);
+    }
+    
 
     this.StdForm = this.fb.group({
       stdId: null,
@@ -93,6 +100,10 @@ export class InsManagementComponent implements OnInit {
     return this.currentUser && this.currentUser.userId === Role.User;
   }
 
+  get isStaffOrAdmin(){
+    return this.currentUser && (this.currentUser.userId === Role.Staff || this.currentUser.userId === Role.Agent);
+  }
+
   getstudentdata(stdId: number) {
     // console.log("std id : ", stdId);
     // var a = parseInt('32');
@@ -140,8 +151,34 @@ export class InsManagementComponent implements OnInit {
     if (this.StdForm.get('stdpareEmail').value) { this.add_std.stdpareEmail = this.StdForm.get('stdpareEmail').value; }
     // console.log(this.add_std.stdPrefixTh);
     this.submitted = true;
-    this.studentdataService.putstddataBystdId(this.userFromApi.userId, this.add_std).subscribe(() => this.message = "Successfully!");
-    // this.studentdataService.poststddataBystdId(stdId)
+    this.studentdataService.putstddataBystdId(this.userFromApi.userId, this.add_std)
+    .subscribe(() => this.message = "Successfully!", 
+      (err) => {
+        Swal.fire({
+          title: "ไม่สามารถบันทึกข้อมูลได้",
+          type: "warning",
+          text: "กรุณาตรวจสอบข้อมูลของท่าน",
+          confirmButtonColor: '#244f99',
+          confirmButtonText: 'ตกลง',
+          showCancelButton: false,
+          allowEscapeKey: false,
+          allowOutsideClick: false
+        })
+      },
+      () => {
+        this.modalService.dismissAll();
+        Swal.fire({
+          type: 'success',
+          title: "บันทึกข้อมูลสำเร็จ!",
+          text: "ระบบบันทึกข้อมูลเรียบร้อย",
+          timer: 1800,
+          confirmButtonColor: '#244f99',
+          confirmButtonText: 'ตกลง',
+          showConfirmButton: false,
+          showCancelButton: false,
+          allowEscapeKey: false,
+          allowOutsideClick: false
+        }) });
   }
 
   SuccessAlert() {

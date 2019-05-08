@@ -25,9 +25,9 @@ export class StaffProfileManagementComponent implements OnInit {
   submitted = false;
   message: string;
 
-  TestScore = [{ id: 'Y', th: 'ผ่าน' }, { id: 'N', th: 'ไม่ผ่าน'}];
-  
-  headElements = ['ลำดับ' ,'รหัสนิสิต', 'ชื่อ - นามสกุล', 'วิชาการ(ชั่วโมง)', 'เตรียมความพร้อม(ชั่วโมง)', 'สถานะผลสอบทักษะ', 'จัดการ'];
+  TestScore = [{ id: 'Y', th: 'ผ่าน' }, { id: 'N', th: 'ไม่ผ่าน' }];
+
+  headElements = ['ลำดับ', 'รหัสนิสิต', 'ชื่อ - นามสกุล', 'วิชาการ(ชั่วโมง)', 'เตรียมความพร้อม(ชั่วโมง)', 'สถานะผลสอบทักษะ', 'จัดการ'];
 
   constructor(
     private fb: FormBuilder,
@@ -36,11 +36,13 @@ export class StaffProfileManagementComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private staffHrmanagementService: StaffHrManagementService,
     private authGuardService: AuthGuard,
-    private studentdataService: StudentDataService, config: NgbModalConfig, private modalService: NgbModal) { 
-      this.userFromApi = this.currentUser = this.authenticationService.currentUserValue;
+    private studentdataService: StudentDataService, 
+    config: NgbModalConfig, 
+    private modalService: NgbModal) {
+    this.userFromApi = this.currentUser = this.authenticationService.currentUserValue;
     config.backdrop = 'static';
-    config.keyboard = false; 
-    }
+    config.keyboard = false;
+  }
 
   ngOnInit() {
     this.getAllStudentTrain();
@@ -55,7 +57,7 @@ export class StaffProfileManagementComponent implements OnInit {
 
   }
 
-  selectTestScore($event){
+  selectTestScore($event) {
   }
 
   get isSignin() {
@@ -77,27 +79,53 @@ export class StaffProfileManagementComponent implements OnInit {
     return this.currentUser && this.currentUser.accTypeId === Role.Admin;
   }
 
-  getAllStudentTrain(){
+  getAllStudentTrain() {
     this.staffHrmanagementService.getAllStudentTrainning().subscribe((data) => {
       console.log(data);
       this.std_trainning = data;
     });
   }
 
-  addupHourTrain(content){
-    
+  addupHourTrain(content) {
+
     var index = this.HourTrain.get('index').value;
     // console.log(this.HourTrain.get('stdTestScore').value);
-    if (this.HourTrain.get('stdHrprepare').value) { this.std_trainning[index].stdHrprepare = this.HourTrain.get('stdHrprepare').value;}
+    if (this.HourTrain.get('stdHrprepare').value) { this.std_trainning[index].stdHrprepare = this.HourTrain.get('stdHrprepare').value; }
     if (this.HourTrain.get('stdHrConference').value) { this.std_trainning[index].stdHrConference = this.HourTrain.get('stdHrConference').value; }
     if (this.HourTrain.get('stdTestScore').value) { this.std_trainning[index].stdTestScore = this.HourTrain.get('stdTestScore').value; }
     this.submitted = true;
     console.log(this.std_trainning[index]);
-    this.staffHrmanagementService.putstdHourTrainBystdId(this.HourTrain.get('stdAccId').value, this.std_trainning[index]).subscribe(() => this.message = "Successfully!");
-    this.modalService.dismissAll();
+    this.staffHrmanagementService.putstdHourTrainBystdId(this.HourTrain.get('stdAccId').value, this.std_trainning[index])
+      .subscribe(
+      () => this.message = "Successfully!",
+      (err) => {
+        Swal.fire({
+          title: "ไม่สามารถบันทึกข้อมูลได้",
+          type: "warning",
+          text: "กรุณาตรวจสอบข้อมูลของท่าน",
+          confirmButtonColor: '#244f99',
+          confirmButtonText: 'ตกลง',
+          showCancelButton: false,
+          allowEscapeKey: false,
+          allowOutsideClick: false
+        })
+      },
+      () => { this.modalService.dismissAll();
+        Swal.fire({
+          type: 'success',
+          title: "บันทึกข้อมูลสำเร็จ!",
+          text: "ระบบบันทึกข้อมูลเรียบร้อย",
+          timer: 1800,
+          confirmButtonColor: '#244f99',
+          confirmButtonText: 'ตกลง',
+          showConfirmButton: false,
+          showCancelButton: false,
+          allowEscapeKey: false,
+          allowOutsideClick: false
+        }) });
   }
 
-  editHrTrain(){
+  editHrTrain() {
     Swal.fire({
       title: 'Submit your Github username',
       input: 'text',
@@ -110,7 +138,7 @@ export class StaffProfileManagementComponent implements OnInit {
     })
   }
 
-  open(content, index: number, id : number,confer: number,prepare: number,testscore: string) {
+  open(content, index: number, id: number, confer: number, prepare: number, testscore: string) {
     // console.log(id);
     // console.log(confer);
     this.HourTrain.get('stdHrprepare').setValue(prepare);
