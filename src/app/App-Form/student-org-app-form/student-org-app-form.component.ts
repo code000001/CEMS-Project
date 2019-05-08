@@ -255,15 +255,15 @@ export class StudentOrgAppFormComponent implements OnInit {
         // this.logPosition = logPosition
         // console.log((logPosition).length)
         //this.getKnowledgeReq(this.logReqKnow.logkAnnKrdId)
-        const max = (logPosition).length;
-        for (let index = 0; index < max; index++) {
-          this.organizationService.getPositionById(logPosition[index].logpAnnPosId)
-            .subscribe(positionData => {
-              // console.log(positionData);
-              (index != (max - 1)) ? this.ann += positionData.annPosNameEn + ', ' : this.ann += positionData.annPosNameEn;
-              // this.ListPosition.push(positionData);
-            });
-        }
+        // const max = (logPosition).length;
+        // for (let index = 0; index < max; index++) {
+        //   this.organizationService.getPositionById(logPosition[index].logpAnnPosId)
+        //     .subscribe(positionData => {
+        //       // console.log(positionData);
+        //       (index != (max - 1)) ? this.ann += positionData.annPosNameEn + ', ' : this.ann += positionData.annPosNameEn;
+        //       // this.ListPosition.push(positionData);
+        //     });
+        // }
       });
 
 

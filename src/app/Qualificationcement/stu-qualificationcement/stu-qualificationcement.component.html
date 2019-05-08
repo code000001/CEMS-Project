@@ -11,8 +11,8 @@
       <div class="collapse show" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <ngx-datatable class="bootstrap" [rows]="stdAppForm" [loadingIndicator]="loadingIndicator" columnMode="force" 
-              [headerHeight]="60" [footerHeight]="0" [rowHeight]="60">
+            <ngx-datatable class="bootstrap" [rows]="stdAppForm" [loadingIndicator]="loadingIndicator" columnMode="force" [limit]="5"
+              [headerHeight]="60" [footerHeight]="60" [rowHeight]="60">
               <ngx-datatable-column name="stdNameTh">
                 <ng-template let-column="column" ngx-datatable-header-template>
                   <span>ชื่อนิสิต</span>
@@ -52,8 +52,8 @@
       <div class="collapse show" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <ngx-datatable class="bootstrap" [rows]="stdInqual" [loadingIndicator]="loadingIndicator" columnMode="force" 
-              [headerHeight]="60" [footerHeight]="0" [rowHeight]="60">
+            <ngx-datatable class="bootstrap" [rows]="stdInqual" [loadingIndicator]="loadingIndicator" columnMode="force" [limit]="5"
+              [headerHeight]="60" [footerHeight]="60" [rowHeight]="60">
               <ngx-datatable-column name="stdNameTh">
                 <ng-template let-column="column" ngx-datatable-header-template>
                   <span>ชื่อนิสิต</span>
@@ -98,8 +98,8 @@
       <div class="collapse show" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-group">
-            <ngx-datatable class="bootstrap" [rows]="stdQualified" [loadingIndicator]="loadingIndicator" columnMode="force" 
-            [headerHeight]="60" [footerHeight]="0" [rowHeight]="60">
+            <ngx-datatable class="bootstrap" [rows]="stdQualified" [loadingIndicator]="loadingIndicator" columnMode="force" [limit]="5"
+            [headerHeight]="60" [footerHeight]="60" [rowHeight]="60">
             <ngx-datatable-column name="stdNameTh">
               <ng-template let-column="column" ngx-datatable-header-template>
                 <span>ชื่อนิสิต</span>

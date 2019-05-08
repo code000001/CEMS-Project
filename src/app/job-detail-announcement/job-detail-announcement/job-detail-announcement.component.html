@@ -17,8 +17,8 @@
             <fa name="plus"></fa> เพิ่ม
           </button>&nbsp;&nbsp;
             <hr>
-          <ngx-datatable class="bootstrap" [rows]="orgData" [loadingIndicator]="loadingIndicator" columnMode="force"
-            [headerHeight]="60" [footerHeight]="0" [rowHeight]="60">
+          <ngx-datatable class="bootstrap" [rows]="orgData" [loadingIndicator]="loadingIndicator" columnMode="force" [limit]="5"
+            [headerHeight]="60" [footerHeight]="60" [rowHeight]="60">
             <ngx-datatable-column name="orgNameTh">
               <ng-template let-column="column" ngx-datatable-header-template>
                 <span>รายชื่อบริษัท</span>

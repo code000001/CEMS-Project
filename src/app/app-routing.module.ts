@@ -37,7 +37,7 @@ const routes: Routes = [
       { path: 'index',        component: MainscreenComponent,            data: { title: 'หน้าแรก' }},
       { path: 'login',        component: LogInComponent,                 data: { title: 'เข้าสู่ระบบ' }},
       { path: 'announcement', component: JobDetailAnnouncementComponent, data: { title: 'ประกาศ' }},
-      { path: 'qualifying',   component: StuQualifyingStatusComponent,   data: { title: 'ดูผลการคัดเลือก' }},
+      { path: 'qualifying', component: StuQualifyingStatusComponent, canActivate: [AuthGuard], data: { title: 'ดูผลการคัดเลือก', roles: [Role.User] }},
 
       // -------------------- After login สามารถเข้าถึงได้โดยเข้าสู่ระบบแล้ว
       // - roles: สิทธิในการเข้าถึงหน้านั้น ๆ
