@@ -56,10 +56,10 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
     annEndDate: new Date()
   }
 
-  logkAnnId: number =3;
+  logkAnnId: number
   logkAnnKrdId: number;
 
-  logpAnnId: number =3;
+  logpAnnId: number
   logpAnnPosId: number;
 
   _getAnouncement: AnouncementInterface[] = [];
@@ -110,13 +110,13 @@ export class AddJobDetailAnnouncementComponent implements OnInit {
 
     let annLogKnowledge: LogKnowledgeInterface = {
       id: this.id,
-      logkAnnId: this.logkAnnId,
+      logkAnnId: this.annOrgId,
       logkAnnKrdId: this.logkAnnKrdId
     };
     
     let annLogPosition: LogPositionInterface = {
       id: this.id,
-      logpAnnId: this.logpAnnId,
+      logpAnnId: this.annOrgId,
       logpAnnPosId: this.logpAnnPosId
     };
 

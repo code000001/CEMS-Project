@@ -59,7 +59,7 @@ export class ViewJobDetailAnnouncementComponent implements OnInit {
     this.organizationService.getAnnByorgId(id)
       .subscribe(annData => {
       this.annData = annData
-        // console.log(this.annData)
+        console.log(this.annData)
       });
   }
 

@@ -8,6 +8,7 @@ import { AnouncementInterface, } from '../../_models/announcement-interface';
 import { LogKnowledgeInterface } from '../../_models/log-knowledge-req-interface';
 import { LogPositionInterface } from '../../_models/log-position-interface';
 declare var $: any;
+import { ActivatedRoute } from '@angular/router';
 import {FormControl} from '@angular/forms';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
@@ -46,7 +47,7 @@ export class UpdateJobDetailAnnouncementComponent implements OnInit {
 
   id: number = null;
   annStatusId: number = 1;
-  annOrgId: number = 3
+  annOrgId: number//id สถานประกอบการ
   annAccId: number = 1
  
   annStdAmount: number
@@ -67,7 +68,7 @@ export class UpdateJobDetailAnnouncementComponent implements OnInit {
   _getAnouncement: AnouncementInterface[];
   _getLogKnowledge: LogKnowledgeInterface[];
   _getLogPosition: LogPositionInterface[];
-  constructor(private authenticationService: AuthenticationService,private service : OrganizationService,private router: Router) { this.userFromApi = this.currentUser = this.authenticationService.currentUserValue; }
+  constructor(private route: ActivatedRoute,private authenticationService: AuthenticationService,private service : OrganizationService,private router: Router) { this.userFromApi = this.currentUser = this.authenticationService.currentUserValue; }
 
   ngOnInit() {
     this.getOrg();
@@ -100,10 +101,11 @@ export class UpdateJobDetailAnnouncementComponent implements OnInit {
   }
 
   updateAnouncement(){
+    const orgId = +this.route.snapshot.paramMap.get('id');
     let announcement: AnouncementInterface = {
       id: this.id,
       annStatusId: this.annStatusId,
-      annOrgId: this.annOrgId,
+      annOrgId: orgId,
       annAccId: this.annAccId,
       annStartDate: moment(this.date.annStartDate).format("YYYY/MM/DD"),
       annEndDate:  moment(this.date.annEndDate).format("YYYY/MM/DD"),
@@ -113,6 +115,7 @@ export class UpdateJobDetailAnnouncementComponent implements OnInit {
       annItemReq: this.annItemReq
     };
 
+    const annOrgReId = announcement.annOrgId;
     this.service.putAnnouncement(announcement)
     .subscribe((m) => {
       console.log(announcement);
@@ -124,7 +127,7 @@ export class UpdateJobDetailAnnouncementComponent implements OnInit {
         timer: 1500
       })     
     },()=>{
-      this.router.navigate([`/view_announcement/${this.annOrgId}`]);
+      this.router.navigate([`/view_announcement/${annOrgReId}`]);
         Swal.fire({
               type: 'success',
               title: 'บันทึกข้อมูลสำเร็จ',
