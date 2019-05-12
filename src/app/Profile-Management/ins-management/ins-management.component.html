@@ -218,7 +218,7 @@
       <button type="button" class="btn btn-secondary" style="width:10%;">
         <a href="/profile-management" style="color:white;">ยกเลิก</a>
       </button>
-      <button type="submit" class="btn btn-success" style="width:10%;" (click)="SuccessAlert()">บันทึก
+      <button *ngIf="isUser" type="submit" class="btn btn-success" style="width:10%;" (click)="SuccessAlert()">บันทึก
       </button>
     </form>
   </div>

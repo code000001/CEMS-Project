@@ -48,6 +48,7 @@ export class InsManagementComponent implements OnInit {
       this.getstudentdata(this.userFromApi.userId);
     }
     
+    console.log(this.currentUser)
 
     this.StdForm = this.fb.group({
       stdId: null,
@@ -85,7 +86,7 @@ export class InsManagementComponent implements OnInit {
 
   selectYear(event){
     this.selectedYear = event;
-    console.log('year = ', event);
+    // console.log('year = ', event);
     // this.StdForm.get('stdYear').patchValue(this.add_std.stdYear);
   }
 
@@ -97,20 +98,21 @@ export class InsManagementComponent implements OnInit {
   }
 
   get isUser() {
-    return this.currentUser && this.currentUser.userId === Role.User;
+    return this.currentUser && this.currentUser.accTypeId === Role.User;
   }
 
   get isStaffOrAdmin(){
-    return this.currentUser && (this.currentUser.userId === Role.Staff || this.currentUser.userId === Role.Agent);
+    return this.currentUser && (this.currentUser.accTypeId === Role.Staff || this.currentUser.accTypeId === Role.Agent);
   }
 
   getstudentdata(stdId: number) {
     // console.log("std id : ", stdId);
     // var a = parseInt('32');
     this.studentdataService.getstddataBystdId(stdId).subscribe((data) => {
-      console.log("data : ", data);
+      // console.log("data : ", data);
       this.selectedYear = data.stdYear;
-      this.add_std = data; console.log("data : ", data); console.log("std : ", this.add_std);
+      this.add_std = data; 
+      // console.log("data : ", data); console.log("std : ", this.add_std);
     }
       // console.log("data : ", this.add_std);
     );

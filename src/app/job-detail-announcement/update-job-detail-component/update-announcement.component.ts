@@ -9,9 +9,9 @@ import { LogKnowledgeInterface } from '../../_models/log-knowledge-req-interface
 import { LogPositionInterface } from '../../_models/log-position-interface';
 declare var $: any;
 import { ActivatedRoute } from '@angular/router';
-import {FormControl} from '@angular/forms';
-import {MomentDateAdapter} from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
+import { FormControl } from '@angular/forms';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material';
 import * as moment from 'moment';
 import Swal from 'sweetalert2';
 export const MY_FORMATS = {
@@ -34,41 +34,46 @@ export const MY_FORMATS = {
     // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
     // application's root module. We provide it at the component level here, due to limitations of
     // our example generation script.
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
 
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ]
 })
 export class UpdateJobDetailAnnouncementComponent implements OnInit {
 
   currentUser: User;
   userFromApi: User;
-  org: OrganizationDataInterface[]
+  org: OrganizationDataInterface
 
   id: number = null;
   annStatusId: number = 1;
   annOrgId: number//id สถานประกอบการ
   annAccId: number = 1
- 
+
   annStdAmount: number
   annReward: string
   annWorkshift: string
   annItemReq: string
-  date ={
+  date = {
     annStartDate: new Date(),
     annEndDate: new Date()
   }
 
-  logkAnnId: number =3;
+  logkAnnId: number = 3;
   logkAnnKrdId: number;
 
-  logpAnnId: number =3;
+  logpAnnId: number = 3;
   logpAnnPosId: number;
 
   _getAnouncement: AnouncementInterface[];
   _getLogKnowledge: LogKnowledgeInterface[];
   _getLogPosition: LogPositionInterface[];
-  constructor(private route: ActivatedRoute,private authenticationService: AuthenticationService,private service : OrganizationService,private router: Router) { this.userFromApi = this.currentUser = this.authenticationService.currentUserValue; }
+  constructor(
+    private route: ActivatedRoute,
+    private authenticationService: AuthenticationService,
+    private service: OrganizationService, private router: Router) {
+    this.userFromApi = this.currentUser = this.authenticationService.currentUserValue;
+  }
 
   ngOnInit() {
     this.getOrg();
@@ -93,14 +98,16 @@ export class UpdateJobDetailAnnouncementComponent implements OnInit {
   }
 
   getOrg() {
-    this.service.get()
-      .subscribe(org => {
-      this.org = org
-      console.log(this.org)
-      });
+
+      const id = +this.route.snapshot.paramMap.get('id');
+      this.service.getDetailById(id)
+        .subscribe(org => {
+          this.org = org
+          console.log(this.org)
+        });
   }
 
-  updateAnouncement(){
+  updateAnouncement() {
     const orgId = +this.route.snapshot.paramMap.get('id');
     let announcement: AnouncementInterface = {
       id: this.id,
@@ -108,7 +115,7 @@ export class UpdateJobDetailAnnouncementComponent implements OnInit {
       annOrgId: orgId,
       annAccId: this.annAccId,
       annStartDate: moment(this.date.annStartDate).format("YYYY/MM/DD"),
-      annEndDate:  moment(this.date.annEndDate).format("YYYY/MM/DD"),
+      annEndDate: moment(this.date.annEndDate).format("YYYY/MM/DD"),
       annStdAmount: this.annStdAmount,
       annReward: this.annReward,
       annWorkshift: this.annWorkshift,
@@ -117,24 +124,24 @@ export class UpdateJobDetailAnnouncementComponent implements OnInit {
 
     const annOrgReId = announcement.annOrgId;
     this.service.putAnnouncement(announcement)
-    .subscribe((m) => {
-      console.log(announcement);
-    },(err)=>{
-      Swal.fire({
-        type: 'warning',
-        title: 'ไม่สามารถบันทึกข้อมูลได้',
-        showConfirmButton: false,
-        timer: 1500
-      })     
-    },()=>{
-      this.router.navigate([`/view_announcement/${annOrgReId}`]);
+      .subscribe((m) => {
+        console.log(announcement);
+      }, (err) => {
         Swal.fire({
-              type: 'success',
-              title: 'บันทึกข้อมูลสำเร็จ',
-              showConfirmButton: false,
-              timer: 1500
-            })     
-    })
+          type: 'warning',
+          title: 'ไม่สามารถบันทึกข้อมูลได้',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }, () => {
+        this.router.navigate([`/view_announcement/${annOrgReId}`]);
+        Swal.fire({
+          type: 'success',
+          title: 'บันทึกข้อมูลสำเร็จ',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
   }
 
   get isSignin() {

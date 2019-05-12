@@ -13,10 +13,8 @@
       <div class="card-body">
         <div class="form-group row">
           <label class="col-md-3 col-form-label text-lg-right no-padding-right">สถานประกอบการ</label>
-          <div class="controls col-md-4">
-            <select class="form-control" id="annOrgId" [(ngModel)]="annOrgId" disabled="true">
-              <option *ngFor="let o of org" [value]="o.id">{{o.orgNameTh}}</option>
-            </select>
+          <div class="controls col-md-4" *ngIf="org != null">
+            <input class="form-control" type="text" id="annOrgId" name="annOrgId" [value]="org[0].orgNameTh" disabled style="margin-bottom: 10px">
           </div>
           <label class="col-sm-2 col-form-label text-lg-right no-padding-right" for="annStdAmount">จำนวนที่รับ
             <span class="asteriskField" style="color: red;">*</span>

@@ -40,7 +40,7 @@
                 <span *ngIf="annData && annData[0]">{{annData[0].annReward}} </span>
               </div>
               <label class="col-sm-2 col-form-label text-lg-right no-padding-right">วันทำงาน : </label>
-              <div class="col-md-2 col-form-label no-padding-right">
+              <div class="col-md-4 col-form-label no-padding-right">
                 <span *ngIf="annData && annData[0]"> {{annData[0].annWorkshift}} </span>
               </div>
             </div>
@@ -87,8 +87,9 @@
                 {{annData[0].annEndDate | THPipe}}</span>
             </div>
             
-              <hr class="mb-4">
-              <div *ngIf="isUser">
+              
+              <div *ngIf="isUser && isActive && isOutofDate">
+                <hr class="mb-4">
                 <button *ngIf="isRegister" class="btn btn-primary btn-lg btn-block" (click)="appfrom()">ลงสมัคร</button>
               </div>
 
